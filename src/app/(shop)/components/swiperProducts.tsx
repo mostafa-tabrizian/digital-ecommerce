@@ -20,8 +20,6 @@ const SwiperProducts = ({ products }: any) => {
             rotate: 30,
             slideShadows: false,
          },
-
-         parallax: true,
          pagination: {
             el: '.swiper-pagination',
             type: 'bullets',

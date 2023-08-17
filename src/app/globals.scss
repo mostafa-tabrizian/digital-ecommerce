@@ -101,11 +101,13 @@ button {
    letter-spacing: -1px;
    font-family: IRANYekanRegular, sans-serif;
    padding: 0.5rem 0.1rem;
+   color: rgb(43, 45, 83);
 }
 
 p {
    font-size: 1rem;
    font-family: IRANYekanRegular, sans-serif;
+   color: rgb(43, 45, 83);
 }
 
 input,
@@ -113,6 +115,7 @@ textarea {
    font-size: 1rem;
    font-family: IRANYekanRegular, sans-serif;
    background: #f3f4f6;
+   color: rgb(43, 45, 83);
 
    &::placeholder {
       color: rgb(179, 188, 200);
@@ -122,6 +125,7 @@ textarea {
 span {
    font-family: IRANYekanRegular, sans-serif;
    font-size: 0.8rem;
+   color: rgb(43, 45, 83);
 }
 
 label {
@@ -138,6 +142,10 @@ h6 {
    font-size: 0.8rem;
    font-family: IRANYekanRegular, sans-serif;
    color: gray;
+}
+
+strong {
+   font-family: IRANYekanBlack, sans-serif;
 }
 
 .rtl {

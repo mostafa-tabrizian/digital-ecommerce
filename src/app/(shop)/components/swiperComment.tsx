@@ -11,8 +11,16 @@ const SwiperComments = ({ products }: any) => {
       new Swiper('.swiperComments', {
          loop: true,
          effect: 'cards',
+         autoplay: {
+            delay: 5000,
+         },
          cardsEffect: {
             slideShadows: true,
+         },
+         pagination: {
+            el: '.swiper-pagination',
+            type: 'bullets',
+            dynamicBullets: true,
          },
       })
    }, [])
