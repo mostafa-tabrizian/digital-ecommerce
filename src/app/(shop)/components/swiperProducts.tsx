@@ -8,7 +8,7 @@ import 'swiper/css/bundle'
 
 const SwiperProducts = ({ products }: any) => {
    useEffect(() => {
-      new Swiper('.swiper', {
+      new Swiper('.swiperProducts', {
          speed: 1000,
          spaceBetween: 50,
          autoplay: {
@@ -31,7 +31,7 @@ const SwiperProducts = ({ products }: any) => {
    }, [])
 
    return (
-      <div className='swiper rtl'>
+      <div className='swiperProducts rtl'>
          <div className='swiper-wrapper py-5'>
             <div className='swiper-slide'>
                {/* <ProductCards products={products} pageTarget='/product/' userTarget='client' /> */}

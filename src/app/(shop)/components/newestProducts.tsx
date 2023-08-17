@@ -4,45 +4,8 @@ import Button from '@mui/material/Button'
 
 import SwiperProducts from './swiperProducts'
 
-async function getProducts() {
-   return await prisma.product
-      .findMany({
-         include: {
-            productLocation: {
-               where: {
-                  public: {
-                     equals: true,
-                  },
-                  quantity: {
-                     gt: 0,
-                  },
-               },
-               include: {
-                  color: {
-                     select: {
-                        color: true,
-                     },
-                  },
-                  size: {
-                     select: {
-                        size: true,
-                     },
-                  },
-               },
-            },
-            gallery: {
-               select: {
-                  src: true,
-                  alt: true,
-               },
-            },
-         },
-      })
-      .then((res) => res)
-}
 
-const NewestProducts = async () => {
-   const products = await getProducts()
+const NewestProducts = ({ products }) => {
 
    return (
       <div className='bg-gradient-to-l from-slate-200 to-slate-50 rounded-lg p-2 pt-4'>
