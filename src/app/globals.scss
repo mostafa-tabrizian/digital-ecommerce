@@ -130,7 +130,7 @@ label {
 }
 
 hr {
-   border: solid 1px rgb(235, 235, 235);
+   border: solid 1px rgb(224, 224, 224);
    margin: 1rem 0;
 }
 
@@ -150,6 +150,10 @@ h6 {
 
 .yekan1 {
    font-family: IRANYekanRegular, sans-serif;
+}
+
+.yekanBlack {
+   font-family: IRANYekanBlack, sans-serif;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
@@ -224,6 +228,19 @@ h6 {
 }
 
 .MuiTooltip-tooltip {
-   font-family: IRANYekanRegular, sans-serif;
-   background: rgb(44, 47, 79)
+   font-family: IRANYekanRegular, sans-serif !important;
+   background: rgb(44, 47, 79);
+}
+
+.MuiButton-root {
+   font-family: IRANYekanRegular, sans-serif !important;
+   background: #0084ff !important;
+   border-radius: 15px !important;
+   font-weight: 600 !important;
+   box-shadow: 0 5px 10px #708dff9c !important;
+   padding: .8rem 2rem !important;
+
+   &:hover {
+      background: #2495ff !important;
+   }
 }
