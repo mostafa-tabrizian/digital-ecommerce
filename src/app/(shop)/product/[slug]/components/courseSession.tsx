@@ -34,11 +34,11 @@ const CourseSession = () => {
                         <span className='ml-1.5 rounded-full lg:w-8 lg:h-8 flex justify-center items-center text-xs lg:text-sm w-5 h-5 bg-green-100 text-green-500'>
                            ۱
                         </span>
-                        <span className='text-[11px] lg:text-[15px] text-secondary-700 flex-shrink-0 flex items-center'>
+                        <span className='text-[11px] lg:text-[15px] text-slate-700 flex-shrink-0 flex items-center'>
                            <span>Next.js چیست ؟</span>
                         </span>
                      </div>
-                     <div className='text-secondary-500 flex items-center gap-x-0.5 justify-end'>
+                     <div className='text-slate-500 flex items-center gap-x-0.5 justify-end'>
                         <span className='bg-green-100 text-green-500 mr-1 flex items-center justify-center rounded-full p-1'>
                            <svg
                               stroke='currentColor'

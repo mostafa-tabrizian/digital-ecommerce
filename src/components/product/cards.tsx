@@ -33,7 +33,7 @@ const ProductCards = ({
                <div className='shadow-lg shadow-slate-300 rounded-xl -top-10 mx-2 relative flex'>
                   <div className='w-full absolute left-0 top-0 z-10'>
                      <div className='flex m-3 justify-between'>
-                        <span className='rounded-lg p-1.5 bg-white flex items-center text-secondary-700'>
+                        <span className='rounded-lg p-1.5 bg-white flex items-center text-slate-700'>
                            <span className='text-xs mr-1 font-bold'>۶۸۴</span>
                            <svg
                               xmlns='http://www.w3.org/2000/svg'
@@ -119,7 +119,7 @@ const ProductCards = ({
                         </svg>
                      </div>
 
-                     <div className='flex items-center gap-x-1 text-secondary-600'>
+                     <div className='flex items-center gap-x-1 text-slate-600'>
                         <span className='text-xs'>۴۴:۱۱:۰۰</span>
                         <svg
                            xmlns='http://www.w3.org/2000/svg'

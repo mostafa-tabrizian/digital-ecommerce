@@ -81,13 +81,13 @@ const Question = () => {
                            alt='Mostaf Tabrizian'
                            src='/avatar/me.jpg'
                         />
-                        <div className='text-sm w-full text-secondary-600'>
+                        <div className='text-sm w-full text-slate-600'>
                            <span className='font-bold block mb-1'>صاحب محمدی</span>
-                           <span className='block text-secondary-500 text-xs'>۱ ماه پیش</span>
+                           <span className='block text-slate-500 text-xs'>۱ ماه پیش</span>
                         </div>
                      </div>
                   </div>
-                  <p className='text-secondary-700 font-normal leading-loose lg:leading-8 text-xs lg:text-base'>
+                  <p className='text-slate-700 font-normal leading-loose lg:leading-8 text-xs lg:text-base'>
                      سلام به پشتیبانی تلگرام پیام بدین، راهنمایی میشید.
                   </p>
                </div>

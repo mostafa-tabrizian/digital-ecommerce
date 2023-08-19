@@ -1,12 +1,12 @@
 const RoadMap = () => {
    return (
       <div className='container mx-auto md:max-w-screen-lg mb-28'>
-         <div className='flex justify-center flex-col text-secondary-900 items-center'>
+         <div className='flex justify-center flex-col text-slate-900 items-center'>
             <h2 className='md:text-3xl text-xl font-extraBlack mb-1 md:mb-2'>
                مسیر یادگیری فرانت اند
             </h2>
             <a
-               className='text-sm lg:text-base text-secondary-700 transition-all duration-200 hover:text-primary-900 font-bold'
+               className='text-sm lg:text-base text-slate-700 transition-all duration-200 hover:text-primary-900 font-bold'
                href='/learning-path'
             >
                نقشه راه و مسیر یادگیری فرانت اند

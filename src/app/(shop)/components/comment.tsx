@@ -97,10 +97,10 @@ const Comment = () => {
                   <div className='bg-slate-200 border-2 border-white shadow rounded-full text-center md:w-10 md:h-10 w-8 h-8'>
                      P
                   </div>
-                  <div className='flex flex-col justify-evenly text-secondary-900'>
+                  <div className='flex flex-col justify-evenly text-slate-900'>
                      <div className='flex items-center font-extrabold md:mb-0.5 md:text-sm'>
                         <span className='text-[10px]'> عرشیا جعفرنژاد</span>
-                        <span className='mr-1 font-normal text-[10px] lg:text-xs text-secondary-400'>
+                        <span className='mr-1 font-normal text-[10px] lg:text-xs text-slate-400'>
                            (۱۴۰۲/۵/۱۶)
                         </span>
                      </div>

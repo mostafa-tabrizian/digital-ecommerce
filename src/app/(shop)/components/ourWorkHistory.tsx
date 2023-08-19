@@ -15,7 +15,7 @@ const OurWorkHistory = () => {
          <div className='lg:w-1/3 px-4 md:px-0'>
             <div>
                <div className='flex justify-end items-center gap-x-3 mb-4'>
-                  <h2 className='yekanBlack text-secondary-900 text-xl lg:text-4xl'>
+                  <h2 className='yekanBlack text-slate-900 text-xl lg:text-4xl'>
                      سابقه فرانت هوکس
                   </h2>
                   <div className='p-3 relative from-blue-300 to-blue-500 bg-gradient-to-r flex items-center rounded-3xl justify-center drop-shadow'>
