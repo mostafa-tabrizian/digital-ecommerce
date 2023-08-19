@@ -4,9 +4,7 @@ import Button from '@mui/material/Button'
 
 import SwiperProducts from './swiperProducts'
 
-
 const NewestProducts = ({ products }) => {
-
    return (
       <div className='bg-gradient-to-l from-slate-200 to-slate-50 rounded-lg p-2 pt-4'>
          <div className='mb-20 text-center space-y-6'>

@@ -25,7 +25,7 @@ const OurFeatures = () => {
                   <svg
                      viewBox='0 0 24 24'
                      fill='none'
-                     className='h-9 w-9 z-10 text-white shadow-warranty-icon-mini md:shadow-warranty-icon'
+                     className='h-9 w-9 z-10 text-white'
                      stroke='currentColor'
                   >
                      <path
@@ -53,7 +53,7 @@ const OurFeatures = () => {
                      xmlns='http://www.w3.org/2000/svg'
                      viewBox='0 0 24 24'
                      fill='none'
-                     className='h-9 w-9 z-10 text-white shadow-warranty-icon-mini md:shadow-warranty-icon'
+                     className='h-9 w-9 z-10 text-white'
                   >
                      <path
                         stroke='currentColor'
@@ -85,7 +85,7 @@ const OurFeatures = () => {
                      xmlns='http://www.w3.org/2000/svg'
                      viewBox='0 0 24 24'
                      fill='none'
-                     className='h-9 w-9 z-10 text-white shadow-warranty-icon-mini md:shadow-warranty-icon'
+                     className='h-9 w-9 z-10 text-white'
                   >
                      <path
                         stroke='currentColor'
@@ -111,7 +111,7 @@ const OurFeatures = () => {
                      xmlns='http://www.w3.org/2000/svg'
                      viewBox='0 0 24 24'
                      fill='none'
-                     className='h-8 w-8 z-10 text-white shadow-warranty-icon-mini md:shadow-warranty-icon'
+                     className='h-8 w-8 z-10 text-white'
                   >
                      <path
                         stroke='currentColor'
@@ -143,7 +143,7 @@ const OurFeatures = () => {
                      xmlns='http://www.w3.org/2000/svg'
                      viewBox='0 0 24 24'
                      fill='none'
-                     className='h-9 w-9 z-10 text-white shadow-warranty-icon-mini md:shadow-warranty-icon'
+                     className='h-9 w-9 z-10 text-white'
                   >
                      <path
                         stroke='currentColor'

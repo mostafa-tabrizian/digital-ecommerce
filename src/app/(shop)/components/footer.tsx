@@ -5,12 +5,13 @@ const Footer = () => {
             <div className='col-span-5 md:col-span-2 flex flex-col justify-start'>
                <div>
                   <h2 className='text-slate-500 yekan1 text-sm mb-4 text-right'>
-                     آکادمی آنلاین فرانت هوکس، دوره های کوچ محور <strong className="yekanBlack">برنامه نویسی وب</strong>
+                     آکادمی آنلاین فرانت هوکس، دوره های کوچ محور{' '}
+                     <strong className='yekanBlack'>برنامه نویسی وب</strong>
                   </h2>
                   <div className='leading-7 text-slate-500 text-sm'>
                      <h3 className='leading-7 text-right yekan1 text-slate-500 text-sm'>
-                        <strong>مصطفی تبریزیان هستم ، برنامه نویس وب</strong> و مدیر وبسایت آموزشی فرانت
-                        هوکس.
+                        <strong>مصطفی تبریزیان هستم ، برنامه نویس وب</strong> و مدیر وبسایت آموزشی
+                        فرانت هوکس.
                      </h3>
                      <p className='text-slate-500 text-sm leading-5 text-right yekan1 md:leading-7'>
                         ارائه آموزشی کاربردی، پروژه محور در کنار مربی هدف اصلی ماست. ابتدا در یک
@@ -60,9 +61,7 @@ const Footer = () => {
                            href='https://www.instagram.com/sahebmohamadi.ir/'
                            target='_blank'
                         >
-                           <button
-                              type='button'
-                           >
+                           <button type='button'>
                               <svg
                                  stroke='currentColor'
                                  fill='currentColor'
@@ -87,9 +86,7 @@ const Footer = () => {
                            href='https://ir.linkedin.com/in/saheb-mohamadi-227ab4112'
                            target='_blank'
                         >
-                           <button
-                              type='button'
-                           >
+                           <button type='button'>
                               <svg
                                  stroke='currentColor'
                                  fill='currentColor'
@@ -114,9 +111,7 @@ const Footer = () => {
                            rel='noreferrer'
                            target='_blank'
                         >
-                           <button
-                              type='button'
-                           >
+                           <button type='button'>
                               <svg
                                  stroke='currentColor'
                                  fill='currentColor'
@@ -137,9 +132,7 @@ const Footer = () => {
                      </li>
                      <li className='block'>
                         <a rel='noreferrer' href='https://t.me/fronthooks_support' target='_blank'>
-                           <button
-                              type='button'
-                           >
+                           <button type='button'>
                               <svg
                                  stroke='currentColor'
                                  fill='currentColor'
@@ -164,9 +157,7 @@ const Footer = () => {
                            href='https://www.youtube.com/channel/UCJwBq05vX977h-uqNhwWzBA'
                            target='_blank'
                         >
-                           <button
-                              type='button'
-                           >
+                           <button type='button'>
                               <svg
                                  stroke='currentColor'
                                  fill='currentColor'

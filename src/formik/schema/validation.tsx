@@ -17,12 +17,8 @@ export const RegisterSchemaValidation = yup.object().shape({
 })
 
 export const LoginSchemaValidation = yup.object().shape({
-   email: yup.string()
-   .email('ایمیل می‌بایست معتبر باشد')
-   .required('لطفا ایمیل خود را وارد کنید'),
-   password: yup
-      .string()
-      .required('لطفا رمز خود را وارد کنید'),
+   email: yup.string().email('ایمیل می‌بایست معتبر باشد').required('لطفا ایمیل خود را وارد کنید'),
+   password: yup.string().required('لطفا رمز خود را وارد کنید'),
 })
 
 export const ProfileSchemaValidation = yup.object().shape({

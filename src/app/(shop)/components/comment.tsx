@@ -3,7 +3,7 @@ import Rating from '@mui/material/Rating'
 const Comment = () => {
    return (
       <>
-         <div className='bg-white shadow-xl p-4 lg:p-5 rounded-2xl'>
+         <div className='bg-white border shadow-xl p-4 lg:p-5 rounded-2xl'>
             <div className='mb-4'>
                <p className='flex items-center text-sm lg:text-base text-green-500'>
                   <svg
@@ -111,7 +111,7 @@ const Comment = () => {
                <Rating
                   value={4}
                   readOnly
-                  sx={{direction: 'ltr'}}
+                  sx={{ direction: 'ltr' }}
                   icon={
                      <span>
                         <svg

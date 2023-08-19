@@ -41,7 +41,7 @@ const Hero = () => {
                   src='/avatar/avatar4.jpg'
                />
             </AvatarGroup>
-            
+
             <p className='flex items-center mx-auto text-sm mt-1'>
                <span className='text-secondary-800 text-xs'>هزار دانشجو</span>
                <span className=' text-blue-500 text-sm mx-0.5 font-bold md:text-sm'>۷.۵</span>
