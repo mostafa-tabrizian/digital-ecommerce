@@ -28,7 +28,7 @@ const Navbar = () => {
                </g>
             </svg>
          </Link>
-         <Link href='/checkout/cart' className='relative'>
+         <Link href='/cart' className='relative'>
             <svg
                className={`${
                   pathname.includes('/checkout') ? 'text-blue-400' : 'text-gray-400'

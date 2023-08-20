@@ -41,7 +41,7 @@ const Sidebar = () => {
                            fill='none'
                            strokeWidth='0'
                            viewBox='0 0 24 24'
-                           className='w-6 h-6 text-slate-700'
+                           className='w-6 h-6 text-gray-700'
                            height='1em'
                            width='1em'
                            xmlns='http://www.w3.org/2000/svg'
@@ -83,7 +83,7 @@ const Sidebar = () => {
 
                   <hr />
 
-                  <ul className='gap-y-2 rtl mt-10 md:gap-y-0 flex flex-col md:flex-row md:items-center justify-between gap-x-8 text-slate-700 md:text-skin-base'>
+                  <ul className='gap-y-2 rtl mt-10 md:gap-y-0 flex flex-col md:flex-row md:items-center justify-between gap-x-8 text-gray-700 md:text-skin-base'>
                      <li className='block md:hidden'>
                         <a href='/'>
                            <div className='relative menu-item flex items-center text-blue-600'>
@@ -160,7 +160,7 @@ const Sidebar = () => {
                         </a>
                      </li>
                      <li className='block '>
-                        <div className='text-slate-700'>
+                        <div className='text-gray-700'>
                            <button
                               onClick={() => setContactUsOptions((prev) => !prev)}
                               className='w-full'
@@ -206,7 +206,7 @@ const Sidebar = () => {
                            <Collapse in={contactUsOptions}>
                               <ul className='mt-3 border-b border-white border-opacity-10'>
                                  <a href='https://instagram.com/sahebmohamadi.ir'>
-                                    <li className='flex items-center rounded-lg text-slate-700 opacity-90 mb-4 pr-2'>
+                                    <li className='flex items-center rounded-lg text-gray-700 opacity-90 mb-4 pr-2'>
                                        <span>
                                           <svg
                                              stroke='currentColor'
@@ -227,7 +227,7 @@ const Sidebar = () => {
                                     </li>
                                  </a>
                                  <a href='/about-us'>
-                                    <li className='flex items-center rounded-lg text-slate-700 opacity-90 mb-4 pr-2'>
+                                    <li className='flex items-center rounded-lg text-gray-700 opacity-90 mb-4 pr-2'>
                                        <span>
                                           <svg
                                              viewBox='0 0 24 24'
@@ -263,7 +263,7 @@ const Sidebar = () => {
                                     </li>
                                  </a>
                                  <a href='https://t.me/fronthooks'>
-                                    <li className='flex items-center rounded-lg text-slate-700 opacity-90 mb-4 pr-2'>
+                                    <li className='flex items-center rounded-lg text-gray-700 opacity-90 mb-4 pr-2'>
                                        <span>
                                           <svg
                                              stroke='currentColor'
@@ -317,7 +317,7 @@ const Sidebar = () => {
                            <span className='relative bg-green-500 inline-flex rounded-full h-2 w-2'></span>
                         </span>
                      </div>
-                     <div className='text-sm w-full flex flex-col h-full justify-between text-slate-700'>
+                     <div className='text-sm w-full flex flex-col h-full justify-between text-gray-700'>
                         <a href='/profile'>
                            <span className='font-bold block mb-1'>مصطفی تبریزیان</span>
                         </a>
@@ -330,7 +330,7 @@ const Sidebar = () => {
                            xmlns='http://www.w3.org/2000/svg'
                            viewBox='0 0 14 14'
                            fill='none'
-                           className='h-5 w-5 text-slate-700 opacity-100'
+                           className='h-5 w-5 text-gray-700 opacity-100'
                         >
                            <path
                               stroke='currentColor'

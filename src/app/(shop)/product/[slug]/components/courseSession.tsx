@@ -34,7 +34,7 @@ const CourseSession = () => {
                         <span className='ml-1.5 rounded-full lg:w-8 lg:h-8 flex justify-center items-center text-xs lg:text-sm w-5 h-5 bg-green-100 text-green-500'>
                            ۱
                         </span>
-                        <span className='text-[11px] lg:text-[15px] text-slate-700 flex-shrink-0 flex items-center'>
+                        <span className='text-[11px] lg:text-[15px] text-gray-700 flex-shrink-0 flex items-center'>
                            <span>Next.js چیست ؟</span>
                         </span>
                      </div>

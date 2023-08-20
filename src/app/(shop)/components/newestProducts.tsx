@@ -11,7 +11,9 @@ const NewestProducts = ({ products }) => {
             <h2 className='font-extraBlack text-3xl md:text-4xl'>جدیدترین دوره ها</h2>
             <p className='text-sm pb-6'>دوره ببین، تمرین کن و برنامه نویس شو</p>
             <Link href='/courses'>
-               <Button variant='contained'>همه دوره ها</Button>
+               <Button variant='contained' className='rounded-2xl py-3 px-10'>
+                  همه دوره ها
+               </Button>
             </Link>
          </div>
 

@@ -168,7 +168,7 @@ const ProductCards = ({
                   <div>
                      <hr />
                   </div>
-                  <div className='flex justify-between items-center pb-2'>
+                  <div className='flex justify-between items-center px-2 pb-2'>
                      <div className='flex flex-col justify-between '>
                         <div className='font-bold flex items-center'>
                            <svg
@@ -193,7 +193,9 @@ const ProductCards = ({
                      </div>
                      <div>
                         <Link href='/courses'>
-                           <Button variant='contained'>ثبت نام دوره</Button>
+                           <Button className='rounded-xl py-2 px-5' variant='contained'>
+                              ثبت نام دوره
+                           </Button>
                         </Link>
                      </div>
                   </div>

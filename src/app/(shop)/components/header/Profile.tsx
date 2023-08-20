@@ -25,7 +25,7 @@ const Profile = () => {
                xmlns='http://www.w3.org/2000/svg'
                viewBox='0 0 24 24'
                fill='none'
-               className='w-6 h-6 text-slate-700'
+               className='w-6 h-6 text-gray-700'
             >
                <g
                   stroke='currentColor'

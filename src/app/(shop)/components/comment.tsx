@@ -21,7 +21,7 @@ const Comment = () => {
                   پیشنهاد میکنم{' '}
                </p>
             </div>
-            <div className='text-sm lg:text-base text-slate-700 font-bold mb-2'>
+            <div className='text-sm lg:text-base text-gray-700 font-bold mb-2'>
                <span>کافی نبودن معرفی دوره</span>
             </div>
             <div className='h-44 overflow-y-auto pl-1 mb-2'>

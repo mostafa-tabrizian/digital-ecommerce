@@ -18,7 +18,9 @@ const Hero = () => {
 
          <div className='flex justify-center'>
             <Link href='/' className='shdaow shadow-2xl shadow-blue-900 rounded-xl'>
-               <Button variant='contained'>! بزن بریم</Button>
+               <Button variant='contained' className='px-8 py-2 rounded-full'>
+                  ! بزن بریم
+               </Button>
             </Link>
          </div>
 

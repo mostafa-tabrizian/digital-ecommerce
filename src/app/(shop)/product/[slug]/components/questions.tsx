@@ -5,7 +5,7 @@ const Question = () => {
    return (
       <div className='bg-white rtl font-semibold rounded-xl mt-6 p-3 lg:p-6'>
          <h2 className='text-2xl text-right text-blue-600 mb-5'>پرسش های شما</h2>
-         <Button sx={{ width: '100%' }} variant='outlined'>
+         <Button className='w-full rounded-xl mb-10' variant='outlined'>
             <div className='flex items-center gap-1'>
                <svg
                   stroke='currentColor'
@@ -68,7 +68,7 @@ const Question = () => {
                      </button>
                   </div>
                </div>
-               <p className='text-slate-700 font-normal leading-loose lg:leading-8 text-xs lg:text-base'>
+               <p className='text-gray-700 font-normal leading-loose lg:leading-8 text-xs lg:text-base'>
                   سلام وخداقوت سورس کد های هر درس چطور میتونیم دسرسی داشته باشیم؟؟
                </p>
             </div>
@@ -87,7 +87,7 @@ const Question = () => {
                         </div>
                      </div>
                   </div>
-                  <p className='text-slate-700 font-normal leading-loose lg:leading-8 text-xs lg:text-base'>
+                  <p className='text-gray-700 font-normal leading-loose lg:leading-8 text-xs lg:text-base'>
                      سلام به پشتیبانی تلگرام پیام بدین، راهنمایی میشید.
                   </p>
                </div>

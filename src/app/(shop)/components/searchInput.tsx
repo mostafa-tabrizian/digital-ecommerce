@@ -26,7 +26,7 @@ const SearchInput = () => {
       <div className='flex justify-between items-center md:mx-16 md:my-3'>
          <div className='space-x-5 hidden md:flex'>
             <div className='border-r border-r-gray-500 pr-4'>
-               <Link href='/checkout/cart' className='relative'>
+               <Link href='/cart' className='relative'>
                   <svg
                      className='h-8 w-8'
                      viewBox='0 0 24 24'

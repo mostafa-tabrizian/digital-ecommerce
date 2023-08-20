@@ -243,10 +243,8 @@ strong {
 .MuiButton-contained {
    font-family: IRANYekanRegular, sans-serif !important;
    background: #0084ff !important;
-   border-radius: 15px !important;
    font-weight: 600 !important;
    box-shadow: 0 5px 10px #708dff9c !important;
-   padding: .8rem 2rem !important;
 
    &:hover {
       background: #2495ff !important;
@@ -256,9 +254,7 @@ strong {
 .MuiButton-outlined {
    font-family: IRANYekanRegular, sans-serif !important;
    border: 2px solid #708dff9c;
-   border-radius: 15px !important;
    font-weight: 600 !important;
-   padding: .8rem 2rem !important;
 
    &:hover {
       background: transparent !important;

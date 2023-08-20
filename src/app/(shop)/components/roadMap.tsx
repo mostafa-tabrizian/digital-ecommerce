@@ -6,7 +6,7 @@ const RoadMap = () => {
                مسیر یادگیری فرانت اند
             </h2>
             <a
-               className='text-sm lg:text-base text-slate-700 transition-all duration-200 hover:text-primary-900 font-bold'
+               className='text-sm lg:text-base text-gray-700 transition-all duration-200 hover:text-primary-900 font-bold'
                href='/learning-path'
             >
                نقشه راه و مسیر یادگیری فرانت اند
@@ -14,7 +14,7 @@ const RoadMap = () => {
          </div>
          <div className='flex rtl items-center justify-between overflow-x-auto flex-shrink-0 flex-nowrap gap-x-10 -mx-4 md:gap-x-0 px-4 snap-x md:px-10 md:-mx-0 py-8 md:py-10'>
             <div className='flex flex-col items-center gap-y-3 snap-center transition-all duration-300 ease-in-out relative'>
-               <div className='w-20 h-20 text-slate-700 hover:text-blue-600 md:w-24 md:h-24 relative flex items-center justify-center rounded-full shadow-xl shadow-gray-300/30 transition hover:shadow-blue-600/30'>
+               <div className='w-20 h-20 text-gray-700 hover:text-blue-600 md:w-24 md:h-24 relative flex items-center justify-center rounded-full shadow-xl shadow-gray-300/30 transition hover:shadow-blue-600/30'>
                   <svg
                      xmlns='http://www.w3.org/2000/svg'
                      viewBox='0 0 36 36'
@@ -63,7 +63,7 @@ const RoadMap = () => {
                </svg>
             </div>
             <div className='flex flex-col items-center gap-y-3 snap-center transition-all duration-300 ease-in-out relative'>
-               <div className='w-20 h-20 text-slate-700 hover:text-blue-600 md:w-24 md:h-24 relative flex items-center justify-center rounded-full shadow-xl shadow-gray-300/30 transition hover:shadow-blue-600/30'>
+               <div className='w-20 h-20 text-gray-700 hover:text-blue-600 md:w-24 md:h-24 relative flex items-center justify-center rounded-full shadow-xl shadow-gray-300/30 transition hover:shadow-blue-600/30'>
                   <svg
                      xmlns='http://www.w3.org/2000/svg'
                      viewBox='0 0 36 36'
@@ -112,7 +112,7 @@ const RoadMap = () => {
                </svg>
             </div>
             <div className='flex flex-col items-center gap-y-3 snap-center transition-all duration-300 ease-in-out relative'>
-               <div className='w-20 h-20 text-slate-700 hover:text-blue-600 md:w-24 md:h-24 relative flex items-center justify-center rounded-full shadow-xl shadow-gray-300/30 transition hover:shadow-blue-600/30'>
+               <div className='w-20 h-20 text-gray-700 hover:text-blue-600 md:w-24 md:h-24 relative flex items-center justify-center rounded-full shadow-xl shadow-gray-300/30 transition hover:shadow-blue-600/30'>
                   <svg
                      xmlns='http://www.w3.org/2000/svg'
                      viewBox='0 0 36 36'
@@ -161,7 +161,7 @@ const RoadMap = () => {
                </svg>
             </div>
             <div className='flex flex-col items-center gap-y-3 snap-center transition-all duration-300 ease-in-out relative'>
-               <div className='w-20 h-20 text-slate-700 hover:text-blue-600 md:w-24 md:h-24 relative flex items-center justify-center rounded-full shadow-xl shadow-gray-300/30 transition hover:shadow-blue-600/30'>
+               <div className='w-20 h-20 text-gray-700 hover:text-blue-600 md:w-24 md:h-24 relative flex items-center justify-center rounded-full shadow-xl shadow-gray-300/30 transition hover:shadow-blue-600/30'>
                   <svg
                      xmlns='http://www.w3.org/2000/svg'
                      viewBox='0 0 36 36'
@@ -217,7 +217,7 @@ const RoadMap = () => {
                </svg>
             </div>
             <div className='flex flex-col items-center gap-y-3 snap-center transition-all duration-300 ease-in-out relative'>
-               <div className='w-20 h-20 text-slate-700 hover:text-blue-600 md:w-24 md:h-24 relative flex items-center justify-center rounded-full shadow-xl shadow-gray-300/30 transition hover:shadow-blue-600/30'>
+               <div className='w-20 h-20 text-gray-700 hover:text-blue-600 md:w-24 md:h-24 relative flex items-center justify-center rounded-full shadow-xl shadow-gray-300/30 transition hover:shadow-blue-600/30'>
                   <svg
                      xmlns='http://www.w3.org/2000/svg'
                      viewBox='0 0 36 36'
@@ -266,7 +266,7 @@ const RoadMap = () => {
                </svg>
             </div>
             <div className='flex flex-col items-center gap-y-3 snap-center transition-all duration-300 ease-in-out relative'>
-               <div className='w-20 h-20 text-slate-700 hover:text-blue-600 md:w-24 md:h-24 relative flex items-center justify-center rounded-full shadow-xl shadow-gray-300/30 transition hover:shadow-blue-600/30'>
+               <div className='w-20 h-20 text-gray-700 hover:text-blue-600 md:w-24 md:h-24 relative flex items-center justify-center rounded-full shadow-xl shadow-gray-300/30 transition hover:shadow-blue-600/30'>
                   <svg
                      xmlns='http://www.w3.org/2000/svg'
                      viewBox='0 0 36 36'

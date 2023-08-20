@@ -23,7 +23,7 @@ const CourseFAQ = () => {
                id='panel1bh-header'
             >
                <div className='flex w-full items-center justify-between'>
-                  <div className='flex gap-2 items-center text-slate-700'>
+                  <div className='flex gap-2 items-center text-gray-700'>
                      <svg
                         xmlns='http://www.w3.org/2000/svg'
                         viewBox='0 0 16 16'
@@ -54,7 +54,7 @@ const CourseFAQ = () => {
                         fill='none'
                         strokeWidth='0'
                         viewBox='0 0 24 24'
-                        className='text-slate-700'
+                        className='text-gray-700'
                         height='1em'
                         width='1em'
                         xmlns='http://www.w3.org/2000/svg'
@@ -70,7 +70,7 @@ const CourseFAQ = () => {
                </div>
             </AccordionSummary>
             <AccordionDetails>
-               <p className='text-sm lg:text-base text-slate-700 leading-6 lg:leading-8 mb-2'>
+               <p className='text-sm lg:text-base text-gray-700 leading-6 lg:leading-8 mb-2'>
                   Next.js یک فریمورک فول استک متنبی بر ریکت برای تولید بهینه تر اپلیکیشن های تحت وب
                   هست. بله نکست جی اس هم فریمورک هست و هم فول استک!
                </p>

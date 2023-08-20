@@ -121,8 +121,8 @@ const Product = async ({ params }: { params: { slug: string } }) => {
                         </svg>
                      </div>
                      <div className='flex gap-1'>
-                        <span className='text-slate-700 font-bold'>دانشجو</span>
-                        <span className='text-slate-700 font-bold'>۶۸۴</span>
+                        <span className='text-gray-700 font-bold'>دانشجو</span>
+                        <span className='text-gray-700 font-bold'>۶۸۴</span>
                      </div>
                   </div>
                   <div className='flex flex-col items-center gap-y-3'>
@@ -169,8 +169,8 @@ const Product = async ({ params }: { params: { slug: string } }) => {
                         </svg>
                      </div>
                      <div className='flex gap-1'>
-                        <span className='text-slate-700 font-bold'>جلسه</span>
-                        <span className='text-slate-700 font-bold'>۲۴۴</span>
+                        <span className='text-gray-700 font-bold'>جلسه</span>
+                        <span className='text-gray-700 font-bold'>۲۴۴</span>
                      </div>
                   </div>
                   <div className='flex flex-col items-center gap-y-3'>
@@ -215,7 +215,7 @@ const Product = async ({ params }: { params: { slug: string } }) => {
                         </svg>
                      </div>
 
-                     <span className='text-slate-700 font-bold'>۴۴:۱۱:۰۰ </span>
+                     <span className='text-gray-700 font-bold'>۴۴:۱۱:۰۰ </span>
                   </div>
                </div>
             </div>
@@ -354,7 +354,7 @@ const Product = async ({ params }: { params: { slug: string } }) => {
                </div>
             </div>
             <div>
-               <Button sx={{ width: '100%' }} variant='contained'>
+               <Button className='py-3 w-full rounded-xl' variant='contained'>
                   <span className='font-semibold text-white text-base'>ثبت نام دوره</span>
                </Button>
             </div>
@@ -393,7 +393,7 @@ const Product = async ({ params }: { params: { slug: string } }) => {
                   />
                </div>
                <div className='text-center mb-2'>
-                  <p className='yekanBlack text-slate-700 leading-tight'>مصطفی تبریزیان</p>
+                  <p className='yekanBlack text-gray-700 leading-tight'>مصطفی تبریزیان</p>
                   <span className='text-sm text-slate-500 block -mt-0.5'>مدرس دوره</span>
                </div>
                <p className='justify-center leading-6 text-right py-2 text-sm text-slate-600'>
@@ -425,7 +425,7 @@ const Product = async ({ params }: { params: { slug: string } }) => {
                   <h3 className='yekanBlack mt-10 mb-5 text-lg text-gray-800'>
                      نکست جی اس (Next.js) چیست ؟
                   </h3>
-                  <p className='text-slate-700 leading-10 tracking-wide'>
+                  <p className='text-gray-700 leading-10 tracking-wide'>
                      js یک فریمورک فول استک مبتنی بر ریکت هست برای تولید وبسایت ها و وب اپلیکیشن های
                      تحت وب با سرعت و عملکرد بهتر. به طور خلاصه، Next.js همان ریکت هست به علاوه
                      چندین ویژگی قدرتمند دیگر، یعنی تمام مفاهیم React.js همچنان در Next.js هم
@@ -436,7 +436,7 @@ const Product = async ({ params }: { params: { slug: string } }) => {
                   <h3 className='yekanBlack mt-10 mb-5 text-lg text-gray-800'>
                      آیا با یادگیری نکست، از ریکت بی نیاز میشیم ؟
                   </h3>
-                  <p className='text-slate-700 leading-10 tracking-wide'>
+                  <p className='text-gray-700 leading-10 tracking-wide'>
                      قطعا خیر! تمام مفاهیم ریکت مثل (کامپوننت، life cylcle کامپوننت ها، هوک ها،
                      استیت و...) همچنان در Next.js استفاده میشه. پس ریکت دقیقا پیش نیاز Next.js هست
                      و برای تسلط خوب در Next.js باید ابتدا ریکت را خوب فرا بگیرید.{' '}
@@ -444,7 +444,7 @@ const Product = async ({ params }: { params: { slug: string } }) => {
                   <h3 className='yekanBlack mt-10 mb-5 text-lg text-gray-800'>
                      آیا باید همیشه از نکست استفاده بشه ؟
                   </h3>
-                  <p className='text-slate-700 leading-10 tracking-wide'>
+                  <p className='text-gray-700 leading-10 tracking-wide'>
                      خیر! هدف مهم نکست جی اس بهبود عملکرد برنامه (performance) و بهینه سازی برای
                      موتور های جست و جو (SEO) هست. از آنجایی که سئو هدف مهم هر کسب و کاری هست، پس هر
                      برنامه ای که نیاز به سئو داشته باشه، اولین انتخاب شما قطعا نکست خواهد بود. اما
