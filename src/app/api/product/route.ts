@@ -1,54 +1,50 @@
-import { Product } from '@prisma/client'
-import { prisma } from '@/lib/prisma'
+// import { Product } from '@prisma/client'
+//
+
+import dbConnect from '@/lib/dbConnect'
+import Product from '@/models/product'
+
 import { NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import authOptions from '@/lib/auth'
 
 export async function GET() {
-   const products = await prisma.product
-      .findMany()
-      .then((res: Product[]) => res)
-      .catch((err: Error) => console.error('err products api', err))
+   await dbConnect()
+
+   const products = await Product.find()
 
    return NextResponse.json(products)
 }
 
-export async function POST(request: Request) {
-   const payload = await request.json()
+// export async function POST(request: Request) {
 
-   const product = await prisma.product
-      .create({
-         data: {
-            title: payload.title,
-            brandId: payload.brand,
-            description: payload.description,
-         },
-      })
-      .then((res: Product) => {
-         return res
-      })
+//    const p = await request.json()
 
-   return NextResponse.json(product)
-}
+//    await dbConnect()
 
-export async function PATCH(request: Request) {
-   const session: { email: string; role: string } | null = await getServerSession(authOptions) // ! try lib
-   const reqData = await request.json()
+//    const products = await Product.find()
 
-   //  @ts-ignore
-   if (!session?.role == 'ADMIN') return
+//    return NextResponse.json(products)
+// }
 
-   try {
-      const product: Product | null = await prisma.product.update({
-         where: {
-            id: reqData.id,
-         },
-         data: reqData.data,
-      })
+// export async function PATCH(request: Request) {
+//    const session: { email: string; role: string } | null = await getServerSession(authOptions) // ! try lib
+//    const reqData = await request.json()
 
-      return NextResponse.json(product)
-   } catch (err) {
-      console.error('err api/product/update', err)
-      NextResponse.error()
-   }
-}
+//    //  @ts-ignore
+//    if (!session?.role == 'ADMIN') return
+
+//    try {
+//       const product: Product | null = await prisma.product.update({
+//          where: {
+//             id: reqData.id,
+//          },
+//          data: reqData.data,
+//       })
+
+//       return NextResponse.json(product)
+//    } catch (err) {
+//       console.error('err api/product/update', err)
+//       NextResponse.error()
+//    }
+// }

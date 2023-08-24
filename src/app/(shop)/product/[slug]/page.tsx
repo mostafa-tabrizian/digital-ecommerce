@@ -1,6 +1,4 @@
-import { prisma } from '@/lib/prisma'
 import Image from 'next/legacy/image'
-import { Product } from '@prisma/client'
 import RatingCourse from './components/rating'
 import Comments from './components/comments'
 import Like from './components/like'
@@ -11,65 +9,35 @@ import SwiperComments from '../../components/swiperComment'
 import Questions from './components/questions'
 import AddToCart from './components/addToCart'
 
+import dbConnect from '@/lib/dbConnect'
+import Product, { IProduct } from '@/models/product'
+
 const getProduct = async (slug: string) => {
-   return await prisma.product
-      .findUnique({
-         where: {
-            id: slug,
-         },
-         include: {
-            productLocation: {
-               where: {
-                  public: {
-                     equals: true,
-                  },
-                  quantity: {
-                     gt: 0,
-                  },
-               },
-               include: {
-                  color: {
-                     select: {
-                        color: true,
-                     },
-                  },
-                  size: {
-                     select: {
-                        size: true,
-                     },
-                  },
-               },
-            },
-            gallery: {
-               select: {
-                  src: true,
-                  alt: true,
-               },
-            },
-         },
-      })
-      .then((res: Product | null) => {
-         return JSON.parse(JSON.stringify(res))
-      })
+   await dbConnect()
+
+   return await Product.findOne({
+      name: decodeURI(slug),
+   }).exec()
 }
 
 export const generateMetadata = async ({ params }: { params: { slug: string } }) => {
    const product = await getProduct(params.slug)
 
    return {
-      title: (product?.title || 'محصولی یافت نشد!') + ' | تبریزیان دیجیتال ایکامرس',
+      title: (product?.name || 'محصولی یافت نشد!') + ' | تبریزیان دیجیتال ایکامرس',
    }
 }
 
-const Product = async ({ params }: { params: { slug: string } }) => {
+const ProductDetail = async ({ params }: { params: { slug: string } }) => {
+   const product: IProduct = await getProduct(params.slug)
+
    return (
       <div className='m-3'>
          <div className='bg-white space-y-8 my-10 py-5 px-3 rounded-xl'>
             <div className='text-right'>
-               <h1 className='text-slate-800 font-extraBlack text-2xl mb-2'>Next.js دوره متخصص</h1>
+               <h1 className='text-slate-800 rtl font-extraBlack text-2xl mb-2'>{product.name}</h1>
                <p className='text-slate-600 text-sm md:text-base leading-7 font-bold md:leading-8 mb-7'>
-                  آموزش پروژه محور نکست (Next.js) به همراه نکست 13 در قالب پروژه های متنوع ارائه شده
-                  است. هدف ما درک عملکرد نکست در پروژه پیچیده دوره است.
+                  {product.description}
                </p>
             </div>
             <div className='flex flex-col lg:justify-between lg:flex-row'>
@@ -122,7 +90,7 @@ const Product = async ({ params }: { params: { slug: string } }) => {
                      </div>
                      <div className='flex gap-1'>
                         <span className='text-gray-700 font-bold'>دانشجو</span>
-                        <span className='text-gray-700 font-bold'>۶۸۴</span>
+                        <span className='text-gray-700 font-bold'>{product.purchaser}</span>
                      </div>
                   </div>
                   <div className='flex flex-col items-center gap-y-3'>
@@ -170,7 +138,7 @@ const Product = async ({ params }: { params: { slug: string } }) => {
                      </div>
                      <div className='flex gap-1'>
                         <span className='text-gray-700 font-bold'>جلسه</span>
-                        <span className='text-gray-700 font-bold'>۲۴۴</span>
+                        <span className='text-gray-700 font-bold'>۲۴۴??</span>
                      </div>
                   </div>
                   <div className='flex flex-col items-center gap-y-3'>
@@ -215,7 +183,7 @@ const Product = async ({ params }: { params: { slug: string } }) => {
                         </svg>
                      </div>
 
-                     <span className='text-gray-700 font-bold'>۴۴:۱۱:۰۰ </span>
+                     <span className='text-gray-700 font-bold'>۴۴:۱۱:۰۰??</span>
                   </div>
                </div>
             </div>
@@ -224,7 +192,7 @@ const Product = async ({ params }: { params: { slug: string } }) => {
                <RatingCourse />
 
                <button className='flex items-center gap-x-1 text-slate-600 font-bold tracking-widest hover:text-green-600'>
-                  <span className='text-inherit'>۸</span>
+                  <span className='text-inherit'>{product.comments.length}</span>
                   <svg
                      xmlns='http://www.w3.org/2000/svg'
                      viewBox='0 0 24 24'
@@ -282,7 +250,7 @@ const Product = async ({ params }: { params: { slug: string } }) => {
                      ></path>
                   </svg>
                   <span className='font-bold'>تاریخ انتشار :</span>
-                  <span className='font-bold'>۱۴۰۱/۱۱/۱۵</span>
+                  <span className='font-bold'>{product.created_at}??</span>
                </div>
                <div className='flex items-center gap-x-1 p-1.5 rounded-lg bg-slate-200/50 w-fit text-slate-500'>
                   <svg
@@ -297,7 +265,7 @@ const Product = async ({ params }: { params: { slug: string } }) => {
                      ></path>
                   </svg>
                   <span className='font-bold'>آخرین بروزرسانی:</span>
-                  <span className='font-bold'>۱۴۰۲/۵/۲۸</span>
+                  <span className='font-bold'>۱۴۰۲/۵/۲۸??</span>
                </div>
                <div className='flex items-center gap-x-1 px-[5px] py-[7px] rounded-lg bg-slate-200/50 w-fit text-slate-500'>
                   <svg
@@ -318,11 +286,9 @@ const Product = async ({ params }: { params: { slug: string } }) => {
 
             <div className='w-full h-[300px] relative'>
                <Image
-                  // src={`${product.gallery[0].src}`}
                   className='rounded-xl'
-                  src={'/products/nexjs.svg'}
-                  // alt={product.title}
-                  alt='{product.title}'
+                  src={'/products/' + product.image}
+                  alt={product.name}
                   layout='fill'
                   objectFit='cover'
                />
@@ -349,7 +315,7 @@ const Product = async ({ params }: { params: { slug: string } }) => {
                      ></path>
                   </svg>
                   <span className='text-3xl text-gray-700 yekanBlack ml-2 lg:text-4xl'>
-                     ۲,۵۸۹,۰۰۰
+                     {product.price.toLocaleString('per')}
                   </span>
                </div>
             </div>
@@ -382,11 +348,9 @@ const Product = async ({ params }: { params: { slug: string } }) => {
             <div className='flex flex-col items-center'>
                <div className='w-16 h-16 relative overflow-hidden ring ring-gray-200 rounded-full mb-2'>
                   <Image
-                     // src={`${product.gallery[0].src}`}
-                     class='rounded-full hover:scale-110 w-full h-full absolute transition-all duraton-200 ease-in'
+                     className='rounded-full hover:scale-110 w-full h-full absolute transition-all duraton-200 ease-in'
                      src={'/avatar/me.jpg'}
-                     // alt={product.title}
-                     alt='{product.title}'
+                     alt='me'
                      height={300}
                      width={300}
                      objectFit='cover'
@@ -417,10 +381,7 @@ const Product = async ({ params }: { params: { slug: string } }) => {
          <div className='bg-white rounded-xl mt-6 p-3 lg:p-6'>
             <h2 className='text-2xl text-right text-blue-600 mb-5'>توضیحات دوره</h2>
             <div className='text-right'>
-               <p>
-                  آموزش پروژه محور نکست (Next.js) به همراه نکست 13 در قالب پروژه های متنوع ارائه شده
-                  است. هدف ما درک عملکرد نکست در پروژه پیچیده دوره است.
-               </p>
+               <p>{product.description}</p>
                <div>
                   <h3 className='yekanBlack mt-10 mb-5 text-lg text-gray-800'>
                      نکست جی اس (Next.js) چیست ؟
@@ -476,4 +437,4 @@ const Product = async ({ params }: { params: { slug: string } }) => {
    )
 }
 
-export default Product
+export default ProductDetail

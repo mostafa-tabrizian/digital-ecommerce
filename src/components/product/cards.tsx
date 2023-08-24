@@ -2,39 +2,25 @@ import Image from 'next/legacy/image'
 import Link from 'next/link'
 import Button from '@mui/material/Button'
 
-import { Product, ProductLocation } from '@prisma/client'
+import { IProduct } from '@/models/product'
 
-type ProductLocationExtended = ProductLocation & {
-   color: { color: string }
-   size: { size: number }
-}
-type ProductExtended = Product & {
-   gallery: { src: string; alt: string }[]
-   productLocation: ProductLocationExtended[]
-}
-
-const ProductCards = ({
-   product,
-   pageTarget,
-   userTarget,
-}: {
-   product: ProductExtended[]
-   pageTarget: string
-   userTarget: string
-}) => {
-   // return product?.length ? (
+const ProductCards = ({ product, pageTarget }: { product: IProduct; pageTarget: string }) => {
+   const status = {
+      comingSoon: 'به زودی',
+      recording: 'در حال ضبط',
+      completed: 'تکمیل ضبط',
+   }
    return (
       <>
-         {/* {product.map((product: ProductExtended) => { */}
-         {/* if (userTarget == 'client' && !product.productLocation.length) return */}
-         {/* key={product.id} href={pageTarget + product.id} */}
-         <Link href='/'>
+         <Link href={pageTarget + product.name}>
             <div className='p-2 my-5 ltr shadow-lg relative flex flex-col space-y-5 rounded-xl'>
                <div className='shadow-lg shadow-slate-300 rounded-xl -top-10 mx-2 relative flex'>
                   <div className='w-full absolute left-0 top-0 z-10'>
                      <div className='flex m-3 justify-between'>
                         <span className='rounded-lg p-1.5 bg-white flex items-center text-slate-700'>
-                           <span className='text-xs mr-1 font-bold'>۶۸۴</span>
+                           <span className='text-xs mr-1 font-bold'>
+                              {product.purchaser.length}
+                           </span>
                            <svg
                               xmlns='http://www.w3.org/2000/svg'
                               viewBox='0 0 24 24'
@@ -59,7 +45,7 @@ const ProductCards = ({
                            className='rounded-lg p-1.5 bg-white flex items-center justify-center text-rose-500 hover:text-white hover:bg-rose-500 transition-all duration-200 ease-out muirtl-1yxmbwk'
                            type='button'
                         >
-                           <span className='text-xs mr-1 font-bold'>۱۲۸</span>
+                           <span className='text-xs mr-1 font-bold'>{product.likes.length}</span>
                            <svg
                               stroke='currentColor'
                               fill='none'
@@ -81,31 +67,27 @@ const ProductCards = ({
                      </div>
                   </div>
 
-                  {/* {product.gallery[0] && ( */}
                   <Image
-                     // src={`${product.gallery[0].src}`}
                      className='rounded-xl'
-                     src={`/products/${product}.svg`}
-                     // alt={product.title}
-                     alt='{product.title}'
+                     src={`/products/${product.image}`}
+                     alt={product.name}
                      height={300}
                      width={450}
                      objectFit='cover'
                   />
-                  {/* )} */}
                </div>
 
                <div className='space-y-3 text-right'>
                   <Link
                      className='text-lg yekanBlack hover:text-blue-600 transition-all duration-500 ease-in-out'
-                     href='/courses/nextjs'
+                     href={'/products/' + product.name}
                   >
-                     {product} دوره متخصص
+                     {product.name}
                   </Link>
 
                   <div className='flex justify-end gap-x-6 items-center mb-3'>
                      <div className='flex items-center gap-x-1 text-green-500'>
-                        <span className='text-xs'>تکمیل ضبط</span>
+                        <span className='text-xs'>{status['recording']}</span>
                         <svg
                            xmlns='http://www.w3.org/2000/svg'
                            viewBox='0 0 24 24'
@@ -120,7 +102,7 @@ const ProductCards = ({
                      </div>
 
                      <div className='flex items-center gap-x-1 text-slate-600'>
-                        <span className='text-xs'>۴۴:۱۱:۰۰</span>
+                        <span className='text-xs'>۴۴:۱۱:۰۰?</span>
                         <svg
                            xmlns='http://www.w3.org/2000/svg'
                            viewBox='0 0 24 24'
@@ -143,9 +125,9 @@ const ProductCards = ({
                      </div>
                   </div>
                   <div className='cursor-pointer'>
-                     <a
+                     <Link
                         className='flex justify-end items-center transition-all duration-300 text-blue-500 hover:text-blue-900 gap-x-2 text-base font-bold'
-                        href='/courses/nextjs'
+                        href={'/products/' + product.name}
                      >
                         <span>مشاهده اطلاعات دوره</span>
                         <svg
@@ -163,7 +145,7 @@ const ProductCards = ({
                               clipRule='evenodd'
                            ></path>
                         </svg>
-                     </a>
+                     </Link>
                   </div>
                   <div>
                      <hr />
@@ -187,12 +169,12 @@ const ProductCards = ({
                               ></path>
                            </svg>
                            <span className='text-slate-800 yekanBlack text-base ml-2 md:text-xl'>
-                              ۲,۵۸۹,۰۰۰
+                              {product.price.toLocaleString('per')}
                            </span>
                         </div>
                      </div>
                      <div>
-                        <Link href='/courses'>
+                        <Link href='/products'>
                            <Button className='rounded-xl py-2 px-5' variant='contained'>
                               ثبت نام دوره
                            </Button>
@@ -202,12 +184,8 @@ const ProductCards = ({
                </div>
             </div>
          </Link>
-         {/* })} */}
       </>
    )
-   // : (
-   //    <h3 className='text-center'>!محصولی یافت نشد</h3>
-   // )
 }
 
 export default ProductCards

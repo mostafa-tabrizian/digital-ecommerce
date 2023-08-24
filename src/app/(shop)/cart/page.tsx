@@ -172,7 +172,7 @@ const Cart = () => {
                            <div>
                               <a
                                  className='yekanBlack text-gray-700 text-sm md:text-2xl hover:text-blue-600 transition-all duration-200 mb-3 block'
-                                 href='/courses/react-course'
+                                 href='/products/react-course'
                               >
                                  دوره متخصص ریکت و ریداکس
                               </a>

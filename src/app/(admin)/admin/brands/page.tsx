@@ -3,7 +3,7 @@ import isAdmin from '@/lib/isAdmin'
 import BrandNewInput from './create.Input'
 import DeleteButton from './delete.button'
 import Name from './name.component'
-import { prisma } from '@/lib/prisma'
+
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 
 export const metadata = {

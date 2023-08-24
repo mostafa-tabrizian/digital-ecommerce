@@ -1,6 +1,5 @@
 import Link from 'next/link'
 
-import { prisma } from '@/lib/prisma'
 import isAdmin from '@/lib/isAdmin'
 
 import ProductCards from '@/components/product/cards'

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Images from '@/components/product/images'
 import PriceDiscountQtyEdit from './priceDiscountQtyEdit'
-import { prisma } from '@/lib/prisma'
+
 import PublicEdit from './button.publicEdit'
 
 import isAdmin from '@/lib/isAdmin'

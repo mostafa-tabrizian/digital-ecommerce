@@ -1,12 +1,24 @@
 'use client'
 
 import ProductCards from '@/components/product/cards'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+
+import { IProduct } from '@/models/product'
 
 import Swiper from 'swiper/bundle'
 import 'swiper/css/bundle'
 
-const SwiperProducts = ({ products }: any) => {
+const SwiperProducts = () => {
+   const [products, setProducts] = useState<IProduct[]>([])
+
+   const getProducts = async () => {
+      setProducts(await fetch('/api/product').then((res) => res.json()))
+   }
+
+   useEffect(() => {
+      getProducts()
+   }, [])
+
    useEffect(() => {
       new Swiper('.swiperProducts', {
          speed: 1000,
@@ -31,16 +43,13 @@ const SwiperProducts = ({ products }: any) => {
    return (
       <div className='swiperProducts rtl'>
          <div className='swiper-wrapper py-5'>
-            <div className='swiper-slide'>
-               {/* <ProductCards products={products} pageTarget='/product/' userTarget='client' /> */}
-               <ProductCards product='nexjs' pageTarget='/product/' userTarget='client' />
-            </div>
-            <div className='swiper-slide'>
-               <ProductCards product='reactredux' pageTarget='/product/' userTarget='client' />
-            </div>
-            <div className='swiper-slide'>
-               <ProductCards product='tailwindcss' pageTarget='/product/' userTarget='client' />
-            </div>
+            {products.map((product) => {
+               return (
+                  <div key={product._id} className='swiper-slide'>
+                     <ProductCards product={product} pageTarget='/product/' />
+                  </div>
+               )
+            })}
          </div>
          <div className='swiper-pagination'></div>
       </div>

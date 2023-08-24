@@ -97,7 +97,7 @@ const Profile = () => {
                   className='rounded-lg py-1 px-4 hover:bg-gray-100 transition-all duration-300 ease-out mb-1'
                   role='menuitem'
                >
-                  <a className='block w-full' href='/profile/courses'>
+                  <a className='block w-full' href='/profile/products'>
                      <div className='flex py-2 text-skin-base hover:text-blue-600'>
                         <svg
                            xmlns='http://www.w3.org/2000/svg'
