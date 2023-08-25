@@ -7,7 +7,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <>
          <Header />
 
-         <main className='mb-24 max-w-screen-lg overflow-x-hidden mx-auto'>{children}</main>
+         <main className='mb-24 mx-6 md:md-auto max-w-screen-md overflow-x-hidden'>{children}</main>
 
          <Footer />
       </>

@@ -13,7 +13,7 @@ const CourseCards = ({ course, pageTarget }: { course: ICourse; pageTarget: stri
    return (
       <>
          <Link href={pageTarget + course.name}>
-            <div className='p-2 my-5 ltr shadow-lg relative flex flex-col space-y-5 rounded-xl'>
+            <div className='p-2 my-5 ltr shadow-lg bg-white relative flex flex-col rounded-xl'>
                <div className='shadow-lg shadow-slate-300 rounded-xl -top-10 mx-2 relative flex'>
                   <div className='w-full absolute left-0 top-0 z-10'>
                      <div className='flex m-3 justify-between'>
