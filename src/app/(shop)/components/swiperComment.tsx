@@ -6,7 +6,7 @@ import 'swiper/css/bundle'
 
 import Comment from './comment'
 
-const SwiperComments = ({ products }: any) => {
+const SwiperComments = ({ courses }: any) => {
    useEffect(() => {
       new Swiper('.swiperComments', {
          loop: true,
@@ -29,15 +29,15 @@ const SwiperComments = ({ products }: any) => {
       <div className='swiperComments rtl'>
          <div className='swiper-wrapper pb-10'>
             <div className='swiper-slide rounded-xl'>
-               {/* <ProductCards products={products} pageTarget='/product/' userTarget='client' /> */}
+               {/* <CourseCards courses={courses} pageTarget='/course/' userTarget='client' /> */}
                <Comment />
             </div>
             <div className='swiper-slide rounded-xl'>
-               {/* <ProductCards products={products} pageTarget='/product/' userTarget='client' /> */}
+               {/* <CourseCards courses={courses} pageTarget='/course/' userTarget='client' /> */}
                <Comment />
             </div>
             <div className='swiper-slide rounded-xl'>
-               {/* <ProductCards products={products} pageTarget='/product/' userTarget='client' /> */}
+               {/* <CourseCards courses={courses} pageTarget='/course/' userTarget='client' /> */}
                <Comment />
             </div>
          </div>

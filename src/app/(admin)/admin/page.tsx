@@ -52,7 +52,7 @@ const AdminPanel = async () => {
                      </Link>
                   </div>
                   <div className='bg-white rounded-lg py-2 px-2'>
-                     <Link href='/admin/products'>
+                     <Link href='/admin/courses'>
                         <div className='flex justify-end space-x-3 items-center'>
                            <span className='text-base text-black'>محصولات</span>
                            <svg

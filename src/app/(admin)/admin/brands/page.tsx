@@ -13,7 +13,7 @@ export const metadata = {
 const getBrand = async () => {
    return await prisma.brand.findMany({
       include: {
-         products: true,
+         courses: true,
       },
    })
 }
@@ -61,7 +61,7 @@ const AdminBrands = async () => {
                                  className='bg-white my-1 md:my-0 grid grid-cols-3 justify-between rounded-lg px-6 py-2 text-center items-center'
                               >
                                  <Name brand={brand} />
-                                 <p>{brand.products.length}</p>
+                                 <p>{brand.courses.length}</p>
                                  <DeleteButton id={brand.id} />
                               </div>
                            )

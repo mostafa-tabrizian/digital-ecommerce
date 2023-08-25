@@ -10,7 +10,7 @@ type OrderAndItems = Order & {
    items: {
       id: string
       item: {
-         product: {
+         course: {
             gallery: {
                src: string
                alt: string
@@ -94,8 +94,8 @@ const Orders = async () => {
                                  <div className='relative p-1'>
                                     <Image
                                        className='object-contain'
-                                       src={item.item.product.gallery[0].src}
-                                       alt={item.item.product.gallery[0].alt}
+                                       src={item.item.course.gallery[0].src}
+                                       alt={item.item.course.gallery[0].alt}
                                        width='80'
                                        height='50'
                                     />

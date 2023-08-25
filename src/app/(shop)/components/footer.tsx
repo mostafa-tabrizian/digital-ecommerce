@@ -186,7 +186,7 @@ const Footer = () => {
                      <li className='list-disc py-2 list-inside'>
                         <a
                            className='py-2 transition-all duration-300 hover:text-blue-500'
-                           href='/products'
+                           href='/courses'
                         >
                            دوره های آموزشی
                         </a>
@@ -225,7 +225,7 @@ const Footer = () => {
                      <li className='list-disc py-2 list-inside'>
                         <a
                            className='py-2 transition-all duration-300 hover:text-blue-500'
-                           href='/products/react-course'
+                           href='/courses/react-course'
                         >
                            دوره متخصص ریکت و ریداکس
                         </a>
@@ -233,7 +233,7 @@ const Footer = () => {
                      <li className='list-disc py-2 list-inside'>
                         <a
                            className='py-2 transition-all duration-300 hover:text-blue-500'
-                           href='/products/nextjs'
+                           href='/courses/nextjs'
                         >
                            دوره متخصص Next.js
                         </a>
@@ -241,7 +241,7 @@ const Footer = () => {
                      <li className='list-disc py-2 list-inside'>
                         <a
                            className='py-2 transition-all duration-300 hover:text-blue-500'
-                           href='/products/advanced-javascript'
+                           href='/courses/advanced-javascript'
                         >
                            دوره پیشرفته جاوااسکریپت
                         </a>
@@ -249,7 +249,7 @@ const Footer = () => {
                      <li className='list-disc py-2 list-inside'>
                         <a
                            className='py-2 transition-all duration-300 hover:text-blue-500'
-                           href='/products/tailwindCSS'
+                           href='/courses/tailwindCSS'
                         >
                            دوره پروژه محور تیلویند
                         </a>
@@ -257,7 +257,7 @@ const Footer = () => {
                      <li className='list-disc py-2 list-inside'>
                         <a
                            className='py-2 transition-all duration-300 hover:text-blue-500'
-                           href='/products/responsive-web'
+                           href='/courses/responsive-web'
                         >
                            دوره طراحی وب رسپانسیو
                         </a>

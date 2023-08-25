@@ -7,7 +7,7 @@ export type OrderExtended = Order & {
    client: User
    items: {
       item: {
-         product: {
+         course: {
             gallery: {
                src: string
                alt: string

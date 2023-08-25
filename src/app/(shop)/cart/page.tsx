@@ -159,11 +159,11 @@ const Cart = () => {
                         <div className='col-span-12 sm:col-span-8 flex items-center'>
                            <div className='relative w-16 h-16 lg:w-28 lg:h-28 ml-2 sm:ml-3 flex-shrink-0'>
                               <Image
-                                 // src={`${product.gallery[0].src}`}
+                                 // src={`${course.gallery[0].src}`}
                                  className='rounded-xl'
-                                 src={'/products/nexjs.svg'}
-                                 // alt={product.title}
-                                 alt='{product.title}'
+                                 src={'/courses/nexjs.svg'}
+                                 // alt={course.title}
+                                 alt='{course.title}'
                                  height={100}
                                  width={100}
                                  objectFit='cover'
@@ -172,7 +172,7 @@ const Cart = () => {
                            <div>
                               <a
                                  className='yekanBlack text-gray-700 text-sm md:text-2xl hover:text-blue-600 transition-all duration-200 mb-3 block'
-                                 href='/products/react-course'
+                                 href='/courses/react-course'
                               >
                                  دوره متخصص ریکت و ریداکس
                               </a>

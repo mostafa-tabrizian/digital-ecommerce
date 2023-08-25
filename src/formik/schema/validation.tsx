@@ -25,7 +25,7 @@ export const ProfileSchemaValidation = yup.object().shape({
    name: yup.string().matches(rule.persian, 'لطفا نام و نام خانوادگی خود را به فارسی وارد کنید'),
 })
 
-export const ProductSchemaValidation = yup.object().shape({
+export const CourseSchemaValidation = yup.object().shape({
    title: yup
       .string()
       .min(3, 'عنوان حداقل باید ۳ کارکتر باشد')

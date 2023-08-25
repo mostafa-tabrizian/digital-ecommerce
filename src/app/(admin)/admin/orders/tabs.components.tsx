@@ -129,8 +129,8 @@ const Tabs = () => {
                                  >
                                     <Image
                                        className='object-contain'
-                                       src={item.item.product.gallery[0].src}
-                                       alt={item.item.product.gallery[0].alt}
+                                       src={item.item.course.gallery[0].src}
+                                       alt={item.item.course.gallery[0].alt}
                                        width='100'
                                        height='70'
                                     />

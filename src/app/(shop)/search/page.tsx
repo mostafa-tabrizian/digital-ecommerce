@@ -4,25 +4,25 @@ import { useSearchParams } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 
-import { Product, ProductLocation } from '@prisma/client'
-import ProductCards from '@/components/product/cards'
+import { Course, CourseLocation } from '@prisma/client'
+import CourseCards from '@/components/course/cards'
 
-type ProductLocationExtended = ProductLocation & {
+type CourseLocationExtended = CourseLocation & {
    color: { color: string }
    size: { size: number }
 }
-type ProductExtended = Product & {
+type CourseExtended = Course & {
    gallery: { src: string; alt: string }[]
-   productLocation: ProductLocationExtended[]
+   courseLocation: CourseLocationExtended[]
 }
 
 const Search = () => {
-   const [searchResult, setSearchResult] = useState<ProductExtended[]>([])
+   const [searchResult, setSearchResult] = useState<CourseExtended[]>([])
 
    const router = useSearchParams()
    const query = router.get('query')
 
-   const fetchProducts = useCallback(async () => {
+   const fetchCourses = useCallback(async () => {
       if (!query?.trim().length) return
 
       try {
@@ -44,14 +44,14 @@ const Search = () => {
 
    useEffect(() => {
       document.title = 'Search | تبریزیان دیجیتال ایکامرس'
-      fetchProducts()
-   }, [fetchProducts])
+      fetchCourses()
+   }, [fetchCourses])
 
    return (
       <>
          <div className='mx-6 md:mx-auto max-w-screen-md my-8 space-y-16'>
             <h1 className='text-center font-bold'>{query}</h1>
-            <ProductCards products={searchResult} pageTarget='/product/' userTarget='client' />
+            <CourseCards courses={searchResult} pageTarget='/course/' userTarget='client' />
          </div>
       </>
    )

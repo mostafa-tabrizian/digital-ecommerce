@@ -1,11 +1,11 @@
-import { Product } from '@prisma/client'
+import { Course } from '@prisma/client'
 
 import { NextResponse } from 'next/server'
 
 export async function POST(request: Request) {
    const payload: { title: string } = await request.json()
 
-   const searchResult = await prisma.product
+   const searchResult = await prisma.course
       .findMany({
          where: {
             OR: [
@@ -31,7 +31,7 @@ export async function POST(request: Request) {
                   name: true,
                },
             },
-            productLocation: {
+            courseLocation: {
                where: {
                   public: {
                      equals: true,
@@ -61,8 +61,8 @@ export async function POST(request: Request) {
             },
          },
       })
-      .then((res: Product[]) => res)
-      .catch((err: Error) => console.error('err products api', err))
+      .then((res: Course[]) => res)
+      .catch((err: Error) => console.error('err courses api', err))
 
    return NextResponse.json(searchResult)
 }

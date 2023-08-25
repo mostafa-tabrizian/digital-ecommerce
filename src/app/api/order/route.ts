@@ -31,7 +31,7 @@ export async function GET() {
                include: {
                   item: {
                      include: {
-                        product: {
+                        course: {
                            include: {
                               gallery: true,
                            },
@@ -74,7 +74,7 @@ export async function POST(request: Request) {
 
    const cartItemsId: string[] = Object.values(payload.cart).map((item) => item.id)
 
-   const itemsQtyList: ItemQtyType[] = await prisma.productLocation.findMany({
+   const itemsQtyList: ItemQtyType[] = await prisma.courseLocation.findMany({
       where: {
          id: {
             in: cartItemsId,
@@ -100,7 +100,7 @@ export async function POST(request: Request) {
    if (itemWithNotEnoughQty.id) return NextResponse.json(itemWithNotEnoughQty)
 
    itemsQtyList?.map(async (item) => {
-      await prisma.productLocation.update({
+      await prisma.courseLocation.update({
          where: { id: item.id },
          data: {
             quantity: item.quantity - payload.cart[item.id].quantity,

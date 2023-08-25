@@ -1,5 +1,5 @@
 import OurFeatures from './components/ourFeatures'
-import NewestProducts from './components/newestProducts'
+import NewestCourses from './components/newestCourses'
 import CommentSection from './components/commentSection'
 import OurWorkHistory from './components/ourWorkHistory'
 import RoadMap from './components/roadMap'
@@ -17,7 +17,7 @@ async function Home() {
 
          <OurFeatures />
 
-         <NewestProducts />
+         <NewestCourses />
 
          <CommentSection />
 

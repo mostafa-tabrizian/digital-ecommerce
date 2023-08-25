@@ -108,7 +108,7 @@ const Sidebar = () => {
                         </a>
                      </li>
                      <li className='block '>
-                        <a href='/products'>
+                        <a href='/courses'>
                            <div className='relative menu-item flex items-center '>
                               <span className='py-2 md:py-1 flex items-center gap-x-2 md:hover:text-blue-600 cursor-pointer'>
                                  <svg
