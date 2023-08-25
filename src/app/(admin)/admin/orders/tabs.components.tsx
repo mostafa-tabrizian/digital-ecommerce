@@ -64,7 +64,7 @@ const Tabs = () => {
                   return (
                      <div
                         key={order.id}
-                        className='px-4 py-6 space-y-2 from-gray-100 to-gray-200 bg-gradient-to-b rounded-lg max-w-lg mx-auto'
+                        className='px-4 py-6 space-y-2 from-gray-100 to-gray-200 bg-gradient-to-bl rounded-lg max-w-lg mx-auto'
                      >
                         <div className='text-right'>
                            <div className='space-y-2'>

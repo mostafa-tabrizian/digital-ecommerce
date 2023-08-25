@@ -26,7 +26,7 @@ const AdminPanel = async () => {
                   <h2 className='ext-zinc-400 text-base'> به پنل خوش آمدید </h2>
                </div>
 
-               <div className='px-4 py-10 space-y-4 from-gray-50 to-gray-100 bg-gradient-to-b rounded-lg max-w-sm mx-auto'>
+               <div className='px-4 py-10 space-y-4 from-gray-50 to-gray-100 bg-gradient-to-bl rounded-lg max-w-sm mx-auto'>
                   <div className='bg-white rounded-lg py-2 px-2'>
                      <Link href='/admin/orders'>
                         <div className='flex justify-end space-x-3 items-center'>

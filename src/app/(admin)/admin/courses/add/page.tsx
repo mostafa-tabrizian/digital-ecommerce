@@ -63,7 +63,7 @@ const AdminCourse = () => {
                      <h5 className='font-semibold'>افزودن</h5>
                   </Breadcrumbs>
 
-                  <div className='flex flex-col p-4 bg-gradient-to-b from-gray-100 to-gray-200 max-w-md space-y-5 mx-auto'>
+                  <div className='flex flex-col p-4 bg-gradient-to-bl from-gray-100 to-gray-200 max-w-md space-y-5 mx-auto'>
                      <div>
                         <div className='flex space-x-5 w-full'>
                            <CreateCourseForm />

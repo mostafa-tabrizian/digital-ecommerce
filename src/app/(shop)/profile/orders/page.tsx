@@ -44,7 +44,7 @@ const Orders = async () => {
                return (
                   <div
                      key={order.id}
-                     className='px-4 space-y-2 pb-3 from-gray-100 to-gray-200 bg-gradient-to-b rounded-lg max-w-md mx-auto'
+                     className='px-4 space-y-2 pb-3 from-gray-100 to-gray-200 bg-gradient-to-bl rounded-lg max-w-md mx-auto'
                   >
                      <div className='text-right'>
                         <span>{status(order.status)}</span>

@@ -19,7 +19,7 @@ const Profile = async () => {
             <h2 className='text-zinc-400 text-base'>{user?.mobileNumber}</h2>
          </div>
 
-         <div className='px-4 py-10 from-gray-50 to-gray-100 bg-gradient-to-b rounded-lg space-y-4 max-w-md mx-auto'>
+         <div className='px-4 py-10 from-gray-50 to-gray-100 bg-gradient-to-bl rounded-lg space-y-4 max-w-md mx-auto'>
             {user?.role == 'admin' ? (
                <div className='bg-white rounded-lg py-2 px-2'>
                   <Link href='/admin'>

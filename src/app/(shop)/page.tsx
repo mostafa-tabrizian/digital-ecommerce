@@ -12,7 +12,7 @@ export const metadata = {
 
 async function Home() {
    return (
-      <div className='px-6 md:px-0 md:mx-auto max-w-screen-md space-y-16 mb-16 mt-24'>
+      <div className='space-y-16 mb-16 mt-24'>
          <Hero />
 
          <OurFeatures />
