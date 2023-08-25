@@ -6,6 +6,7 @@ export interface IUser {
    role: string
    name: string,
    mobileNumber: string,
+   avatar: string,
    blocked: {
       status: boolean,
       reason: string,
@@ -22,6 +23,7 @@ const UserSchema = new mongoose.Schema<IUser>({
    },
    name: String,
    mobileNumber: String,
+   avatar: String,
    blocked: {
       status: Boolean,
       reason: String,

@@ -1,10 +1,18 @@
 'use client'
 
+import LogoutButton from '@/components/logout.button'
 import Avatar from '@mui/material/Avatar'
 import Popover from '@mui/material/Popover'
 import { useState } from 'react'
+import Link from 'next/link'
 
-const Profile = () => {
+interface IUser {
+   mobileNumber: string | undefined
+   name: string | undefined
+   avatar: string | undefined
+}
+
+const Profile = ({ user }: { user: IUser }) => {
    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
 
    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -63,12 +71,12 @@ const Profile = () => {
                         border: '2px solid white',
                         boxShadow: '0 0 10px #8080805c',
                      }}
-                     alt='Mostaf Tabrizian'
-                     src='/avatar/me.jpg'
+                     alt={user.name}
+                     src={'/avatar/' + user.avatar}
                   />
                   <div className='text-sm w-full flex flex-col h-full justify-between text-skin-base'>
-                     <span className='font-bold block mb-1'>مصطفی تبریزیان</span>
-                     <span className='block'>۰۹۱۲۸۵۲۱۷۶۹</span>
+                     <span className='font-bold block mb-1'>{user.name}</span>
+                     <span className='font-bold block'>{user.mobileNumber}</span>
                   </div>
                </li>
                <hr />
@@ -76,7 +84,7 @@ const Profile = () => {
                   className='rounded-lg py-1 px-4 hover:bg-gray-100 transition-all duration-300 ease-out mb-1'
                   role='menuitem'
                >
-                  <a className='block w-full' href='/profile'>
+                  <Link className='block w-full' href='/profile'>
                      <div className='flex py-2 text-skin-base hover:text-blue-600'>
                         <svg
                            xmlns='http://www.w3.org/2000/svg'
@@ -91,13 +99,13 @@ const Profile = () => {
                         </svg>
                         <span className='font-bold text-sm block'>حساب کاربری</span>
                      </div>
-                  </a>
+                  </Link>
                </li>
                <li
                   className='rounded-lg py-1 px-4 hover:bg-gray-100 transition-all duration-300 ease-out mb-1'
                   role='menuitem'
                >
-                  <a className='block w-full' href='/profile/courses'>
+                  <Link className='block w-full' href='/profile/courses'>
                      <div className='flex py-2 text-skin-base hover:text-blue-600'>
                         <svg
                            xmlns='http://www.w3.org/2000/svg'
@@ -114,13 +122,13 @@ const Profile = () => {
                         </svg>
                         <span className='font-bold text-sm block'>دوره های من</span>
                      </div>
-                  </a>
+                  </Link>
                </li>
                <li
                   className='rounded-lg py-1 px-4 hover:bg-gray-100 transition-all duration-300 ease-out mb-1'
                   role='menuitem'
                >
-                  <a className='block w-full' href='/profile/payments'>
+                  <Link className='block w-full' href='/profile/payments'>
                      <div className='flex py-2 text-skin-base hover:text-blue-600'>
                         <svg
                            xmlns='http://www.w3.org/2000/svg'
@@ -141,13 +149,13 @@ const Profile = () => {
                         </svg>
                         <span className='font-bold text-sm block'>سفارش های من</span>
                      </div>
-                  </a>
+                  </Link>
                </li>
                <li
-                  className='rounded-lg py-1 px-4 hover:bg-gray-100 transition-all duration-300 ease-out'
+                  className='rounded-lg px-4 hover:bg-gray-100 transition-all duration-300 ease-out'
                   role='menuitem'
                >
-                  <div className='w-full flex py-2 leading-8 text-skin-base hover:text-red-400 cursor-pointer'>
+                  <div className='w-full items-center flex hover:text-red-400 cursor-pointer'>
                      <svg
                         stroke='currentColor'
                         fill='none'
@@ -165,7 +173,7 @@ const Profile = () => {
                            d='M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1'
                         ></path>
                      </svg>
-                     <span className='font-bold text-sm'>خروج</span>
+                     <LogoutButton />
                   </div>
                </li>
             </ul>

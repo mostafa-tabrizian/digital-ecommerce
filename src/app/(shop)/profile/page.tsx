@@ -1,4 +1,4 @@
-import LogoutButton from '@/app/(shop)/profile/logout.button'
+import LogoutButton from '@/components/logout.button'
 import User from '@/lib/user'
 import { Metadata } from 'next'
 import Link from 'next/link'

@@ -13,15 +13,15 @@ const LogoutButton = () => {
    }
 
    return (
-      <div className='border-2 hover:shadow-lg shadow-red-300 transition-shadow border-red-700 text-red-700 text-center w-full py-2 yekan1 rounded-xl'>
+      <>
          {loading ? (
-            <CircularProgress className='text-white' color='inherit' size={30} />
+            <CircularProgress className='text-rose-600' color='inherit' size={24} />
          ) : (
-            <button className='w-full' disabled={loading} onClick={() => submitLogout()}>
-               خروج از حساب
+            <button disabled={loading} onClick={() => submitLogout()}>
+               <span className='font-bold text-sm'>خروج</span>
             </button>
          )}
-      </div>
+      </>
    )
 }
 
