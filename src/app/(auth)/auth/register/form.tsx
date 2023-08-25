@@ -15,7 +15,7 @@ import FormikInput from '@/formik/input'
 import Link from 'next/link'
 
 interface FormType {
-   email: string
+   mobileNumber: string
    password: string
    confirmPassword: string
 }
@@ -82,7 +82,7 @@ export const RegisterForm = () => {
          <h1>تبریزیان دیجیتال ایکامرس</h1>
 
          <Formik
-            initialValues={{ email: '', password: '', confirmPassword: '' }}
+            initialValues={{ mobileNumber: '', password: '', confirmPassword: '' }}
             validationSchema={RegisterSchemaValidation}
             onSubmit={onSubmit}
          >
@@ -91,16 +91,16 @@ export const RegisterForm = () => {
                   <div>
                      <h3 className='text-right mb-3'>ثبت نام</h3>
                      <p className='text-right text-sm'>
-                        ! سلام <br /> برای ثبت نام لطفا ایمیل، رمز و تکرار رمز خود را وارد کنید
+                        ! سلام <br /> برای ثبت نام لطفا شماره موبایل، رمز و تکرار رمز خود را وارد کنید
                      </p>
                   </div>
 
                   <div className='space-y-3 mt-5 mb-10'>
                      <FormikInput
                         label=''
-                        name='email'
-                        type='email'
-                        placeholder='ایمیل خود را وارد کنید...'
+                        name='mobileNumber'
+                        type='text'
+                        placeholder='شماره موبایل خود را وارد کنید...'
                      />
                      <FormikInput
                         label=''
@@ -122,7 +122,7 @@ export const RegisterForm = () => {
                   >
                      {isSubmitting ? (
                         <div className='flex justify-center'>
-                           <CircularProgress color='inherit' size={25} />
+                           <CircularProgress className='text-white' color='inherit' size={25} />
                         </div>
                      ) : (
                         'ثبت نام'

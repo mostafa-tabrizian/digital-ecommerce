@@ -1,25 +1,27 @@
 import { hashSync, genSaltSync } from 'bcryptjs'
 import { NextResponse } from 'next/server'
+import dbConnect from '@/lib/dbConnect'
+import User from '@/models/user'
 
 export async function POST(req: Request) {
    try {
-      const { email, password } = (await req.json()) as {
-         email: string
+      await dbConnect()
+
+      const { mobileNumber, password } = (await req.json()) as {
+         mobileNumber: string
          password: string
       }
 
       const hashedPassword = hashSync(password, genSaltSync(10))
 
-      const user = await prisma.user.create({
-         data: {
-            email: email.toLowerCase(),
-            password: hashedPassword,
-         },
+      const user = await User.create({
+         mobileNumber: mobileNumber.toLowerCase(),
+         password: hashedPassword,
       })
 
       return NextResponse.json({
          user: {
-            email: user.email,
+            mobileNumber: user.mobileNumber,
          },
       })
    } catch (error) {

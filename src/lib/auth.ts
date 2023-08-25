@@ -1,11 +1,10 @@
 import type { NextAuthOptions } from 'next-auth'
 import bcrypt from 'bcrypt'
 import CredentialsProvider from 'next-auth/providers/credentials'
-
-import { User as UserType } from '@prisma/client'
+import User, { IUser } from '@/models/user'
 
 interface Credential {
-   email: string
+   mobileNumber: string
    password: string
 }
 
@@ -17,27 +16,25 @@ const authOptions: NextAuthOptions = {
          name: 'Credentials',
 
          credentials: {
-            email: {
-               label: 'ایمیل',
+            mobileNumber: {
+               label: 'شماره تماس',
                type: 'text',
-               placeholder: 'example@gmail.com',
+               placeholder: '09123456789',
             },
             password: {
                label: 'رمز عبور',
                type: 'password',
-               placeholder: '1234',
+               placeholder: 'Abc1234',
             },
          },
 
          async authorize(credentials: Credential | undefined) {
             if (!credentials) return null
 
-            const { email, password } = credentials
+            const { mobileNumber, password } = credentials
 
-            const user = await prisma.user.findUnique({
-               where: {
-                  email: email,
-               },
+            const user = await User.findOne({
+                  mobileNumber: mobileNumber
             })
 
             if (!user) return null
@@ -46,7 +43,7 @@ const authOptions: NextAuthOptions = {
 
             if (!passwordsMatch) return null
 
-            const { password: _, ...filteredUser } = user as UserType & {
+            const { password: _, ...filteredUser } = user as IUser & {
                password: string
             }
 

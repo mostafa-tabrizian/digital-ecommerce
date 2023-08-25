@@ -17,18 +17,18 @@ import { LoginSchemaValidation } from '@/formik/schema/validation'
 import CircularProgress from '@mui/material/CircularProgress'
 
 interface FormType {
-   email: string
+   mobileNumber: string
    password: string
 }
 
 const errorsInPersian: { [key: string]: string } = {
-   Signin: 'لطفا از ایمیل دیگری برای ورود استفاده کنید..',
-   OAuthSignin: 'لطفا از ایمیل دیگری برای ورود استفاده کنید..',
-   OAuthCallback: 'لطفا از ایمیل دیگری برای ورود استفاده کنید..',
-   OAuthCreateAccount: 'لطفا از ایمیل دیگری برای ورود استفاده کنید..',
-   EmailCreateAccount: 'لطفا از ایمیل دیگری برای ورود استفاده کنید..',
-   Callback: 'لطفا از ایمیل دیگری برای ورود استفاده کنید..',
-   EmailSignin: 'لطفا ایمیل خود رو بررسی کنید',
+   Signin: 'لطفا از شماره تماس دیگری برای ورود استفاده کنید..',
+   OAuthSignin: 'لطفا از شماره تماس دیگری برای ورود استفاده کنید..',
+   OAuthCallback: 'لطفا از شماره تماس دیگری برای ورود استفاده کنید..',
+   OAuthCreateAccount: 'لطفا از شماره تماس دیگری برای ورود استفاده کنید..',
+   EmailCreateAccount: 'لطفا از شماره تماس دیگری برای ورود استفاده کنید..',
+   Callback: 'لطفا از شماره تماس دیگری برای ورود استفاده کنید..',
+   EmailSignin: 'لطفا شماره تماس خود رو بررسی کنید',
    CredentialsSignin: 'در ورود شما خطایی رخ داد. لطفا صحت اطلاعات خود را بررسی کنید.',
    default: 'امکان ورود نمی‌باشد',
 }
@@ -90,7 +90,7 @@ const LoginForm = () => {
          <h1>تبریزیان دیجیتال ایکامرس</h1>
 
          <Formik
-            initialValues={{ email: '', password: '' }}
+            initialValues={{ mobileNumber: '', password: '' }}
             validationSchema={LoginSchemaValidation}
             onSubmit={onSubmit}
          >
@@ -99,16 +99,16 @@ const LoginForm = () => {
                   <div>
                      <h3 className='text-right mb-3'>ورود</h3>
                      <p className='text-right text-sm'>
-                        ! سلام <br /> برای ورود ایمیل و رمز خود را وارد کنید
+                        ! سلام <br /> برای ورود شماره تماس و رمز خود را وارد کنید
                      </p>
                   </div>
 
                   <div className='space-y-3 mt-5 mb-10'>
                      <FormikInput
                         label=''
-                        name='email'
-                        type='email'
-                        placeholder='ایمیل خود را وارد کنید...'
+                        name='mobileNumber'
+                        type='text'
+                        placeholder='شماره تماس خود را وارد کنید...'
                      />
                      <FormikInput
                         label=''
@@ -125,7 +125,7 @@ const LoginForm = () => {
                   >
                      {isSubmitting ? (
                         <div className='flex justify-center'>
-                           <CircularProgress color='inherit' size={25} />
+                           <CircularProgress className='text-white' color='inherit' size={25} />
                         </div>
                      ) : (
                         'ورود'

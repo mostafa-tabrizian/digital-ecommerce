@@ -2,55 +2,34 @@ import { getServerSession } from 'next-auth'
 import { NextResponse } from 'next/server'
 
 import authOptions from '@/lib/auth'
-
-import { User } from '@prisma/client'
-
-type UserType = {
-   name: string | null
-   mobileNumber: string | null
-   phoneNumber: string | null
-   melliCode: string | null
-   address: string | null
-} | null
+import User, { IUser } from '@/models/user'
 
 export async function GET() {
-   const session: { email: string } | null = await getServerSession(authOptions)
+   const session: { _doc: { mobileNumber: string } } | null = await getServerSession(authOptions)
 
    if (!session) return
 
-   const user = await prisma.user
-      .findUnique({
-         where: {
-            email: session.email,
-         },
-         select: {
-            name: true,
-            mobileNumber: true,
-            phoneNumber: true,
-            melliCode: true,
-            address: true,
-         },
-      })
-      .then((res: UserType) => res)
+   const user = await User.findOne({
+      mobileNumber: session._doc.mobileNumber
+   }, 'name').exec()
+      .then((res: IUser) => res)
 
    return NextResponse.json(user)
 }
 
 export async function PATCH(request: Request) {
-   const session: { email: string } | null = await getServerSession(authOptions)
+   const session: { _doc: { mobileNumber: string } } | null = await getServerSession(authOptions)
    const payload = await request.json()
 
    if (!session) return
 
    try {
-      const user: User | null = await prisma.user.update({
-         where: {
-            email: session.email,
-         },
-         data: payload,
-      })
-
-      const { password: _, ...filteredUser } = user
+      const user = await User.findOneAndUpdate(
+         { mobileNumber: session._doc.mobileNumber },
+         { name: payload.name }
+      )
+      
+      const { password: _, ...filteredUser } = user._doc
 
       return NextResponse.json(filteredUser)
    } catch (err) {

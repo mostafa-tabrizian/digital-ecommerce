@@ -324,7 +324,7 @@ const Sidebar = () => {
                         <span className='block opacity-60'>دانشجو</span>
                      </div>
                   </div>
-                  <a href='/profile/me'>
+                  <Link href='/profile/edit'>
                      <button>
                         <svg
                            xmlns='http://www.w3.org/2000/svg'
@@ -356,7 +356,7 @@ const Sidebar = () => {
                            ></path>
                         </svg>
                      </button>
-                  </a>
+                  </Link>
                </div>
             </div>
          </Drawer>

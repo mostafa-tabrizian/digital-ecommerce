@@ -67,7 +67,7 @@ const Edit = () => {
             }}
             open={isLoading}
          >
-            <CircularProgress color='inherit' size={40} />
+            <CircularProgress className='text-white' color='inherit' size={40} />
          </Backdrop>
          <div className='my-16 from-gray-100 to-gray-200 max-w-md mx-6 md:mx-auto bg-gradient-to-b rounded-lg px-5 space-y-11'>
             <h1 className='text-center font-bold'>اطلاعات حساب</h1>
@@ -76,11 +76,7 @@ const Edit = () => {
                <Formik
                   enableReinitialize={true}
                   initialValues={{
-                     name: data?.name || '',
-                     mobileNumber: data?.mobileNumber || '',
-                     phoneNumber: data?.phoneNumber || '',
-                     melliCode: data?.melliCode || '',
-                     address: data?.address || '',
+                     name: data?.name || ''
                   }}
                   validationSchema={ProfileSchemaValidation}
                   onSubmit={onSubmit}
@@ -93,29 +89,6 @@ const Edit = () => {
                            type='text'
                            placeholder='لطفا نام و نام خانوادگی خود را وارد کنید...'
                         />
-                        <FormikInput
-                           label='شماره همراه'
-                           name='mobileNumber'
-                           type='text'
-                           placeholder='لطفا شماره همراه خود را وارد کنید...'
-                        />
-                        <FormikInput
-                           label='شماره ثابت'
-                           name='phoneNumber'
-                           type='text'
-                           placeholder='لطفا شماره ثابت خود را وارد کنید...'
-                        />
-                        <FormikInput
-                           label='کد ملی'
-                           name='melliCode'
-                           type='text'
-                           placeholder='لطفا کد ملی خود را وارد کنید...'
-                        />
-                        <FormikTextarea
-                           label='آدرس محل سکونت'
-                           name='address'
-                           placeholder='لطفا آدرس محل سکونت خود را وارد کنید...'
-                        />
                         <button
                            type='submit'
                            disabled={isSubmitting}
@@ -123,10 +96,10 @@ const Edit = () => {
                         >
                            {isSubmitting ? (
                               <div className='flex justify-center'>
-                                 <CircularProgress color='inherit' size={25} />
+                                 <CircularProgress className='text-white' color='inherit' size={25} />
                               </div>
                            ) : (
-                              'ذخیره تغییرات'
+                              'ثبت تغییرات'
                            )}
                         </button>
                      </Form>

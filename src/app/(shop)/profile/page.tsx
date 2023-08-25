@@ -15,12 +15,12 @@ const Profile = async () => {
          <h1 className='text-center font-bold'>پروفایل من</h1>
 
          <div className='text-center'>
-            <h1 className='font-semibold'>{user?.name || user?.email}</h1>
-            <h2 className='text-zinc-400 text-base'>{user?.mobileNumber || user?.phoneNumber}</h2>
+            <h1 className='font-semibold'>{user?.name}</h1>
+            <h2 className='text-zinc-400 text-base'>{user?.mobileNumber}</h2>
          </div>
 
          <div className='px-4 py-10 from-gray-50 to-gray-100 bg-gradient-to-b rounded-lg space-y-4 max-w-md mx-auto'>
-            {user?.role == 'ADMIN' ? (
+            {user?.role == 'admin' ? (
                <div className='bg-white rounded-lg py-2 px-2'>
                   <Link href='/admin'>
                      <div className='flex justify-end space-x-3 items-center'>

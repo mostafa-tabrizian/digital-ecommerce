@@ -2,7 +2,7 @@ import * as yup from 'yup'
 import * as rule from './rules'
 
 export const RegisterSchemaValidation = yup.object().shape({
-   email: yup.string().email('ایمیل می‌بایست معتبر باشد').required('لطفا یک ایمیل وارد کنید'),
+   mobileNumber: yup.string().matches(rule.mobileNumber, { message: 'شماره تماس نامعتبر می‌باشد' }).required('لطفا شماره موبایل خود را وارد کنید'),
    password: yup
       .string()
       .min(5, 'رمز شما می‌بایست حداقل ۵ کاراکتر باشد')
@@ -17,26 +17,12 @@ export const RegisterSchemaValidation = yup.object().shape({
 })
 
 export const LoginSchemaValidation = yup.object().shape({
-   email: yup.string().email('ایمیل می‌بایست معتبر باشد').required('لطفا ایمیل خود را وارد کنید'),
+   mobileNumber: yup.string().matches(rule.mobileNumber, { message: 'شماره تماس نامعتبر می‌باشد' }).required('لطفا شماره موبایل خود را وارد کنید'),
    password: yup.string().required('لطفا رمز خود را وارد کنید'),
 })
 
 export const ProfileSchemaValidation = yup.object().shape({
    name: yup.string().matches(rule.persian, 'لطفا نام و نام خانوادگی خود را به فارسی وارد کنید'),
-
-   mobileNumber: yup.string().matches(rule.mobileNumber, { message: 'شماره تماس نامعتبر می‌باشد' }),
-
-   phoneNumber: yup
-      .string()
-      .min(11, 'لطفا کد استان بهمراه شماره تلفن ثابت درج شود')
-      .matches(rule.phoneNumber, { message: 'شماره تلفن ثابت نامعتبر می‌باشد' }),
-
-   melliCode: yup.string().matches(rule.melliCode, { message: 'کدملی وارد شده نامعتبر می‌باشد' }),
-
-   address: yup
-      .string()
-      .min(10, 'لطفا آدرس را دقیق تر بنویسید')
-      .matches(rule.persian, { message: 'لطفا آدرس خود را به فارسی وارد کنید' }),
 })
 
 export const ProductSchemaValidation = yup.object().shape({

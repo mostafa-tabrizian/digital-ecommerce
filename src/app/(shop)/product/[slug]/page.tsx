@@ -90,7 +90,7 @@ const ProductDetail = async ({ params }: { params: { slug: string } }) => {
                      </div>
                      <div className='flex gap-1'>
                         <span className='text-gray-700 font-bold'>دانشجو</span>
-                        <span className='text-gray-700 font-bold'>{product.purchaser}</span>
+                        <span className='text-gray-700 font-bold'>{product.purchaser.length.toLocaleString('per')}</span>
                      </div>
                   </div>
                   <div className='flex flex-col items-center gap-y-3'>

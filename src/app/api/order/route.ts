@@ -52,7 +52,7 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-   const session: { email: string } | null = await getServerSession(authOptions)
+   const session: { _doc: { mobileNumber: string } } | null = await getServerSession(authOptions)
    const payload: PayloadType = await request.json()
 
    if (!session) return NextResponse.json({ message: 'unAuthorized' })

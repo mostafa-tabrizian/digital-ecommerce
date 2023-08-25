@@ -2,22 +2,34 @@
 
 import mongoose from 'mongoose'
 
-const UserSchema = new mongoose.Schema({
+export interface IUser {
+   role: string
+   name: string,
+   mobileNumber: string,
+   blocked: {
+      status: boolean,
+      reason: string,
+   },
+   password: string,
+   accessItems: [],
+}
+
+const UserSchema = new mongoose.Schema<IUser>({
    role: {
       type: String,
       enum: ['client', 'admin'],
       default: 'client',
    },
    name: String,
-   mobile_number: String,
+   mobileNumber: String,
    blocked: {
       status: Boolean,
       reason: String,
    },
    password: String,
-   access_items: [],
+   accessItems: [],
 })
 
 UserSchema.set('timestamps', true)
 
-export default mongoose.models.Product || mongoose.model('User', UserSchema)
+export default mongoose.models.User || mongoose.model('User', UserSchema)
