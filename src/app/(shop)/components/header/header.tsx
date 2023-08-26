@@ -16,7 +16,7 @@ const Header = async () => {
    return (
       <header className='bg-white py-2 px-3 flex items-center justify-between'>
          {user ? (
-            <>
+            <div className='flex gap-3'>
                <Profile user={simpleUser} />
                <Link href='/cart'>
                   <div className='flex gap-x-3'>
@@ -49,7 +49,7 @@ const Header = async () => {
                      </div>
                   </div>
                </Link>
-            </>
+            </div>
          ) : (
             <div className='flex items-center mx-2'>
                <Link href='/auth/login'>

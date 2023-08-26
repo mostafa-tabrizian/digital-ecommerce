@@ -5,12 +5,6 @@ import { toast } from 'react-toastify'
 import { Form, Formik } from 'formik'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
-import Stepper from '@mui/material/Stepper'
-import Step from '@mui/material/Step'
-import StepLabel from '@mui/material/StepLabel'
-import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector'
-import { styled } from '@mui/material/styles'
 
 import FormikInput from '@/formik/input'
 import { LoginSchemaValidation } from '@/formik/schema/validation'
@@ -32,8 +26,6 @@ const errorsInPersian: { [key: string]: string } = {
    CredentialsSignin: 'در ورود شما خطایی رخ داد. لطفا صحت اطلاعات خود را بررسی کنید.',
    default: 'امکان ورود نمی‌باشد',
 }
-
-const steps = ['احراز هویت', 'تکمیل اطلاعات', 'ثبت سفارش']
 
 const LoginForm = () => {
    const router = useRouter()
@@ -61,89 +53,53 @@ const LoginForm = () => {
       }
    }
 
-   const QontoConnector = styled(StepConnector)(() => ({
-      [`&.${stepConnectorClasses.alternativeLabel}`]: {
-         top: 10,
-         right: 'calc(-50% + 16px)',
-         left: 'calc(50% + 16px)',
-         margin: '0 .5rem',
-      },
-   }))
-
    return (
-      <div className='text-center w-full max-w-sm'>
-         <Stepper
-            activeStep={0}
-            sx={{ direction: 'rtl', marginBottom: '5rem' }}
-            alternativeLabel
-            connector={<QontoConnector />}
-         >
-            {steps.map((label) => (
-               <Step key={label}>
-                  <StepLabel>
-                     <h6>{label}</h6>
-                  </StepLabel>
-               </Step>
-            ))}
-         </Stepper>
+      <Formik
+         initialValues={{ mobileNumber: '', password: '' }}
+         validationSchema={LoginSchemaValidation}
+         onSubmit={onSubmit}
+      >
+         {({ isSubmitting }) => (
+            <Form className='mt-4'>
+               <div>
+                  <h3 className='text-right mb-3'>ورود</h3>
+                  <p className='text-right text-sm'>
+                     ! سلام <br /> برای ورود شماره تماس و رمز خود را وارد کنید
+                  </p>
+               </div>
 
-         <h1>تبریزیان دیجیتال ایکامرس</h1>
+               <div className='space-y-3 mt-5 mb-10'>
+                  <FormikInput
+                     label=''
+                     name='mobileNumber'
+                     type='text'
+                     placeholder='شماره تماس خود را وارد کنید...'
+                  />
+                  <FormikInput
+                     label=''
+                     name='password'
+                     type='password'
+                     placeholder='رمز عبور خود را وارد کنید...'
+                  />
+               </div>
 
-         <Formik
-            initialValues={{ mobileNumber: '', password: '' }}
-            validationSchema={LoginSchemaValidation}
-            onSubmit={onSubmit}
-         >
-            {({ isSubmitting }) => (
-               <Form className='mt-4'>
-                  <div>
-                     <h3 className='text-right mb-3'>ورود</h3>
-                     <p className='text-right text-sm'>
-                        ! سلام <br /> برای ورود شماره تماس و رمز خود را وارد کنید
-                     </p>
-                  </div>
-
-                  <div className='space-y-3 mt-5 mb-10'>
-                     <FormikInput
-                        label=''
-                        name='mobileNumber'
-                        type='text'
-                        placeholder='شماره تماس خود را وارد کنید...'
-                     />
-                     <FormikInput
-                        label=''
-                        name='password'
-                        type='password'
-                        placeholder='رمز عبور خود را وارد کنید...'
-                     />
-                  </div>
-
-                  <button
-                     type='submit'
-                     className='rounded-xl w-full bg-blue-500 hover:bg-blue-600 transition-colors shadow-lg shadow-indigo-300 text-white'
-                     disabled={isSubmitting}
-                  >
-                     {isSubmitting ? (
-                        <div className='flex justify-center'>
-                           <CircularProgress className='text-white' color='inherit' size={25} />
-                        </div>
-                     ) : (
-                        'ورود'
-                     )}
-                  </button>
-                  {error ? <p className='text-red-500 text-sm mt-3 font-semibold'>{error}</p> : ''}
-               </Form>
-            )}
-         </Formik>
-
-         <div className='text-green-900 text-center mt-10'>
-            <Link href='/auth/register'>
-               <h6 className='font-semibold underline underline-offset-4'>
-                  حساب کاربری ندارید؟ برای اینجا کلیک کنید
-               </h6>
-            </Link>
-         </div>
-      </div>
+               <button
+                  type='submit'
+                  className='rounded-xl w-full bg-blue-500 hover:bg-blue-600 transition-colors shadow-lg shadow-indigo-300 text-white'
+                  disabled={isSubmitting}
+               >
+                  {isSubmitting ? (
+                     <div className='flex justify-center'>
+                        <CircularProgress className='text-white' color='inherit' size={25} />
+                     </div>
+                  ) : (
+                     'ورود'
+                  )}
+               </button>
+               {error ? <p className='text-red-500 text-sm mt-3 font-semibold'>{error}</p> : ''}
+            </Form>
+         )}
+      </Formik>
    )
 }
 

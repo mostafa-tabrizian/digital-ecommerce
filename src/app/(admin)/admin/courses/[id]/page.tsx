@@ -103,7 +103,7 @@ const pageContent = (course: TypeCourse) => {
                </Breadcrumbs>
 
                <div className='max-w-md mx-auto'>
-                  <Link href='/admin/courses/add'>
+                  <Link href='/admin/course/add'>
                      <button className='bg-white z-10 border-2 border-blue-500 rounded-full p-3 fixed bottom-10 right-5'>
                         <svg
                            className='h-6 w-6 text-blue-500'

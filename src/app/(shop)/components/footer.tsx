@@ -225,7 +225,7 @@ const Footer = () => {
                      <li className='list-disc py-2 list-inside'>
                         <a
                            className='py-2 transition-all duration-300 hover:text-blue-500'
-                           href='/courses/react-course'
+                           href='/course/react-course'
                         >
                            دوره متخصص ریکت و ریداکس
                         </a>
@@ -233,7 +233,7 @@ const Footer = () => {
                      <li className='list-disc py-2 list-inside'>
                         <a
                            className='py-2 transition-all duration-300 hover:text-blue-500'
-                           href='/courses/nextjs'
+                           href='/course/nextjs'
                         >
                            دوره متخصص Next.js
                         </a>
@@ -241,7 +241,7 @@ const Footer = () => {
                      <li className='list-disc py-2 list-inside'>
                         <a
                            className='py-2 transition-all duration-300 hover:text-blue-500'
-                           href='/courses/advanced-javascript'
+                           href='/course/advanced-javascript'
                         >
                            دوره پیشرفته جاوااسکریپت
                         </a>
@@ -249,7 +249,7 @@ const Footer = () => {
                      <li className='list-disc py-2 list-inside'>
                         <a
                            className='py-2 transition-all duration-300 hover:text-blue-500'
-                           href='/courses/tailwindCSS'
+                           href='/course/tailwindCSS'
                         >
                            دوره پروژه محور تیلویند
                         </a>
@@ -257,7 +257,7 @@ const Footer = () => {
                      <li className='list-disc py-2 list-inside'>
                         <a
                            className='py-2 transition-all duration-300 hover:text-blue-500'
-                           href='/courses/responsive-web'
+                           href='/course/responsive-web'
                         >
                            دوره طراحی وب رسپانسیو
                         </a>

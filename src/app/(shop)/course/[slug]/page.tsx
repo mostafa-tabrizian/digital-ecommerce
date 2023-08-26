@@ -287,7 +287,7 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
             <div className='w-full h-[300px] relative'>
                <Image
                   className='rounded-xl'
-                  src={'/courses/' + course.image}
+                  src={'/course/' + course.image}
                   alt={course.name}
                   layout='fill'
                   objectFit='cover'

@@ -161,7 +161,7 @@ const Cart = () => {
                               <Image
                                  // src={`${course.gallery[0].src}`}
                                  className='rounded-xl'
-                                 src={'/courses/nexjs.svg'}
+                                 src={'/course/nexjs.svg'}
                                  // alt={course.title}
                                  alt='{course.title}'
                                  height={100}
@@ -172,7 +172,7 @@ const Cart = () => {
                            <div>
                               <a
                                  className='yekanBlack text-gray-700 text-sm md:text-2xl hover:text-blue-600 transition-all duration-200 mb-3 block'
-                                 href='/courses/react-course'
+                                 href='/course/react-course'
                               >
                                  دوره متخصص ریکت و ریداکس
                               </a>

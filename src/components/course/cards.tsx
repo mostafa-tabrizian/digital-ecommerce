@@ -69,7 +69,7 @@ const CourseCards = ({ course, pageTarget }: { course: ICourse; pageTarget: stri
 
                   <Image
                      className='rounded-xl'
-                     src={`/courses/${course.image}`}
+                     src={`/course/${course.image}`}
                      alt={course.name}
                      height={300}
                      width={450}
@@ -80,7 +80,7 @@ const CourseCards = ({ course, pageTarget }: { course: ICourse; pageTarget: stri
                <div className='space-y-3 text-right'>
                   <Link
                      className='text-lg yekanBlack hover:text-blue-600 transition-all duration-500 ease-in-out'
-                     href={'/courses/' + course.name}
+                     href={'/course/' + course.name}
                   >
                      {course.name}
                   </Link>
@@ -127,7 +127,7 @@ const CourseCards = ({ course, pageTarget }: { course: ICourse; pageTarget: stri
                   <div className='cursor-pointer'>
                      <Link
                         className='flex justify-end items-center transition-all duration-300 text-blue-500 hover:text-blue-900 gap-x-2 text-base font-bold'
-                        href={'/courses/' + course.name}
+                        href={'/course/' + course.name}
                      >
                         <span>مشاهده اطلاعات دوره</span>
                         <svg
