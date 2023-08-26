@@ -11,6 +11,7 @@ import AddToCart from './components/addToCart'
 
 import dbConnect from '@/lib/dbConnect'
 import Course, { ICourse } from '@/models/course'
+import toFarsiNumber from '@/lib/toFarsiNumber'
 
 const getCourse = async (slug: string) => {
    await dbConnect()
@@ -31,13 +32,37 @@ export const generateMetadata = async ({ params }: { params: { slug: string } })
 const CourseDetail = async ({ params }: { params: { slug: string } }) => {
    const course: ICourse = await getCourse(params.slug)
 
+   const partsCount = () => {
+      let totalCount = 0
+      course.chapters.map((chapter) => {
+         totalCount += chapter.parts.length
+      })
+
+      return toFarsiNumber(totalCount)
+   }
+
+   const courseLength = () => {
+      let totalLength = 0
+      course.chapters.map((chapter) => {
+         chapter.parts.map(part => {
+            totalLength += part.length
+         })
+      })
+
+      const hours = toFarsiNumber(String(Math.floor(totalLength / 60)).padStart(2, '0'))
+      const minutes = toFarsiNumber(String(totalLength % 60).padStart(2, '0'))
+      const format = `${hours}:${minutes}:۰۰`
+
+      return toFarsiNumber(format)
+   }
+
    return (
       <div className='m-3'>
          <div className='bg-white space-y-8 my-10 py-5 px-3 rounded-xl'>
             <div className='text-right'>
-               <h1 className='text-slate-800 rtl font-extraBlack text-2xl mb-2'>{course.name}</h1>
+               <h1 className='text-slate-800 rtl font-extraBlack text-2xl mb-2'>{course?.name}</h1>
                <p className='text-slate-600 text-sm md:text-base leading-7 font-bold md:leading-8 mb-7'>
-                  {course.description}
+                  {course?.description}
                </p>
             </div>
             <div className='flex flex-col lg:justify-between lg:flex-row'>
@@ -90,7 +115,9 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
                      </div>
                      <div className='flex gap-1'>
                         <span className='text-gray-700 font-bold'>دانشجو</span>
-                        <span className='text-gray-700 font-bold'>{course.purchaser.length.toLocaleString('per')}</span>
+                        <span className='text-gray-700 font-bold'>
+                           {course?.purchaser.length.toLocaleString('per')}
+                        </span>
                      </div>
                   </div>
                   <div className='flex flex-col items-center gap-y-3'>
@@ -138,7 +165,7 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
                      </div>
                      <div className='flex gap-1'>
                         <span className='text-gray-700 font-bold'>جلسه</span>
-                        <span className='text-gray-700 font-bold'>۲۴۴??</span>
+                        <span className='text-gray-700 font-bold'>{partsCount()}</span>
                      </div>
                   </div>
                   <div className='flex flex-col items-center gap-y-3'>
@@ -183,7 +210,7 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
                         </svg>
                      </div>
 
-                     <span className='text-gray-700 font-bold'>۴۴:۱۱:۰۰??</span>
+                     <span className='text-gray-700 font-bold'>{courseLength()}</span>
                   </div>
                </div>
             </div>
@@ -192,7 +219,7 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
                <RatingCourse />
 
                <button className='flex items-center gap-x-1 text-slate-600 font-bold tracking-widest hover:text-green-600'>
-                  <span className='text-inherit'>{course.comments.length}</span>
+                  <span className='text-inherit'>{course?.comments.length}</span>
                   <svg
                      xmlns='http://www.w3.org/2000/svg'
                      viewBox='0 0 24 24'
@@ -250,7 +277,7 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
                      ></path>
                   </svg>
                   <span className='font-bold'>تاریخ انتشار :</span>
-                  <span className='font-bold'>{course.created_at}??</span>
+                  <span className='font-bold'>{course?.createdAt}??</span>
                </div>
                <div className='flex items-center gap-x-1 p-1.5 rounded-lg bg-slate-200/50 w-fit text-slate-500'>
                   <svg
@@ -287,8 +314,8 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
             <div className='w-full h-[300px] relative'>
                <Image
                   className='rounded-xl'
-                  src={'/course/' + course.image}
-                  alt={course.name}
+                  src={'/course/' + course?.image}
+                  alt={course?.name}
                   layout='fill'
                   objectFit='cover'
                />
@@ -296,10 +323,7 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
          </div>
          <div className='bg-white space-y-8 py-5 px-3 mb-6 rounded-xl'>
             <div className='flex md:flex-col md:gap-y-1 items-center justify-between mb-3'>
-               <div
-                  className='font-bold  flex-1 flex items-center 
-          justify-center'
-               >
+               <div className='font-bold  flex-1 flex items-center justify-center'>
                   <svg
                      xmlns='http://www.w3.org/2000/svg'
                      data-name='Layer 2'
@@ -315,7 +339,7 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
                      ></path>
                   </svg>
                   <span className='text-3xl text-gray-700 yekanBlack ml-2 lg:text-4xl'>
-                     {course.price.toLocaleString('per')}
+                     {course?.price.toLocaleString('per')}
                   </span>
                </div>
             </div>
@@ -381,7 +405,7 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
          <div className='bg-white rounded-xl mt-6 p-3 lg:p-6'>
             <h2 className='text-2xl text-right text-blue-600 mb-5'>توضیحات دوره</h2>
             <div className='text-right'>
-               <p>{course.description}</p>
+               <p>{course?.description}</p>
                <div>
                   <h3 className='yekanBlack mt-10 mb-5 text-lg text-gray-800'>
                      نکست جی اس (Next.js) چیست ؟
@@ -416,7 +440,7 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
             </div>
          </div>
 
-         <CourseSession />
+         <CourseSession chapters={JSON.parse(JSON.stringify(course.chapters))} />
 
          <div className='bg-white rounded-xl mt-6 p-3 lg:p-6'>
             <h2 className='text-2xl text-end text-blue-600 mb-5'>تجربه دانشجویان (۸)</h2>

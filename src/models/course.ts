@@ -8,6 +8,19 @@ export interface ICourse {
    status: string
    image: string
    description: string
+   createdAt: Date
+   chapters: [
+      {
+         _id: string,
+         name: string,
+         parts: [{
+            _id: string,
+            name: string,
+            length: number,
+            source: string
+         }]
+      }
+   ],
    questions: [
       {
          username: string
@@ -47,6 +60,16 @@ const CourseSchema = new mongoose.Schema<ICourse>({
    },
    image: String,
    description: String,
+   chapters: [
+      {
+         name: String,
+         parts: [{
+            name: String,
+            length: Number,
+            source: String
+         }]
+      }
+   ],
    questions: [
       {
          username: String,
