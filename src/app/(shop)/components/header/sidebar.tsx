@@ -4,9 +4,22 @@ import Drawer from '@mui/material/Drawer'
 import Link from 'next/link'
 import { useState } from 'react'
 import Collapse from '@mui/material/Collapse'
+import Button from '@mui/material/Button'
 import Avatar from '@mui/material/Avatar'
 
-const Sidebar = () => {
+interface IUser {
+   role: string
+   name: string
+   mobileNumber: string
+   avatar: string
+   blocked: {
+      status: boolean
+      reason: string
+   }
+   accessItems: []
+}
+
+const Sidebar = ({ user }: { user: IUser | null }) => {
    const [sidebar, setSidebar] = useState(false)
    const [contactUsOptions, setContactUsOptions] = useState(false)
 
@@ -296,69 +309,79 @@ const Sidebar = () => {
                   </ul>
                </div>
             </div>
-            <div className='px-7 py-10 mt-auto'>
-               <div className='flex rtl justify-between items-center w-full'>
-                  <div className='flex items-center flex-1'>
-                     <div className='relative ml-4'>
-                        <a href='/profile'>
-                           <Avatar
-                              sx={{
-                                 width: 42,
-                                 height: 42,
-                                 border: '2px solid white',
-                                 boxShadow: '0 0 10px #8080805c',
-                              }}
-                              alt='Mostaf Tabrizian'
-                              src='/avatar/me.jpg'
-                           />
-                        </a>
-                        <span className='flex h-2 w-2 absolute bottom-0 right-1'>
-                           <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75'></span>
-                           <span className='relative bg-green-500 inline-flex rounded-full h-2 w-2'></span>
-                        </span>
+            {user ? (
+               <div className='px-7 py-10 mt-auto'>
+                  <div className='flex rtl justify-between items-center w-full'>
+                     <div className='flex items-center flex-1'>
+                        <div className='relative ml-4'>
+                           <a href='/profile'>
+                              <Avatar
+                                 sx={{
+                                    width: 42,
+                                    height: 42,
+                                    border: '2px solid white',
+                                    boxShadow: '0 0 10px #8080805c',
+                                 }}
+                                 alt={user.name}
+                                 src={'/avatar/' + user.avatar}
+                              />
+                           </a>
+                           <span className='flex h-2 w-2 absolute bottom-0 right-1'>
+                              <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75'></span>
+                              <span className='relative bg-green-500 inline-flex rounded-full h-2 w-2'></span>
+                           </span>
+                        </div>
+                        <div className='text-sm w-full flex flex-col h-full justify-between text-gray-700'>
+                           <a href='/profile'>
+                              <span className='font-bold block mb-1'>{user.name || user.mobileNumber}</span>
+                           </a>
+                           <span className='block opacity-60'>{user.role}</span>
+                        </div>
                      </div>
-                     <div className='text-sm w-full flex flex-col h-full justify-between text-gray-700'>
-                        <a href='/profile'>
-                           <span className='font-bold block mb-1'>مصطفی تبریزیان</span>
-                        </a>
-                        <span className='block opacity-60'>دانشجو</span>
-                     </div>
+                     <Link href='/profile/edit'>
+                        <button>
+                           <svg
+                              xmlns='http://www.w3.org/2000/svg'
+                              viewBox='0 0 14 14'
+                              fill='none'
+                              className='h-5 w-5 text-gray-700 opacity-100'
+                           >
+                              <path
+                                 stroke='currentColor'
+                                 strokeLinecap='round'
+                                 strokeLinejoin='round'
+                                 strokeWidth='0.875'
+                                 d='M7.779 11.38h3.72'
+                              ></path>
+                              <path
+                                 stroke='currentColor'
+                                 strokeLinecap='round'
+                                 strokeLinejoin='round'
+                                 strokeWidth='0.875'
+                                 d='M9.367 2.834v0a1.774 1.774 0 0 0-2.484.354L2.945 8.436c-1.015 1.352-.055 3.027-.055 3.027s1.892.435 2.892-.898L9.72 5.318a1.774 1.774 0 0 0-.354-2.484Z'
+                                 clipRule='evenodd'
+                              ></path>
+                              <path
+                                 stroke='#fff'
+                                 strokeLinecap='round'
+                                 strokeLinejoin='round'
+                                 strokeWidth='0.875'
+                                 d='m6.127 4.207 2.838 2.13'
+                              ></path>
+                           </svg>
+                        </button>
+                     </Link>
                   </div>
-                  <Link href='/profile/edit'>
-                     <button>
-                        <svg
-                           xmlns='http://www.w3.org/2000/svg'
-                           viewBox='0 0 14 14'
-                           fill='none'
-                           className='h-5 w-5 text-gray-700 opacity-100'
-                        >
-                           <path
-                              stroke='currentColor'
-                              strokeLinecap='round'
-                              strokeLinejoin='round'
-                              strokeWidth='0.875'
-                              d='M7.779 11.38h3.72'
-                           ></path>
-                           <path
-                              stroke='currentColor'
-                              strokeLinecap='round'
-                              strokeLinejoin='round'
-                              strokeWidth='0.875'
-                              d='M9.367 2.834v0a1.774 1.774 0 0 0-2.484.354L2.945 8.436c-1.015 1.352-.055 3.027-.055 3.027s1.892.435 2.892-.898L9.72 5.318a1.774 1.774 0 0 0-.354-2.484Z'
-                              clipRule='evenodd'
-                           ></path>
-                           <path
-                              stroke='#fff'
-                              strokeLinecap='round'
-                              strokeLinejoin='round'
-                              strokeWidth='0.875'
-                              d='m6.127 4.207 2.838 2.13'
-                           ></path>
-                        </svg>
-                     </button>
+               </div>
+            ) : (
+               <div className='px-7 py-10 mt-auto'>
+                  <Link href='/auth/login'>
+                     <Button variant='contained' className='w-full'>
+                        <span className='font-bold text-white rounded-xl w-20 text-sm'>ورود</span>
+                     </Button>
                   </Link>
                </div>
-            </div>
+            )}
          </Drawer>
       </div>
    )

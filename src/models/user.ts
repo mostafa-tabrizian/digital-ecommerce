@@ -18,8 +18,8 @@ export interface IUser {
 const UserSchema = new mongoose.Schema<IUser>({
    role: {
       type: String,
-      enum: ['client', 'admin'],
-      default: 'client',
+      enum: ['دانشجو', 'ادمین'],
+      default: 'دانشجو',
    },
    name: String,
    mobileNumber: String,
