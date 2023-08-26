@@ -16,6 +16,14 @@ export const RegisterSchemaValidation = yup.object().shape({
       .required('لطفا رمز عبور خود را تایید کنید'),
 })
 
+export const VerificationSchemaValidation = yup.object().shape({
+   code: yup
+      .string()
+      .min(4, '!کد شما صحیح نمی‌باشد')
+      .max(4, '!کد شما صحیح نمی‌باشد')
+      .required('لطفا کد تأیید خود را وارد کنید'),
+})
+
 export const LoginSchemaValidation = yup.object().shape({
    mobileNumber: yup.string().matches(rule.mobileNumber, { message: 'شماره تماس نامعتبر می‌باشد' }).required('لطفا شماره موبایل خود را وارد کنید'),
    password: yup.string().required('لطفا رمز خود را وارد کنید'),

@@ -258,7 +258,7 @@ strong {
 
    &:hover {
       background: transparent !important;
-      border: 2px solid #6281ff
+      border: 2px solid #6281ff;
    }
 }
 
@@ -280,4 +280,9 @@ strong {
 
 .MuiDrawer-paper {
    border-radius: 25px;
+}
+
+.MuiStepConnector-root {
+   transform: translateX(8rem);
+   margin: 0 .5rem;
 }
