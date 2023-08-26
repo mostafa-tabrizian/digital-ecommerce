@@ -10,17 +10,17 @@ import FormikInput from '@/formik/input'
 import { useState } from 'react'
 import { VerificationForm } from './verificationForm'
 
-interface FormType {
+interface IForm {
    mobileNumber: string
    password: string
    confirmPassword: string
 }
 
 export const RegisterForm = () => {
-   const [formData, setFormData] = useState<FormType | null>(null)
+   const [formData, setFormData] = useState<IForm | null>(null)
    const [verificationInput, setVerificationInput] = useState(false)
 
-   const onSubmit = async (values: FormType) => {
+   const onSubmit = async (values: IForm) => {
       try {
          const res = await fetch('/api/auth/register/verification', {
             method: 'POST',
@@ -30,7 +30,10 @@ export const RegisterForm = () => {
          const resData = await res.json()
 
          if (!res.ok) throw new Error()
-         if (resData.status === 500) throw new Error('405')
+
+         if (resData.message === 'smsError')
+            return toast.error('در ارسال کد فعال سازی خطایی رخ داد. لطفا به پشتیبانی اطلاع دهید.')
+         else if (resData.status === 500) throw new Error('405')
 
          setFormData(values)
          toast.success('لطفا کد تأیید خود را وارد کنید')
@@ -55,7 +58,8 @@ export const RegisterForm = () => {
    return (
       <>
          {verificationInput ? (
-            <VerificationForm formData={formData}/>
+            // @ts-ignore
+            <VerificationForm formData={formData} verificationInput={{value: verificationInput, set: setVerificationInput}} postVerification={onSubmit} />
          ) : (
             <Formik
                initialValues={{ mobileNumber: '', password: '', confirmPassword: '' }}

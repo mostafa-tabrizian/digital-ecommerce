@@ -19,8 +19,8 @@ export const RegisterSchemaValidation = yup.object().shape({
 export const VerificationSchemaValidation = yup.object().shape({
    code: yup
       .string()
-      .min(4, '!کد شما صحیح نمی‌باشد')
-      .max(4, '!کد شما صحیح نمی‌باشد')
+      .min(5, '!کد شما صحیح نمی‌باشد')
+      .max(5, '!کد شما صحیح نمی‌باشد')
       .required('لطفا کد تأیید خود را وارد کنید'),
 })
 

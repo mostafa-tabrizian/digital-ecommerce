@@ -31,15 +31,13 @@ export async function POST(req: Request) {
    try {
       await dbConnect()
 
-      const { code, formData } = (await req.json()) as {
+      const { code, mobileNumber, password } = (await req.json()) as {
          code: string,
-         formData: {
-            mobileNumber: string
-            password: string
-         }
+         mobileNumber: string
+         password: string
       }
 
-      const codeData = await getCodeData(formData.mobileNumber)
+      const codeData = await getCodeData(mobileNumber)
 
       const expirationCheckRes = await checkCodeExpiration(codeData.createdAt)
       if (!expirationCheckRes) return NextResponse.json({ message: 'codeExpired' })
@@ -47,12 +45,10 @@ export async function POST(req: Request) {
       const verifiactionCheckRes = await checkVerificationCode(code, codeData.code)
       if (!verifiactionCheckRes) return NextResponse.json({ message: 'invalidCode' })
 
-      const hashedPassword = hashSync(formData.password, genSaltSync(10))
-
-      return
+      const hashedPassword = hashSync(password, genSaltSync(10))
 
       const user = await User.create({
-         mobileNumber: formData.mobileNumber.toLowerCase(),
+         mobileNumber: mobileNumber.toLowerCase(),
          password: hashedPassword,
       })
 
