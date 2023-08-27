@@ -8,15 +8,10 @@ import Button from '@mui/material/Button'
 import Avatar from '@mui/material/Avatar'
 
 interface IUser {
-   role: string
-   name: string
-   mobileNumber: string
-   avatar: string
-   blocked: {
-      status: boolean
-      reason: string
-   }
-   accessItems: []
+   name: string | undefined
+   avatar: string | undefined
+   mobileNumber: string | undefined
+   role: ['دانشجو', 'ادمین']
 }
 
 const Sidebar = ({ user }: { user: IUser | null }) => {
@@ -333,7 +328,9 @@ const Sidebar = ({ user }: { user: IUser | null }) => {
                         </div>
                         <div className='text-sm w-full flex flex-col h-full justify-between text-gray-700'>
                            <a href='/profile'>
-                              <span className='font-bold block mb-1'>{user.name || user.mobileNumber}</span>
+                              <span className='font-bold block mb-1'>
+                                 {user.name || user.mobileNumber}
+                              </span>
                            </a>
                            <span className='block opacity-60'>{user.role}</span>
                         </div>

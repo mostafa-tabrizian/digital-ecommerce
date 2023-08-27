@@ -77,7 +77,7 @@ const Header = async () => {
                   ></path>
                </svg>
             </Link>
-            <Sidebar user={user} />
+            <Sidebar user={simpleUser} />
          </div>
       </header>
    )

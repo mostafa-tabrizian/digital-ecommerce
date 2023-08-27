@@ -15,30 +15,14 @@ export const CartReducer = (cart: CartItemType, action) => {
       case 'ADD_TO_CART':
          return {
             ...cart,
-            [id]: item
-               ? {
-                    ...item,
-                    quantity: item.quantity + 1,
-                 }
-               : {
-                    ...action.payload,
-                    quantity: 1,
-                 },
+            [id]: action.payload,
          }
 
       case 'REMOVE_FROM_CART':
-         if (item.quantity == 1) {
+         return (() => {
             const { [item.id]: _, ...updatedCart } = cart
             return updatedCart
-         } else {
-            return {
-               ...cart,
-               [id]: {
-                  ...item,
-                  quantity: item.quantity - 1,
-               },
-            }
-         }
+         })()
 
       case 'RESET':
          return {}

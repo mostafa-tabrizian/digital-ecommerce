@@ -2,7 +2,6 @@ import Image from 'next/legacy/image'
 import RatingCourse from './components/rating'
 import Comments from './components/comments'
 import Like from './components/like'
-import Button from '@mui/material/Button'
 import CourseSession from './components/courseSession'
 import CourseFAQ from './components/courseFAQ'
 import SwiperComments from '../../components/swiperComment'
@@ -17,7 +16,7 @@ const getCourse = async (slug: string) => {
    await dbConnect()
 
    return await Course.findOne({
-      name: decodeURI(slug),
+      name: decodeURI(slug)
    }).exec()
 }
 
@@ -44,7 +43,7 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
    const courseLength = () => {
       let totalLength = 0
       course.chapters.map((chapter) => {
-         chapter.parts.map(part => {
+         chapter.parts.map((part) => {
             totalLength += part.length
          })
       })
@@ -321,7 +320,7 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
                />
             </div>
          </div>
-         <div className='bg-white space-y-8 py-5 px-3 mb-6 rounded-xl'>
+         <div className='bg-white py-5 px-3 mb-6 rounded-xl'>
             <div className='flex md:flex-col md:gap-y-1 items-center justify-between mb-3'>
                <div className='font-bold  flex-1 flex items-center justify-center'>
                   <svg
@@ -343,11 +342,7 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
                   </span>
                </div>
             </div>
-            <div>
-               <Button className='py-3 w-full rounded-xl' variant='contained'>
-                  <span className='font-semibold text-white text-base'>ثبت نام دوره</span>
-               </Button>
-            </div>
+            <AddToCart course={JSON.parse(JSON.stringify(course))} />
          </div>
          <div className='bg-white space-y-8 mb-6 py-1 px-3 rounded-xl sticky top-20 z-10 shadow-xl'>
             <ul className='flex items-center justify-between text-sm text-slate-200'>
@@ -456,7 +451,9 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
 
          <Questions />
 
-         <AddToCart />
+         <div className='bg-white py-4 px-6 fixed bottom-0 left-0 w-full z-10'>
+            <AddToCart course={JSON.parse(JSON.stringify(course))} />
+         </div>
       </div>
    )
 }

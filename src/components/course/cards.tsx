@@ -1,8 +1,8 @@
 import Image from 'next/legacy/image'
 import Link from 'next/link'
-import Button from '@mui/material/Button'
 
 import { ICourse } from '@/models/course'
+import AddToCart from '@/app/(shop)/course/[slug]/components/addToCart'
 
 const CourseCards = ({ course, pageTarget }: { course: ICourse; pageTarget: string }) => {
    const status = {
@@ -18,9 +18,7 @@ const CourseCards = ({ course, pageTarget }: { course: ICourse; pageTarget: stri
                   <div className='w-full absolute left-0 top-0 z-10'>
                      <div className='flex m-3 justify-between'>
                         <span className='rounded-lg p-1.5 bg-white flex items-center text-slate-700'>
-                           <span className='text-xs mr-1 font-bold'>
-                              {course.purchaser.length}
-                           </span>
+                           <span className='text-xs mr-1 font-bold'>{course.purchaser.length}</span>
                            <svg
                               xmlns='http://www.w3.org/2000/svg'
                               viewBox='0 0 24 24'
@@ -174,11 +172,7 @@ const CourseCards = ({ course, pageTarget }: { course: ICourse; pageTarget: stri
                         </div>
                      </div>
                      <div>
-                        <Link href='/courses'>
-                           <Button className='rounded-xl py-2 px-5' variant='contained'>
-                              ثبت نام دوره
-                           </Button>
-                        </Link>
+                        <AddToCart course={JSON.parse(JSON.stringify(course))} />
                      </div>
                   </div>
                </div>

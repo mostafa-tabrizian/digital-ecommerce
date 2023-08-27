@@ -2,7 +2,7 @@
 
 import { createContext, useReducer, useEffect } from 'react'
 
-import { CartReducer, initialCart } from '../reducer/cart'
+import { CartReducer, initialCart } from '@/context/reducer/cart'
 
 const CartContext = createContext({})
 

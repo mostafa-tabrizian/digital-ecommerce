@@ -13,6 +13,7 @@ const steps = ['احراز هویت', 'تکمیل اطلاعات', 'ثبت سف�
 
 const LoginPage = async () => {
    const user = await User()
+   
    return (
       <div className='flex h-screen bg-white'>
          <div className='h-full w-full flex justify-center items-center'>
