@@ -105,7 +105,7 @@ const Profile = ({ user }: { user: IUser }) => {
                   className='rounded-lg py-1 px-4 hover:bg-gray-100 transition-all duration-300 ease-out mb-1'
                   role='menuitem'
                >
-                  <Link className='block w-full' href='/profile/courses'>
+                  <Link className='block w-full' href='/profile/course'>
                      <div className='flex py-2 text-skin-base hover:text-blue-600'>
                         <svg
                            xmlns='http://www.w3.org/2000/svg'

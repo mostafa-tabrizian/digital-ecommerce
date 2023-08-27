@@ -116,7 +116,7 @@ const Sidebar = ({ user }: { user: IUser | null }) => {
                         </a>
                      </li>
                      <li className='block '>
-                        <a href='/courses'>
+                        <a href='/course'>
                            <div className='relative menu-item flex items-center '>
                               <span className='py-2 md:py-1 flex items-center gap-x-2 md:hover:text-blue-600 cursor-pointer'>
                                  <svg

@@ -186,7 +186,7 @@ const Footer = () => {
                      <li className='list-disc py-2 list-inside'>
                         <a
                            className='py-2 transition-all duration-300 hover:text-blue-500'
-                           href='/courses'
+                           href='/course'
                         >
                            دوره های آموزشی
                         </a>

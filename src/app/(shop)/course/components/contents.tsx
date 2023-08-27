@@ -28,12 +28,35 @@ const Contents = () => {
    const [categoryValue, setCategoryValue] = useState<string | null>(null)
 
    const getCourses = async () => {
-      setCourses(await fetch('/api/course').then((res) => res.json()))
+      const res: [ICourse] = await fetch('/api/course').then((res) => res.json())
+      res.sort((a, b) => toDate(b.createdAt) - toDate(a.createdAt))
+      setCourses(res)
    }
 
    useEffect(() => {
       getCourses()
    }, [])
+
+   const toDate = (stringDate: Date) => {
+      return new Date(stringDate)?.getDate()
+   }
+
+   useEffect(() => {
+      switch (sortValue) {
+         case 'latest':
+            courses.sort((a, b) => toDate(b.createdAt) - toDate(a.createdAt))
+            break
+         case 'oldest':
+            courses.sort((a, b) => toDate(a.createdAt) - toDate(b.createdAt))
+            break
+         case 'favorite':
+            courses.sort((a, b) => b.likes.length - a.likes.length)
+            break
+         default:
+            courses.sort((a, b) => toDate(b.createdAt) - toDate(a.createdAt))
+            break
+      }
+   }, [sortValue, courses])
 
    const toggleDrawer = () => (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
@@ -46,6 +69,10 @@ const Contents = () => {
 
       setSortToolsDrawer(false)
       setFilterToolsDrawer(false)
+
+      setSortCollapse(false)
+      setTypeCollapse(false)
+      setCategoryCollapse(false)
    }
 
    return (
@@ -173,7 +200,11 @@ const Contents = () => {
                      </RadioGroup>
                   </Collapse>
                </div>
-               <Button variant='contained' className='w-full rounded-xl py-2 mb-6'>
+               <Button
+                  onClick={toggleDrawer()}
+                  variant='contained'
+                  className='w-full rounded-xl py-2 mb-6'
+               >
                   اعمال فیلتر
                </Button>
             </div>
@@ -240,9 +271,21 @@ const Contents = () => {
                         className='rtl'
                         onChange={(e) => setTypeValue((e.target as HTMLInputElement).value)}
                      >
-                        <FormControlLabel value='recoding' control={<Radio />} label='در حال برگزاری' />
-                        <FormControlLabel value='completed' control={<Radio />} label='تکمیل ضبط شده ها' />
-                        <FormControlLabel value='discounted' control={<Radio />} label='تخفیف دار' />
+                        <FormControlLabel
+                           value='recoding'
+                           control={<Radio />}
+                           label='در حال برگزاری'
+                        />
+                        <FormControlLabel
+                           value='completed'
+                           control={<Radio />}
+                           label='تکمیل ضبط شده ها'
+                        />
+                        <FormControlLabel
+                           value='discounted'
+                           control={<Radio />}
+                           label='تخفیف دار'
+                        />
                         <FormControlLabel value='free' control={<Radio />} label='رایگان' />
                         <FormControlLabel value='cash' control={<Radio />} label='نقدی' />
                      </RadioGroup>
@@ -273,7 +316,22 @@ const Contents = () => {
                      </div>
                      <div className='flex gap-x-2'>
                         <span className='font-bold text-base'>دسته دوره</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" className="w-5 h-5 text-secondary-700"><path fill="currentColor" d="M32.151 4h6.772C41.727 4 44 6.292 44 9.12v6.829c0 2.828-2.273 5.12-5.077 5.12h-6.772c-2.805 0-5.077-2.292-5.077-5.12v-6.83C27.074 6.293 29.346 4 32.151 4Z" opacity="0.4"></path><path fill="currentColor" d="M15.849 26.931c2.805 0 5.077 2.292 5.077 5.12v6.83c0 2.825-2.272 5.119-5.077 5.119H9.077C6.273 44 4 41.706 4 38.88v-6.829c0-2.828 2.273-5.12 5.077-5.12h6.772Zm23.074 0c2.804 0 5.077 2.292 5.077 5.12v6.83C44 41.705 41.727 44 38.923 44h-6.772c-2.805 0-5.077-2.294-5.077-5.12v-6.829c0-2.828 2.272-5.12 5.077-5.12h6.772ZM15.849 4c2.805 0 5.077 2.292 5.077 5.12v6.829c0 2.828-2.272 5.12-5.077 5.12H9.077C6.273 21.069 4 18.777 4 15.949v-6.83C4 6.293 6.273 4 9.077 4h6.772Z"></path></svg>
+                        <svg
+                           xmlns='http://www.w3.org/2000/svg'
+                           viewBox='0 0 48 48'
+                           fill='none'
+                           className='w-5 h-5 text-secondary-700'
+                        >
+                           <path
+                              fill='currentColor'
+                              d='M32.151 4h6.772C41.727 4 44 6.292 44 9.12v6.829c0 2.828-2.273 5.12-5.077 5.12h-6.772c-2.805 0-5.077-2.292-5.077-5.12v-6.83C27.074 6.293 29.346 4 32.151 4Z'
+                              opacity='0.4'
+                           ></path>
+                           <path
+                              fill='currentColor'
+                              d='M15.849 26.931c2.805 0 5.077 2.292 5.077 5.12v6.83c0 2.825-2.272 5.119-5.077 5.119H9.077C6.273 44 4 41.706 4 38.88v-6.829c0-2.828 2.273-5.12 5.077-5.12h6.772Zm23.074 0c2.804 0 5.077 2.292 5.077 5.12v6.83C44 41.705 41.727 44 38.923 44h-6.772c-2.805 0-5.077-2.294-5.077-5.12v-6.829c0-2.828 2.272-5.12 5.077-5.12h6.772ZM15.849 4c2.805 0 5.077 2.292 5.077 5.12v6.829c0 2.828-2.272 5.12-5.077 5.12H9.077C6.273 21.069 4 18.777 4 15.949v-6.83C4 6.293 6.273 4 9.077 4h6.772Z'
+                           ></path>
+                        </svg>
                      </div>
                   </button>
                   <Collapse in={categoryCollapse}>
