@@ -58,7 +58,7 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
 
    return (
       <div className='m-3'>
-         <div className='bg-white space-y-8 my-10 py-5 px-3 rounded-xl'>
+         <div className='bg-white space-y-8 my-10 py-5 px-4 rounded-xl'>
             <div className='text-right'>
                <h1 className='text-slate-800 rtl font-extraBlack text-2xl mb-2'>{course?.name}</h1>
                <p className='text-slate-600 text-sm md:text-base leading-7 font-bold md:leading-8 mb-7'>

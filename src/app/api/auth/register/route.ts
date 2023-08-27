@@ -15,11 +15,11 @@ const getCodeData = async (mobileNumber: string) => {
 }
 
 const checkCodeExpiration = async (createdAt: Date) => {
-   const twoMins = 2 * 60 * 1000
+   const ninetySec = 90 * 1000
    const now = new Date().getTime()
    const createdAtDate = new Date(createdAt).getTime()
 
-   if ((now - createdAtDate) >= twoMins) return false
+   if ((now - createdAtDate) >= ninetySec) return false
    else return true
 }
 

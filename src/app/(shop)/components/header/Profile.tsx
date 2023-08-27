@@ -1,6 +1,6 @@
 'use client'
 
-import LogoutButton from '@/components/logout.button'
+import LogoutButton from '@/app/(shop)/profile/components/logout.button'
 import Avatar from '@mui/material/Avatar'
 import Popover from '@mui/material/Popover'
 import { useState } from 'react'

@@ -1,4 +1,4 @@
-import LogoutButton from '@/components/logout.button'
+import LogoutButton from './components/logout.button'
 import User from '@/lib/user'
 import { Metadata } from 'next'
 import Link from 'next/link'
@@ -21,7 +21,7 @@ const Profile = async () => {
 
          <div className='px-4 py-10 from-gray-50 to-gray-100 bg-gradient-to-bl rounded-lg space-y-4 max-w-md mx-auto'>
             {user?.role == 'admin' ? (
-               <div className='bg-white rounded-lg py-2 px-2'>
+               <div className='bg-white rounded-lg py-2 px-2 hover:shadow-lg hover:shadow-blue-100 transition-all'>
                   <Link href='/admin'>
                      <div className='flex justify-end space-x-3 items-center'>
                         <span className='text-base text-black'>پنل ادمین</span>
@@ -50,7 +50,7 @@ const Profile = async () => {
                ''
             )}
 
-            <div className='bg-white rounded-lg py-2 px-2'>
+            <div className='bg-white rounded-lg py-2 px-2 hover:shadow-lg hover:shadow-blue-100 transition-all'>
                <Link href='/profile/edit'>
                   <div className='flex justify-end space-x-3 items-center'>
                      <span className='text-base text-black'>ویرایش پروفایل</span>
@@ -71,7 +71,7 @@ const Profile = async () => {
                </Link>
             </div>
 
-            <div className='bg-white rounded-lg py-2 px-2'>
+            <div className='bg-white rounded-lg py-2 px-2 hover:shadow-lg hover:shadow-blue-100 transition-all'>
                <Link href='profile/orders'>
                   <div className='flex justify-end space-x-3 items-center'>
                      <span className='text-base text-black'>سفارش های من</span>

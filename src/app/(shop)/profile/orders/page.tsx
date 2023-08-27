@@ -2,7 +2,7 @@ import User from '@/lib/user'
 import Image from 'next/legacy/image'
 
 import { User as UserType, Order } from '@prisma/client'
-import DateFormat from '@/components/dateFormat'
+import DateFormat from '@/app/(shop)/components/dateFormat'
 
 type UserAndOrders = UserType & { orders?: OrderAndItems[] }
 type UserWithoutPasswordAndOrders = Omit<UserAndOrders, 'password'>
