@@ -38,30 +38,6 @@ const CourseCards = ({ course, pageTarget }: { course: ICourse; pageTarget: stri
                               ></path>
                            </svg>
                         </span>
-
-                        <button
-                           className='rounded-lg p-1.5 bg-white flex items-center justify-center text-rose-500 hover:text-white hover:bg-rose-500 transition-all duration-200 ease-out muirtl-1yxmbwk'
-                           type='button'
-                        >
-                           <span className='text-xs mr-1 font-bold'>{course.likes.length}</span>
-                           <svg
-                              stroke='currentColor'
-                              fill='none'
-                              strokeWidth='1.5'
-                              viewBox='0 0 24 24'
-                              aria-hidden='true'
-                              className='h-4 w-4'
-                              height='1em'
-                              width='1em'
-                              xmlns='http://www.w3.org/2000/svg'
-                           >
-                              <path
-                                 strokeLinecap='round'
-                                 strokeLinejoin='round'
-                                 d='M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z'
-                              ></path>
-                           </svg>
-                        </button>
                      </div>
                   </div>
 

@@ -50,7 +50,7 @@ export interface ICourse {
    purchaser: []
 }
 
-const CourseSchema = new mongoose.Schema<ICourse>({
+const CourseSchema = new mongoose.Schema({
    name: String,
    price: Number,
    discount: Number,

@@ -1,14 +1,47 @@
-const Like = () => {
+'use client'
+
+import { ICourse } from '@/models/course'
+import { IUser } from '@/models/user'
+import { useRouter } from 'next/navigation'
+import { toast } from 'react-toastify'
+
+const Like = ({ user, course }: { user: IUser; course: ICourse }) => {
+   // @ts-ignore
+   const userLiked = course.likes.length && course.likes.includes(user._id)
+
+   const router = useRouter()
+
+   const onClick = async () => {
+      try {
+         const res = await fetch('/api/course/like', {
+            method: 'POST',
+            body: JSON.stringify({
+               courseId: course._id,
+            }),
+         })
+
+         if (!res.ok) throw new Error()
+         
+         router.refresh()
+      } catch (err) {
+         toast.warning('تو ثبت لایک مشکلی پیش اومد')
+         console.error(err)
+      }
+   }
+
    return (
-      <button className='flex items-center gap-x-1 text-slate-600 tracking-widest font-bold hover:text-rose-500'>
-         <span className='text-inherit'>۱۲۹</span>
+      <button
+         onClick={onClick}
+         className='flex items-center gap-x-1 text-slate-600 tracking-widest font-bold hover:text-rose-500'
+      >
+         <span className='text-inherit'>{course.likes.length.toLocaleString('per')}</span>
          <svg
             stroke='currentColor'
             fill='currentColor'
             strokeWidth='0'
             viewBox='0 0 24 24'
             aria-hidden='true'
-            className='h-6 w-6 fill-rose-500'
+            className={`h-6 w-6 ${userLiked ? 'fill-rose-500' : 'none'}`}
             height='1em'
             width='1em'
             xmlns='http://www.w3.org/2000/svg'

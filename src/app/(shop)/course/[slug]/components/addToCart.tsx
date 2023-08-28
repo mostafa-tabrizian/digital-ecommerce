@@ -41,7 +41,7 @@ const AddToCart = ({ course }: { course: ICourse }) => {
          {cartItems[course._id] ? (
             <Link href='/cart'>
                <Button
-                  sx={{ borderRadius: '15px', width: '100%', padding: '.75rem 0' }}
+                  sx={{ borderRadius: '15px', width: '100%', padding: '.75rem 1rem' }}
                   variant='contained'
                >
                   <span className='font-semibold text-white text-base'>ادامه سفارش</span>
@@ -50,7 +50,7 @@ const AddToCart = ({ course }: { course: ICourse }) => {
          ) : (
             <Button
                onClick={() => addToCartReducer()}
-               sx={{ borderRadius: '15px', width: '100%', padding: '.75rem 0' }}
+               sx={{ borderRadius: '15px', width: '100%', padding: '.75rem 1rem' }}
                variant='contained'
             >
                <span className='font-semibold text-white text-base'>ثبت نام دوره</span>

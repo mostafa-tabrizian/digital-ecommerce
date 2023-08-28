@@ -3,19 +3,20 @@
 import mongoose from 'mongoose'
 
 export interface IUser {
+   _id: string
    role: string
-   name: string,
-   mobileNumber: string,
-   avatar: string,
+   name: string
+   mobileNumber: string
+   avatar: string
    blocked: {
-      status: boolean,
-      reason: string,
+      status: boolean
+      reason: string
    },
-   password: string,
-   accessItems: [],
+   password: string
+   accessItems: []
 }
 
-const UserSchema = new mongoose.Schema<IUser>({
+const UserSchema = new mongoose.Schema({
    role: {
       type: String,
       enum: ['دانشجو', 'ادمین'],

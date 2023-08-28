@@ -7,7 +7,7 @@ import CourseFAQ from './components/courseFAQ'
 import SwiperComments from '../../components/swiperComment'
 import Questions from './components/questions'
 import AddToCart from './components/addToCart'
-
+import User from '@/lib/user'
 import dbConnect from '@/lib/dbConnect'
 import Course, { ICourse } from '@/models/course'
 import toFarsiNumber from '@/lib/toFarsiNumber'
@@ -29,6 +29,7 @@ export const generateMetadata = async ({ params }: { params: { slug: string } })
 }
 
 const CourseDetail = async ({ params }: { params: { slug: string } }) => {
+   const user = await User()
    const course: ICourse = await getCourse(params.slug)
 
    const partsCount = () => {
@@ -234,7 +235,7 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
                   </svg>
                </button>
 
-               <Like />
+               <Like user={JSON.parse(JSON.stringify(user))} course={JSON.parse(JSON.stringify(course))} />
             </div>
 
             <div className='flex flex-col items-end gap-y-2 md:flex-row md:items-center flex-wrap text-xs'>
