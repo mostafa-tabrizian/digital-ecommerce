@@ -14,6 +14,7 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import { ICourse } from '@/models/course'
 
 const Contents = () => {
+   const [dbCourses, setDbCourses] = useState<ICourse[]>([])
    const [courses, setCourses] = useState<ICourse[]>([])
 
    const [sortToolsDrawer, setSortToolsDrawer] = useState(false)
@@ -30,6 +31,7 @@ const Contents = () => {
    const getCourses = async () => {
       const res: [ICourse] = await fetch('/api/course').then((res) => res.json())
       res.sort((a, b) => toDate(b.createdAt) - toDate(a.createdAt))
+      setDbCourses(res)
       setCourses(res)
    }
 
@@ -56,7 +58,29 @@ const Contents = () => {
             courses.sort((a, b) => toDate(b.createdAt) - toDate(a.createdAt))
             break
       }
-   }, [sortValue, courses])
+   }, [sortValue])
+
+   useEffect(() => {
+      switch (typeValue) {
+         case 'recording':
+            setCourses(dbCourses.filter((course) => course.status == 'recording'))
+            break
+         case 'completed':
+            setCourses(dbCourses.filter((course) => course.status == 'completed'))
+            break
+         case 'discounted':
+            setCourses(dbCourses.filter((course) => course.discount == 0))
+            break
+         case 'free':
+            setCourses(dbCourses.filter((course) => course.price == 0 || course.price == course.discount))
+            break
+         case 'cash':
+            setCourses(dbCourses.filter((course) => course.price !== 0 || course.price !== course.discount))
+            break
+         default:
+            break
+      }
+   }, [typeValue])
 
    const toggleDrawer = () => (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
@@ -272,7 +296,7 @@ const Contents = () => {
                         onChange={(e) => setTypeValue((e.target as HTMLInputElement).value)}
                      >
                         <FormControlLabel
-                           value='recoding'
+                           value='recording'
                            control={<Radio />}
                            label='در حال برگزاری'
                         />
@@ -348,7 +372,11 @@ const Contents = () => {
                      </RadioGroup>
                   </Collapse>
                </div>
-               <Button variant='contained' className='w-full rounded-xl py-2 mb-6'>
+               <Button
+                  onClick={toggleDrawer()}
+                  variant='contained'
+                  className='w-full rounded-xl py-2 mb-6'
+               >
                   اعمال فیلتر
                </Button>
             </div>

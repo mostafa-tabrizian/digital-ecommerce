@@ -85,7 +85,8 @@ const CourseCards = ({ course, pageTarget }: { course: ICourse; pageTarget: stri
 
                   <div className='flex justify-end gap-x-6 items-center mb-3'>
                      <div className='flex items-center gap-x-1 text-green-500'>
-                        <span className='text-xs'>{status['recording']}</span>
+                        {/* @ts-ignore */}
+                        <span className='text-xs'>{status[course.status]}</span>
                         <svg
                            xmlns='http://www.w3.org/2000/svg'
                            viewBox='0 0 24 24'
