@@ -145,7 +145,7 @@ const Cart = () => {
                   </div>
 
                   <Link href='/checkout/payment' className='block'>
-                     <Button className='w-full rounded-xl py-3' variant='contained'>
+                     <Button sx={{borderRadius: '15px', width: '100%', padding: '.75rem 0'}} variant='contained'>
                         پرداخت سفارش
                      </Button>
                   </Link>

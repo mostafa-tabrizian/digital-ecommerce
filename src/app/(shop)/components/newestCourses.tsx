@@ -10,7 +10,7 @@ const NewestCourses = () => {
             <h2 className='font-extraBlack text-3xl md:text-4xl'>جدیدترین دوره ها</h2>
             <p className='text-sm pb-6'>دوره ببین، تمرین کن و برنامه نویس شو</p>
             <Link href='/course'>
-               <Button variant='contained' className='rounded-2xl py-3 px-10'>
+               <Button variant='contained' sx={{borderRadius: '15px', padding: '.75rem 2.5rem'}}>
                   همه دوره ها
                </Button>
             </Link>

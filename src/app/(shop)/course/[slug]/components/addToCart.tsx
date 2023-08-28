@@ -40,14 +40,17 @@ const AddToCart = ({ course }: { course: ICourse }) => {
       <>
          {cartItems[course._id] ? (
             <Link href='/cart'>
-               <Button className='py-3 w-full rounded-xl' variant='contained'>
+               <Button
+                  sx={{ borderRadius: '15px', width: '100%', padding: '.75rem 0' }}
+                  variant='contained'
+               >
                   <span className='font-semibold text-white text-base'>ادامه سفارش</span>
                </Button>
             </Link>
          ) : (
             <Button
                onClick={() => addToCartReducer()}
-               className='py-3 w-full rounded-xl'
+               sx={{ borderRadius: '15px', width: '100%', padding: '.75rem 0' }}
                variant='contained'
             >
                <span className='font-semibold text-white text-base'>ثبت نام دوره</span>

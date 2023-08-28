@@ -5,13 +5,13 @@ const Footer = () => {
             <div className='col-span-5 md:col-span-2 flex flex-col justify-start'>
                <div>
                   <h2 className='text-slate-500 yekan1 text-sm mb-4 text-right'>
-                     آکادمی آنلاین فرانت هوکس، دوره های کوچ محور{' '}
+                     آکادمی آنلاین دیجیتال ایکامرس، دوره های کوچ محور{' '}
                      <strong className='yekanBlack'>برنامه نویسی وب</strong>
                   </h2>
                   <div className='leading-7 text-slate-500 text-sm'>
                      <h3 className='leading-7 text-right yekan1 text-slate-500 text-sm'>
                         <strong>مصطفی تبریزیان هستم ، برنامه نویس وب</strong> و مدیر وبسایت آموزشی
-                        فرانت هوکس.
+                        دیجیتال ایکامرس.
                      </h3>
                      <p className='text-slate-500 text-sm leading-5 text-right yekan1 md:leading-7'>
                         ارائه آموزشی کاربردی، پروژه محور در کنار مربی هدف اصلی ماست. ابتدا در یک
@@ -266,7 +266,7 @@ const Footer = () => {
                </nav>
             </div>
             <div className='col-span-5'>
-               <p className='text-center text-xs'>© تمامی حقوق برای فرانت هوکس محفوظ است</p>
+               <p className='text-center text-xs'>© تمامی حقوق برای دیجیتال ایکامرس محفوظ است</p>
             </div>
          </div>
       </footer>

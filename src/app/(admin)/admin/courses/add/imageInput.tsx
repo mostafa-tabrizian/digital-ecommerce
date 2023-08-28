@@ -202,7 +202,7 @@ const ImageInput = ({ selectedCourse }: { selectedCourse: string | null }) => {
                )}
             </div>
 
-            <Button variant='outlined' component='label' sx={{ width: '70%' }}>
+            <Button variant='outlined' component='label' sx={{width: '70%'}}>
                <h5>انتخاب تصاویر</h5>
                <input
                   hidden

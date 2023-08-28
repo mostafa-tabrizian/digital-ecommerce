@@ -373,7 +373,7 @@ const Sidebar = ({ user }: { user: IUser | null }) => {
             ) : (
                <div className='px-7 py-10 mt-auto'>
                   <Link href='/auth/login'>
-                     <Button variant='contained' className='w-full'>
+                     <Button variant='contained' sx={{width: '100%'}}>
                         <span className='font-bold text-white rounded-xl w-20 text-sm'>ورود</span>
                      </Button>
                   </Link>

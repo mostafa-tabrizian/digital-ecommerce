@@ -34,7 +34,7 @@ const CommentSection = () => {
          </div>
          <p className='text-xs text-center opacity-80 lg:text-base leading-6 lg:leading-8'>
             {' '}
-            اینا فقط بخش کوچکی از تجربه دانشجویان فرانت هوکس هست
+            اینا فقط بخش کوچکی از تجربه دانشجویان دیجیتال ایکامرس هست
          </p>
 
          <SwiperComments />

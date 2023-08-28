@@ -5,7 +5,7 @@ const Question = () => {
    return (
       <div className='bg-white rtl font-semibold rounded-xl mt-6 p-3 lg:p-6'>
          <h2 className='text-2xl text-right text-blue-600 mb-5'>پرسش های شما</h2>
-         <Button className='w-full rounded-xl mb-10' variant='outlined'>
+         <Button sx={{borderRadius: '15px', width: '100%', marginButton: '2.5rem'}} variant='outlined'>
             <div className='flex items-center gap-1'>
                <svg
                   stroke='currentColor'
@@ -82,7 +82,7 @@ const Question = () => {
                            src='/avatar/me.jpg'
                         />
                         <div className='text-sm w-full text-slate-600'>
-                           <span className='font-bold block mb-1'>صاحب محمدی</span>
+                           <span className='font-bold block mb-1'>مصطفی تبریزیان</span>
                            <span className='block text-slate-500 text-xs'>۱ ماه پیش</span>
                         </div>
                      </div>

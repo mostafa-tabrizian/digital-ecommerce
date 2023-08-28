@@ -3,7 +3,7 @@ import Button from '@mui/material/Button'
 const Comments = () => {
    return (
       <>
-         <Button className='rounded-xl w-full py-2' variant='outlined'>
+         <Button sx={{borderRadius: '15px', width: '100%', padding: '.5rem 0'}} variant='outlined'>
             <div className='flex gap-1'>
                ثبت دیدگاه
                <svg

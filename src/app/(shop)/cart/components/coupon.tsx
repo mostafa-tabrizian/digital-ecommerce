@@ -100,7 +100,7 @@ const CouponComponent = ({
                </span>
             ) : (
                <div className='absolute left-2 top-1/2 -translate-y-1/2'>
-                  <Button className='rounded-lg' variant='contained'>
+                  <Button sx={{borderRadius: '10px'}} variant='contained'>
                      <span className='text-white font-light'>اعمال کد</span>
                   </Button>
                </div>

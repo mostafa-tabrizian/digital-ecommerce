@@ -227,7 +227,7 @@ const Contents = () => {
                <Button
                   onClick={toggleDrawer()}
                   variant='contained'
-                  className='w-full rounded-xl py-2 mb-6'
+                  sx={{borderRadius: '15px', width: '100%', padding: '.5rem 0', marginButton: '1.5rem'}}
                >
                   اعمال فیلتر
                </Button>
@@ -375,7 +375,7 @@ const Contents = () => {
                <Button
                   onClick={toggleDrawer()}
                   variant='contained'
-                  className='w-full rounded-xl py-2 mb-6'
+                  sx={{borderRadius: '15px', width: '100%', padding: '.5rem 0', marginButton: '1.5rem'}}
                >
                   اعمال فیلتر
                </Button>
