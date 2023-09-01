@@ -23,23 +23,37 @@ export interface ICourse {
    ],
    questions: [
       {
-         username: string
+         user: {
+            id: string
+            avatar: string
+            name: string
+         },
          body: string
          answer: [
             {
-               username: string
+               user: {
+                  id: string
+                  avatar: string
+                  name: string
+               },
                body: string
             },
          ]
       },
    ]
-   comments: [
-      {
-         username: string
-         body: string
-         rate: number
+   comments:
+   {
+      user: {
+         id: string
+         avatar: string
+         name: string
       },
-   ]
+      title: string
+      body: string
+      rate: number
+      suggestion: null | boolean
+   },
+
    likes: []
    faq: [
       {
@@ -72,11 +86,19 @@ const CourseSchema = new mongoose.Schema({
    ],
    questions: [
       {
-         username: String,
+         user: {
+            id: String,
+            avatar: String,
+            name: String
+         },
          body: String,
          answer: [
             {
-               username: String,
+               user: {
+                  id: String,
+                  avatar: String,
+                  name: String
+               },
                body: String,
             },
          ],
@@ -84,14 +106,19 @@ const CourseSchema = new mongoose.Schema({
    ],
    comments: [
       {
-         username: String,
+         user: {
+            id: String,
+            avatar: String,
+            name: String
+         },
+         title: String,
          body: String,
-         rate: [
-            {
-               type: Number,
-               enum: [1, 2, 3, 4, 5],
-            },
-         ],
+         rate:
+         {
+            type: Number,
+            enum: [0, 25, 50, 75, 100],
+         },
+         suggestion: Boolean || null
       },
    ],
    likes: [],

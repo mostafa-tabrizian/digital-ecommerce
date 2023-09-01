@@ -413,7 +413,7 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
             <p className='text-slate-500 text-right text-xs mb-2'>
                میتوانید دیدگاه خود را ثبت کنید
             </p>
-            <Comments />
+            <Comments course={JSON.parse(JSON.stringify({id: course._id, name: course.name}))} />
          </div>
 
          <div className='bg-white rounded-xl mt-6 p-3 lg:p-6'>
@@ -459,7 +459,7 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
          <div className='bg-white rounded-xl mt-6 p-3 lg:p-6'>
             <h2 className='text-2xl text-end text-blue-600 mb-5'>تجربه دانشجویان (۸)</h2>
 
-            <Comments />
+            <Comments course={JSON.parse(JSON.stringify({id: course._id, name: course.name}))} />
 
             <div className='mx-5 mt-6'>
                <SwiperComments />

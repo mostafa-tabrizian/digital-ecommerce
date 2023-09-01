@@ -14,7 +14,9 @@ const FormikTextarea = ({ label, ...props }) => {
             {...field}
             {...props}
             rows={3}
-            className='whitespace-pre w-full px-4 py-2 rtl rounded-xl'
+            className={`${
+               meta.error && meta.touched ? 'invalidInput' : ''
+            } whitespace-pre w-full px-4 py-2 rtl rounded-xl`}
          />
          {meta.error && meta.touched ? <p className='text-sm text-red-500'>{meta.error}</p> : ''}
       </div>
