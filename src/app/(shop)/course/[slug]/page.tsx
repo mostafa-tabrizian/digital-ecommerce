@@ -1,11 +1,11 @@
 import Image from 'next/legacy/image'
 import RatingCourse from './components/rating'
-import Comments from './components/submitComments'
+import Comments from './components/comment/submitComments'
 import Like from './components/like'
 import CourseSession from './components/courseSession'
 import CourseFAQ from './components/courseFAQ'
 import SwiperComments from '../../components/swiperComment'
-import Questions from './components/questions'
+import Questions from './components/question/questions'
 import AddToCart from './components/addToCart'
 import User from '@/lib/user'
 import dbConnect from '@/lib/dbConnect'
@@ -218,7 +218,10 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
             <div className='flex justify-between'>
                <RatingCourse />
 
-               <a href='#comments' className='flex items-center gap-x-1 text-slate-600 font-bold tracking-widest hover:text-green-600'>
+               <a
+                  href='#comments'
+                  className='flex items-center gap-x-1 text-slate-600 font-bold tracking-widest hover:text-green-600'
+               >
                   <span className='text-inherit'>{course?.comments.length}</span>
                   <svg
                      xmlns='http://www.w3.org/2000/svg'
@@ -235,7 +238,10 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
                   </svg>
                </a>
 
-               <Like user={JSON.parse(JSON.stringify(user))} course={JSON.parse(JSON.stringify(course))} />
+               <Like
+                  user={JSON.parse(JSON.stringify(user))}
+                  course={JSON.parse(JSON.stringify(course))}
+               />
             </div>
 
             <div className='flex flex-col items-end gap-y-2 md:flex-row md:items-center flex-wrap text-xs'>
@@ -323,7 +329,11 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
          </div>
          <div className='bg-white py-5 px-3 mb-6 rounded-xl'>
             <div className='mb-3'>
-               <div className={`flex items-center ${course?.discount ? 'justify-between' : 'justify-center'}`}>
+               <div
+                  className={`flex items-center ${
+                     course?.discount ? 'justify-between' : 'justify-center'
+                  }`}
+               >
                   <div className='font-bold flex items-center justify-center'>
                      <svg
                         xmlns='http://www.w3.org/2000/svg'
@@ -402,9 +412,9 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
                   داستان برنامه نویس شدن من برمیگرده به سال 93. همون موقع که برای پروژه های دانشگاه
                   (رشته مهندسی نفت) برنامه نویسی میکردم. کم کم با MATLAB آشنا شدم و بعدا وارد حوزه
                   برنامه نویسی وب شدم و الان حدود 7 ساله که شغل تخصصی من برنامه نویسی وب هست.
-                  <strong> علاقه من جاوااسکریپت و خاندانش است. </strong>به همین دلیل دیجیتال ایکامرس رو
-                  بنا کردم تا تجربه چند ساله رو در قالب دوره های پروژه محور به علاقه مندان این حوزه
-                  انتقال بدم ☘️🤍.
+                  <strong> علاقه من جاوااسکریپت و خاندانش است. </strong>به همین دلیل دیجیتال ایکامرس
+                  رو بنا کردم تا تجربه چند ساله رو در قالب دوره های پروژه محور به علاقه مندان این
+                  حوزه انتقال بدم ☘️🤍.
                </p>
             </div>
          </div>
@@ -413,7 +423,7 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
             <p className='text-slate-500 text-right text-xs mb-2'>
                میتوانید دیدگاه خود را ثبت کنید
             </p>
-            <Comments course={JSON.parse(JSON.stringify({id: course._id, name: course.name}))} />
+            <Comments course={JSON.parse(JSON.stringify({ id: course._id, name: course.name }))} />
          </div>
 
          <div className='bg-white rounded-xl mt-6 p-3 lg:p-6'>
@@ -457,18 +467,26 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
          <CourseSession chapters={JSON.parse(JSON.stringify(course.chapters))} />
 
          <div id='comments' className='bg-white rounded-xl mt-6 p-3 lg:p-6'>
-            <h2 className='text-2xl text-end text-blue-600 mb-5'>تجربه دانشجویان (۸)</h2>
+            <h2 className='text-2xl text-end text-blue-600 mb-5'>
+               تجربه دانشجویان ({toFarsiNumber(course.comments.length)})
+            </h2>
 
-            <Comments course={JSON.parse(JSON.stringify({id: course._id, name: course.name}))} />
+            <Comments course={JSON.parse(JSON.stringify({ id: course._id, name: course.name }))} />
 
-            <div className='mx-5 mt-6'>
-               <SwiperComments comments={JSON.parse(JSON.stringify(course.comments))} />
-            </div>
+            {course.comments.length ? (
+               <div className='mx-5 mt-6'>
+                  <SwiperComments comments={JSON.parse(JSON.stringify(course.comments))} />
+               </div>
+            ) : (
+               ''
+            )}
          </div>
 
          <CourseFAQ />
 
-         <Questions />
+         <Questions
+            course={JSON.parse(JSON.stringify({ id: course._id, questions: course.questions }))}
+         />
 
          <div className='bg-white py-4 px-6 fixed bottom-0 left-0 w-full z-10'>
             <AddToCart course={JSON.parse(JSON.stringify(course))} />

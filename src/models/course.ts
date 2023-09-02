@@ -23,14 +23,16 @@ export interface ICourse {
    ],
    questions: [
       {
+         _id: string
          user: {
             id: string
             avatar: string
             name: string
          },
          body: string
-         answer: [
+         answers: [
             {
+               _id: string
                user: {
                   id: string
                   avatar: string
@@ -95,7 +97,7 @@ const CourseSchema = new mongoose.Schema({
             name: String
          },
          body: String,
-         answer: [
+         answers: [
             {
                user: {
                   id: String,

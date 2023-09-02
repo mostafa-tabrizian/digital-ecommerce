@@ -70,6 +70,14 @@ export const CommentSchemaValidation = yup.object().shape({
       .boolean() 
 })
 
+export const QuestionSchemaValidation = yup.object().shape({
+   body: yup
+      .string()
+      .min(10, 'پرسش حداقل باید ۱۰ کارکتر باشد')
+      .required('پرسش خود را وارد کنید')
+      .matches(rule.persian, { message: 'لطفا پرسش را به فارسی وارد کنید' })
+})
+
 // export const TitleAndDescriptionSchemaValidation = yup.object().shape({
 //    title: yup
 //       .string()

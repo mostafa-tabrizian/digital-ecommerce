@@ -1,7 +1,7 @@
 import { ICourse } from '@/models/course'
 import Rating from '@mui/material/Rating'
 import Avatar from '@mui/material/Avatar'
-import SuggestionStatus from '../course/[slug]/components/suggestionStatus'
+import SuggestionStatus from '../course/[slug]/components/comment/suggestionStatus'
 
 const Comment = ({ comment }: { comment: ICourse['comments'][0] }) => {
    const rateOptions = {
