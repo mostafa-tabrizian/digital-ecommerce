@@ -11,7 +11,7 @@ interface IUser {
    name: string | undefined
    avatar: string | undefined
    mobileNumber: string | undefined
-   role: ['دانشجو', 'ادمین']
+   role: string
 }
 
 const Sidebar = ({ user }: { user: IUser | null }) => {
@@ -93,9 +93,8 @@ const Sidebar = ({ user }: { user: IUser | null }) => {
 
                   <ul className='gap-y-2 rtl mt-10 md:gap-y-0 flex flex-col md:flex-row md:items-center justify-between gap-x-8 text-gray-700 md:text-skin-base'>
                      <li className='block md:hidden'>
-                        <a href='/'>
+                        <Link href='/'>
                            <div className='relative menu-item flex items-center text-blue-600'>
-                              {/* img */}
                               <span className='py-2 md:py-1 flex items-center gap-x-2 md:hover:text-blue-600 cursor-pointer font-bold'>
                                  <svg
                                     xmlns='http://www.w3.org/2000/svg'
@@ -113,10 +112,10 @@ const Sidebar = ({ user }: { user: IUser | null }) => {
                                  <span className='text-base'>خانه</span>
                               </span>
                            </div>
-                        </a>
+                        </Link>
                      </li>
                      <li className='block '>
-                        <a href='/course'>
+                        <Link href='/course'>
                            <div className='relative menu-item flex items-center '>
                               <span className='py-2 md:py-1 flex items-center gap-x-2 md:hover:text-blue-600 cursor-pointer'>
                                  <svg
@@ -136,10 +135,10 @@ const Sidebar = ({ user }: { user: IUser | null }) => {
                                  <span className='text-base'>دوره های آموزشی</span>
                               </span>
                            </div>
-                        </a>
+                        </Link>
                      </li>
                      <li className='block '>
-                        <a href='/hired'>
+                        <Link href='/hired'>
                            <div className='relative menu-item flex items-center '>
                               <span className='py-2 md:py-1 flex items-center gap-x-2 md:hover:text-blue-600 cursor-pointer'>
                                  <svg
@@ -165,7 +164,7 @@ const Sidebar = ({ user }: { user: IUser | null }) => {
                                  <span className='text-base'>استخدامی بچه ها</span>
                               </span>
                            </div>
-                        </a>
+                        </Link>
                      </li>
                      <li className='block '>
                         <div className='text-gray-700'>
@@ -213,7 +212,7 @@ const Sidebar = ({ user }: { user: IUser | null }) => {
 
                            <Collapse in={contactUsOptions}>
                               <ul className='mt-3 border-b border-white border-opacity-10'>
-                                 <a href='https://instagram.com/sahebmohamadi.ir'>
+                                 <Link href='https://instagram.com/sahebmohamadi.ir'>
                                     <li className='flex items-center rounded-lg text-gray-700 opacity-90 mb-4 pr-2'>
                                        <span>
                                           <svg
@@ -233,8 +232,8 @@ const Sidebar = ({ user }: { user: IUser | null }) => {
                                           <span className='text-sm'>صفحه اینستاگرام</span>
                                        </p>
                                     </li>
-                                 </a>
-                                 <a href='/about-us'>
+                                 </Link>
+                                 <Link href='/about-us'>
                                     <li className='flex items-center rounded-lg text-gray-700 opacity-90 mb-4 pr-2'>
                                        <span>
                                           <svg
@@ -269,8 +268,8 @@ const Sidebar = ({ user }: { user: IUser | null }) => {
                                           <span className='text-sm'>درباره ما</span>
                                        </p>
                                     </li>
-                                 </a>
-                                 <a href='https://t.me/fronthooks'>
+                                 </Link>
+                                 <Link href='https://t.me/fronthooks'>
                                     <li className='flex items-center rounded-lg text-gray-700 opacity-90 mb-4 pr-2'>
                                        <span>
                                           <svg
@@ -296,11 +295,42 @@ const Sidebar = ({ user }: { user: IUser | null }) => {
                                           <span className='text-sm'>کانال تلگرام</span>
                                        </p>
                                     </li>
-                                 </a>
+                                 </Link>
                               </ul>
                            </Collapse>
                         </div>
                      </li>
+                     {user?.role === 'ادمین' ? (
+                        <li className='block '>
+                           <Link href='/admin'>
+                              <div className='relative menu-item flex items-center '>
+                                 <span className='py-2 md:py-1 flex items-center gap-x-2 md:hover:text-blue-600 cursor-pointer'>
+                                    <svg
+                                       className='h-5 w-5'
+                                       width='24'
+                                       height='24'
+                                       viewBox='0 0 24 24'
+                                       strokeWidth='2'
+                                       stroke='currentColor'
+                                       fill='none'
+                                       strokeLinecap='round'
+                                       strokeLinejoin='round'
+                                    >
+                                       {' '}
+                                       <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                                       <path d='M11 17a2.5 2.5 0 0 0 2 0' />{' '}
+                                       <path d='M12 3C7.336 3 4.604 5.331 4.138 8.595a11.816 11.816 0 0 0 1.998 8.592 10.777 10.777 0 003.199 3.064h0c1.666.999 3.664.999 5.33 0h0a10.777 10.777 0 0 0 3.199 -3.064 11.89 11.89 0 001.998-8.592C19.396 5.33 16.664 3 12 3z' />{' '}
+                                       <line x1='8' y1='11' x2='10' y2='13' />{' '}
+                                       <line x1='16' y1='11' x2='14' y2='13' />
+                                    </svg>
+                                    <span className='text-base'>ادمین</span>
+                                 </span>
+                              </div>
+                           </Link>
+                        </li>
+                     ) : (
+                        ''
+                     )}
                   </ul>
                </div>
             </div>
@@ -326,12 +356,12 @@ const Sidebar = ({ user }: { user: IUser | null }) => {
                               <span className='relative bg-green-500 inline-flex rounded-full h-2 w-2'></span>
                            </span>
                         </div>
-                        <div className='text-sm w-full flex flex-col h-full justify-between text-gray-700'>
-                           <a href='/profile'>
+                        <div className='text-sm w-full flex flex-col justify-between text-gray-700'>
+                           <Link href='/profile'>
                               <span className='font-bold block mb-1'>
                                  {user.name || user.mobileNumber}
                               </span>
-                           </a>
+                           </Link>
                            <span className='block opacity-60'>{user.role}</span>
                         </div>
                      </div>
@@ -373,7 +403,7 @@ const Sidebar = ({ user }: { user: IUser | null }) => {
             ) : (
                <div className='px-7 py-10 mt-auto'>
                   <Link href='/auth/login'>
-                     <Button variant='contained' sx={{width: '100%'}}>
+                     <Button variant='contained' sx={{ width: '100%' }}>
                         <span className='font-bold text-white rounded-xl w-20 text-sm'>ورود</span>
                      </Button>
                   </Link>

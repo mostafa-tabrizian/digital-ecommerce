@@ -12,7 +12,7 @@ const isAdmin = async () => {
       mobileNumber: session._doc.mobileNumber
    }, 'role').exec()
 
-   return user.role === 'ADMIN' ? true : false
+   return user.role === 'ادمین' ? true : false
 }
 
 export default isAdmin

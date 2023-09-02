@@ -16,7 +16,7 @@ interface IForm {
    confirmPassword: string
 }
 
-export const RegisterForm = () => {
+const RegisterForm = () => {
    const [formData, setFormData] = useState<IForm | null>(null)
    const [verificationInput, setVerificationInput] = useState(false)
 
@@ -39,11 +39,11 @@ export const RegisterForm = () => {
          toast.success('لطفا کد تأیید خود را وارد کنید')
          setVerificationInput(true)
 
-         // toast.success('ثبت نام شما با موفقیت انجام شد. لطفا منتظر بمانید....')
-         // return signIn('credentials', {
-         //    ...values,
-         //    callbackUrl: '/profile',
-         // })
+         toast.success('ثبت نام شما با موفقیت انجام شد. لطفا منتظر بمانید....')
+         return signIn('credentials', {
+            ...values,
+            callbackUrl: '/profile',
+         })
       } catch (err) {
          // @ts-ignore
          if (err?.message == '405') {
@@ -116,3 +116,5 @@ export const RegisterForm = () => {
       </>
    )
 }
+
+export default RegisterForm

@@ -11,6 +11,7 @@ const Header = async () => {
       mobileNumber: user?.mobileNumber,
       name: user?.name,
       avatar: user?.avatar,
+      role: user?.role
    }
 
    return (

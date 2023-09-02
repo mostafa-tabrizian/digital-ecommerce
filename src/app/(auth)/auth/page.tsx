@@ -1,18 +1,17 @@
-import { RegisterForm } from './form'
 import User from '@/lib/user'
 import Stepper from '@mui/material/Stepper'
 import Step from '@mui/material/Step'
 import StepLabel from '@mui/material/StepLabel'
-import Link from 'next/link'
+import AuthSection from './components/authSection'
 
 export const metadata = {
-   title: 'تبریزیان دیجیتال ایکامرس | ثبت نام',
+   title: 'تبریزیان دیجیتال ایکامرس | ورود',
 }
 
-const RegisterPage = async () => {
-   const user = await User()
+const steps = ['احراز هویت', 'تکمیل اطلاعات', 'ثبت سفارش']
 
-   const steps = ['احراز هویت', 'تکمیل اطلاعات', 'ثبت سفارش']
+const LoginPage = async () => {
+   const user = await User()
 
    return (
       <div className='flex h-screen bg-white'>
@@ -32,20 +31,12 @@ const RegisterPage = async () => {
                   ))}
                </Stepper>
 
-               <h1>تبریزیان دیجیتال ایکامرس</h1>
-               {user ? <h3 className='text-center'>شما قبلا وارد شده اید</h3> : <RegisterForm />}
-
-               <div className='text-green-900 text-center mt-10'>
-                  <Link href='/auth/login'>
-                     <h6 className='font-semibold underline underline-offset-4'>
-                        حساب کاربری داريد؟ اینجا وارد شوید
-                     </h6>
-                  </Link>
-               </div>
+               <h1> دیجیتال ایکامرس</h1>
+               {user ? <h3 className='text-center'>شما قبلا وارد شده اید</h3> : <AuthSection />}
             </div>
          </div>
       </div>
    )
 }
 
-export default RegisterPage
+export default LoginPage
