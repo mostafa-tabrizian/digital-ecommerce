@@ -53,7 +53,7 @@ const Header = async () => {
             </div>
          ) : (
             <div className='flex items-center mx-2'>
-               <Link href='/auth/login'>
+               <Link href='/auth'>
                   <Button variant='contained'>
                      <span className='font-bold text-white rounded-xl w-20 text-sm'>ورود</span>
                   </Button>

@@ -8,8 +8,13 @@ import { Form, Formik } from 'formik'
 import CircularProgress from '@mui/material/CircularProgress'
 
 import { QuestionSchemaValidation } from '@/formik/schema/validation'
+import { ICourse } from '@/models/course'
 
-const SubmitQuestion = ({ courseId }: { courseId: string }) => {
+const SubmitAnswer = ({
+   question,
+}: {
+   question: ICourse['questions'][0]
+}) => {
    const [panel, setPanel] = useState(false)
 
    const handleSubmit = async (
@@ -20,9 +25,9 @@ const SubmitQuestion = ({ courseId }: { courseId: string }) => {
       { resetForm },
    ) => {
       try {
-         const payload = { courseId: courseId, ...values }
+         const payload = { questionId: question._id, ...values }
 
-         const res = await fetch('/api/course/question', {
+         const res = await fetch('/api/course/question/answer', {
             method: 'POST',
             body: JSON.stringify(payload),
          })
@@ -31,41 +36,39 @@ const SubmitQuestion = ({ courseId }: { courseId: string }) => {
 
          setPanel(false)
          resetForm()
-         toast.success('پرسش شما با موفقیت ثبت شد')
+         toast.success('پاسخ شما با موفقیت ثبت شد')
       } catch (err) {
-         toast.error('در ثبت پرسش خطایی رخ داد!')
+         toast.error('در ثبت پاسخ خطایی رخ داد!')
          console.error(err)
       }
    }
 
    return (
       <>
-         <Button
+         <button
             onClick={() => setPanel(true)}
-            sx={{ borderRadius: '15px', width: '100%' }}
-            variant='outlined'
+            className='flex gap-x-1 items-center py-1 px-2 rounded-lg text-slate-500 bg-slate-200/50'
+            type='button'
          >
-            <div className='flex items-center gap-1'>
+            <span className='ml-1'>
                <svg
                   stroke='currentColor'
-                  fill='none'
+                  fill='currentColor'
                   strokeWidth='0'
-                  viewBox='0 0 24 24'
-                  className='w-4 h-4 ml-1'
+                  viewBox='0 0 20 20'
                   height='1em'
                   width='1em'
                   xmlns='http://www.w3.org/2000/svg'
                >
                   <path
-                     strokeLinecap='round'
-                     strokeLinejoin='round'
-                     strokeWidth='2'
-                     d='M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+                     fillRule='evenodd'
+                     d='M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z'
+                     clipRule='evenodd'
                   ></path>
                </svg>
-               ثبت پرسش جدید
-            </div>
-         </Button>
+            </span>
+            <span className='text-inherit font-normal text-sm'>پاسخ</span>
+         </button>
 
          <div
             className={` ${
@@ -75,8 +78,8 @@ const SubmitQuestion = ({ courseId }: { courseId: string }) => {
             <div className='m-6 rtl'>
                <div className='flex items-center justify-between'>
                   <div>
-                     <p className='text-base'>پرسش جدید</p>
-                     <p className='text-sm text-slate-400'>پرسش خود را وارد کنید</p>
+                     <p className='text-base'>پاسخ به {question.user.name}</p>
+                     <p className='text-sm text-slate-400'>پاسخ خود را بنویسید</p>
                   </div>
                   <button type='button' onClick={() => setPanel(false)}>
                      <svg
@@ -97,6 +100,7 @@ const SubmitQuestion = ({ courseId }: { courseId: string }) => {
                   </button>
                </div>
                <hr />
+
                <Formik
                   initialValues={{
                      body: '',
@@ -106,7 +110,11 @@ const SubmitQuestion = ({ courseId }: { courseId: string }) => {
                >
                   {({ isSubmitting }) => (
                      <Form className='space-y-6'>
-                        <FormikTextarea label='متن پرسش' name='body' />
+                        <div>
+                              <h6>متن پرسش</h6>
+                           <p>{question.body}</p>
+                        </div>
+                        <FormikTextarea label='متن پاسخ' name='body' />
                         <Button
                            type='submit'
                            variant='contained'
@@ -117,7 +125,7 @@ const SubmitQuestion = ({ courseId }: { courseId: string }) => {
                                  <CircularProgress color='inherit' size={25} />
                               </div>
                            ) : (
-                              'ثبت پرسش'
+                              'ثبت پاسخ'
                            )}
                         </Button>
                      </Form>
@@ -129,4 +137,4 @@ const SubmitQuestion = ({ courseId }: { courseId: string }) => {
    )
 }
 
-export default SubmitQuestion
+export default SubmitAnswer

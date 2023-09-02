@@ -45,11 +45,11 @@ const LoginForm = () => {
             router.push('/profile')
          } else {
             toast.error('در ورود شما خطایی رخ داد')
-            return console.error('auth/login signIn() res !200', res)
+            return console.error('auth signIn() res !200', res)
          }
       } catch (err) {
          toast.error('در ورود شما خطایی رخ داد')
-         return console.error('auth/login signIn() err', err)
+         return console.error('auth signIn() err', err)
       }
    }
 

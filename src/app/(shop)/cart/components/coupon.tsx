@@ -91,7 +91,7 @@ const CouponComponent = ({
                type='text'
                name='coupon'
                id='coupon'
-               className='mt-1 placeholder:text-sm focus:shadow-xl border border-white focus:shadow-blue-700/20 transition-all focus:border-blue-300 outline-none w-full py-3 pr-4 rounded-lg'
+               className='mt-1 placeholder:text-sm border border-white focus:shadow-xl focus:shadow-blue-700/20 transition-all focus:border-blue-300 outline-none w-full py-3 pr-4 rounded-lg'
                ref={couponRef}
             />
             {loading ? (

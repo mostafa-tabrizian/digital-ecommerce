@@ -1,6 +1,7 @@
 import Avatar from '@mui/material/Avatar'
 import SubmitQuestion from './submitQuestion'
 import { ICourse } from '@/models/course'
+import SubmitAnswer from './submitAnswer';
 
 const Question = ({ course }: { course: { id: string; questions: ICourse['questions'] } }) => {
    return (
@@ -9,7 +10,7 @@ const Question = ({ course }: { course: { id: string; questions: ICourse['questi
 
          <SubmitQuestion courseId={course.id} />
 
-         <div className='space-y-8'>
+         <div className='space-y-8 mt-6'>
             {course.questions.map((question) => {
                return (
                   <div key={question._id}>
@@ -28,31 +29,7 @@ const Question = ({ course }: { course: { id: string; questions: ICourse['questi
                                  <span className='block text-slate-500 text-xs'>۱ ماه پیش</span>
                               </div>
                            </div>
-                           <div>
-                              <button
-                                 className='flex gap-x-1 items-center py-1 px-2 rounded-lg text-slate-500 bg-slate-200/50'
-                                 type='button'
-                              >
-                                 <span className='ml-1'>
-                                    <svg
-                                       stroke='currentColor'
-                                       fill='currentColor'
-                                       strokeWidth='0'
-                                       viewBox='0 0 20 20'
-                                       height='1em'
-                                       width='1em'
-                                       xmlns='http://www.w3.org/2000/svg'
-                                    >
-                                       <path
-                                          fillRule='evenodd'
-                                          d='M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z'
-                                          clipRule='evenodd'
-                                       ></path>
-                                    </svg>
-                                 </span>
-                                 <span className='text-inherit font-normal text-sm'>پاسخ</span>
-                              </button>
-                           </div>
+                           <SubmitAnswer question={question} />
                         </div>
                         <p className='text-gray-700 font-normal leading-loose lg:leading-8 text-xs lg:text-base'>
                            {question.body}
@@ -77,9 +54,7 @@ const Question = ({ course }: { course: { id: string; questions: ICourse['questi
                                        <path d='M20 4v7a4 4 0 0 1-4 4H4' />
                                     </svg>
                                  </div>
-                                 <div
-                                    className='border w-full border-gray-100 bg-gray-50/80 rounded-xl p-2 sm:p-4 mb-3 mr-3'
-                                 >
+                                 <div className='border w-full border-gray-100 bg-gray-50/80 rounded-xl p-2 sm:p-4 mb-3 mr-3'>
                                     <div>
                                        <div className='flex items-center justify-between mb-5 border-b border-b-gray-200/60 pb-2'>
                                           <div className='flex items-center gap-x-3'>
