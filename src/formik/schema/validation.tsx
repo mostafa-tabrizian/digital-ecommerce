@@ -29,6 +29,10 @@ export const LoginSchemaValidation = yup.object().shape({
    password: yup.string().required('لطفا رمز خود را وارد کنید'),
 })
 
+export const ForgotPasswordSchemaValidation = yup.object().shape({
+   mobileNumber: yup.string().matches(rule.mobileNumber, { message: 'شماره تماس نامعتبر می‌باشد' }).required('لطفا شماره موبایل خود را وارد کنید'),
+})
+
 export const ProfileSchemaValidation = yup.object().shape({
    name: yup.string().matches(rule.persian, 'لطفا نام و نام خانوادگی خود را به فارسی وارد کنید'),
 })
