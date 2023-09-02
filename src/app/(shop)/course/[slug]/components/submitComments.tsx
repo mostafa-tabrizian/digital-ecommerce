@@ -10,6 +10,7 @@ import Button from '@mui/material/Button'
 import { CommentSchemaValidation } from '@/formik/schema/validation'
 import FormikTextarea from '@/formik/textarea'
 import CircularProgress from '@mui/material/CircularProgress'
+import Points from './points'
 
 const Comments = ({ course }: { course: { id: string; name: string } }) => {
    const [panel, setPanel] = useState(false)
@@ -17,7 +18,7 @@ const Comments = ({ course }: { course: { id: string; name: string } }) => {
    const [suggestion, setSuggestion] = useState<boolean | null>(null)
 
    const handleSubmit = async (
-      values: { title: string; description: string; rate: number; suggestion: boolean | null },
+      values: { title: string; positivePoints: string[]; negativePoints: string[]; description: string; rate: number; suggestion: boolean | null },
       // @ts-ignore
       { resetForm },
    ) => {
@@ -132,6 +133,8 @@ const Comments = ({ course }: { course: { id: string; name: string } }) => {
                <Formik
                   initialValues={{
                      title: '',
+                     positivePoints: [],
+                     negativePoints: [],
                      description: '',
                      rate: 50,
                      suggestion: null,
@@ -261,6 +264,8 @@ const Comments = ({ course }: { course: { id: string; name: string } }) => {
                            </button>
                         </div>
                         <FormikInput label='عنوان دیدگاه' name='title' type='text' />
+
+                        <Points setFieldValue={setFieldValue}/>
 
                         <FormikTextarea label='توضیحات' name='description' />
 

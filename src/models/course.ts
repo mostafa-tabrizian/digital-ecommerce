@@ -50,6 +50,8 @@ export interface ICourse {
          name: string
       },
       title: string
+      positivePoints: string[]
+      negativePoints: string[]
       body: string
       rate: number
       suggestion: null | boolean
@@ -113,6 +115,8 @@ const CourseSchema = new mongoose.Schema({
             name: String
          },
          title: String,
+         positivePoints: [String],
+         negativePoints: [String],
          body: String,
          rate:
          {

@@ -9,12 +9,14 @@ export async function POST(req: Request) {
     const payload: {
         courseId: string
         title: string
+        positivePoints: string[]
+        negativePoints: string[]
         description: string
         rate: number
         suggestion: boolean | null
     } = await req.json()
 
-    const { courseId, title, description, rate, suggestion } = payload
+    const { courseId, title, positivePoints, negativePoints, description, rate, suggestion } = payload
 
     const session: { _doc: { _id: string, avatar: string, name: string } } | null = await getServerSession(authOptions)
 
@@ -33,11 +35,13 @@ export async function POST(req: Request) {
             name: session._doc.name
         },
         title: title,
+        positivePoints: positivePoints,
+        negativePoints: negativePoints,
         body: description,
         rate: rate,
         suggestion: suggestion
     })
-
+    
     // @ts-ignore
     course.save()
 
