@@ -309,7 +309,7 @@ const Sidebar = ({ user }: { user: IUser | null }) => {
                   <div className='flex rtl justify-between items-center w-full'>
                      <div className='flex items-center flex-1'>
                         <div className='relative ml-4'>
-                           <a href='/profile'>
+                           <Link href='/profile'>
                               <Avatar
                                  sx={{
                                     width: 42,
@@ -320,7 +320,7 @@ const Sidebar = ({ user }: { user: IUser | null }) => {
                                  alt={user.name}
                                  src={'/avatar/' + user.avatar}
                               />
-                           </a>
+                           </Link>
                            <span className='flex h-2 w-2 absolute bottom-0 right-1'>
                               <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75'></span>
                               <span className='relative bg-green-500 inline-flex rounded-full h-2 w-2'></span>

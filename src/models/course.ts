@@ -42,7 +42,8 @@ export interface ICourse {
       },
    ]
    comments:
-   {
+   [{
+      _id: string
       user: {
          id: string
          avatar: string
@@ -52,7 +53,7 @@ export interface ICourse {
       body: string
       rate: number
       suggestion: null | boolean
-   },
+   }],
 
    likes: []
    faq: [

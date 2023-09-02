@@ -1,6 +1,6 @@
 import Image from 'next/legacy/image'
 import RatingCourse from './components/rating'
-import Comments from './components/comments'
+import Comments from './components/submitComments'
 import Like from './components/like'
 import CourseSession from './components/courseSession'
 import CourseFAQ from './components/courseFAQ'
@@ -218,7 +218,7 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
             <div className='flex justify-between'>
                <RatingCourse />
 
-               <button className='flex items-center gap-x-1 text-slate-600 font-bold tracking-widest hover:text-green-600'>
+               <a href='#comments' className='flex items-center gap-x-1 text-slate-600 font-bold tracking-widest hover:text-green-600'>
                   <span className='text-inherit'>{course?.comments.length}</span>
                   <svg
                      xmlns='http://www.w3.org/2000/svg'
@@ -233,7 +233,7 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
                         clipRule='evenodd'
                      ></path>
                   </svg>
-               </button>
+               </a>
 
                <Like user={JSON.parse(JSON.stringify(user))} course={JSON.parse(JSON.stringify(course))} />
             </div>
@@ -456,13 +456,13 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
 
          <CourseSession chapters={JSON.parse(JSON.stringify(course.chapters))} />
 
-         <div className='bg-white rounded-xl mt-6 p-3 lg:p-6'>
+         <div id='comments' className='bg-white rounded-xl mt-6 p-3 lg:p-6'>
             <h2 className='text-2xl text-end text-blue-600 mb-5'>تجربه دانشجویان (۸)</h2>
 
             <Comments course={JSON.parse(JSON.stringify({id: course._id, name: course.name}))} />
 
             <div className='mx-5 mt-6'>
-               <SwiperComments />
+               <SwiperComments comments={JSON.parse(JSON.stringify(course.comments))} />
             </div>
          </div>
 

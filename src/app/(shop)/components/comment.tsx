@@ -1,6 +1,16 @@
+import { ICourse } from '@/models/course'
 import Rating from '@mui/material/Rating'
+import Avatar from '@mui/material/Avatar'
 
-const Comment = () => {
+const Comment = ({ comment }: { comment: ICourse['comments'][0] }) => {
+   const rateOptions = {
+      0: 1,
+      25: 2,
+      50: 3,
+      75: 4,
+      100: 5,
+   }
+
    return (
       <>
          <div className='bg-white border shadow-xl p-4 lg:p-5 rounded-2xl'>
@@ -22,14 +32,11 @@ const Comment = () => {
                </p>
             </div>
             <div className='text-sm lg:text-base text-gray-700 font-bold mb-2'>
-               <span>کافی نبودن معرفی دوره</span>
+               <span>{comment.title}</span>
             </div>
             <div className='h-44 overflow-y-auto pl-1 mb-2'>
                <div className='my-4 space-y-4 ml-2'></div>
-               <p className='text-sm leading-7 text-slate-800 lg:leading-7 mb-4'>
-                  چقد حیفه که برای همچین دوره خوبی معرفی کافی از خود دوره گفته نشده از تمرین ها ،
-                  دموی پروژه ها و...
-               </p>
+               <p className='text-sm leading-7 text-slate-800 lg:leading-7 mb-4'>{comment.body}</p>
                <div className='mb-3 space-y-0.5'>
                   <div className='flex items-center gap-x-1 text-sm text-slate-600'>
                      <svg
@@ -94,22 +101,29 @@ const Comment = () => {
             <hr />
             <div className='flex justify-between items-center mb-4'>
                <div className='flex items-center gap-x-3 flex-1'>
-                  <div className='bg-slate-200 border-2 border-white shadow rounded-full text-center md:w-10 md:h-10 w-8 h-8'>
-                     P
-                  </div>
+                  <Avatar
+                     sx={{
+                        width: 42,
+                        height: 42,
+                        border: '2px solid white',
+                        boxShadow: '0 0 10px #8080805c',
+                     }}
+                     alt={comment.user.name}
+                     src={'/avatar/' + comment.user.avatar}
+                  />
                   <div className='flex flex-col justify-evenly text-slate-900'>
                      <div className='flex items-center font-extrabold md:mb-0.5 md:text-sm'>
-                        <span className='text-[10px]'> عرشیا جعفرنژاد</span>
+                        <span>{comment.user.name}</span>
                         <span className='mr-1 font-normal text-[10px] lg:text-xs text-slate-400'>
                            (۱۴۰۲/۵/۱۶)
                         </span>
                      </div>
-                     <span className='opacity-80'>دانشجو دوره متخصص ریکت و ریداکس</span>
                   </div>
                </div>
 
                <Rating
-                  value={4}
+                  // @ts-ignore
+                  value={rateOptions[comment.rate]}
                   readOnly
                   sx={{ direction: 'ltr' }}
                   icon={

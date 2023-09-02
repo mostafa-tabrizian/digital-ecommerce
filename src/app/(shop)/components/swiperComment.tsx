@@ -5,8 +5,9 @@ import Swiper from 'swiper/bundle'
 import 'swiper/css/bundle'
 
 import Comment from './comment'
+import { ICourse } from '@/models/course'
 
-const SwiperComments = ({ courses }: any) => {
+const SwiperComments = ({ comments }: { comments: ICourse['comments'] }) => {
    useEffect(() => {
       new Swiper('.swiperComments', {
          loop: true,
@@ -28,18 +29,13 @@ const SwiperComments = ({ courses }: any) => {
    return (
       <div className='swiperComments rtl'>
          <div className='swiper-wrapper pb-10'>
-            <div className='swiper-slide rounded-xl'>
-               {/* <CourseCards courses={courses} pageTarget='/course/' userTarget='client' /> */}
-               <Comment />
-            </div>
-            <div className='swiper-slide rounded-xl'>
-               {/* <CourseCards courses={courses} pageTarget='/course/' userTarget='client' /> */}
-               <Comment />
-            </div>
-            <div className='swiper-slide rounded-xl'>
-               {/* <CourseCards courses={courses} pageTarget='/course/' userTarget='client' /> */}
-               <Comment />
-            </div>
+            {comments.map((comment) => {
+               return (
+                  <div key={comment._id} className='swiper-slide rounded-xl'>
+                     <Comment comment={JSON.parse(JSON.stringify(comment))} />
+                  </div>
+               )
+            })}
          </div>
          <div className='swiper-pagination'></div>
       </div>
