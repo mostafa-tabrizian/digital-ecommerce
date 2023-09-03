@@ -38,12 +38,6 @@ const RegisterForm = () => {
          setFormData(values)
          toast.success('لطفا کد تأیید خود را وارد کنید')
          setVerificationInput(true)
-
-         toast.success('ثبت نام شما با موفقیت انجام شد. لطفا منتظر بمانید....')
-         return signIn('credentials', {
-            ...values,
-            callbackUrl: '/profile',
-         })
       } catch (err) {
          // @ts-ignore
          if (err?.message == '405') {

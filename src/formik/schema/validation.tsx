@@ -2,7 +2,10 @@ import * as yup from 'yup'
 import * as rule from './rules'
 
 export const RegisterSchemaValidation = yup.object().shape({
-   mobileNumber: yup.string().matches(rule.mobileNumber, { message: 'شماره تماس نامعتبر می‌باشد' }).required('لطفا شماره موبایل خود را وارد کنید'),
+   mobileNumber: yup
+      .string()
+      .matches(rule.mobileNumber, { message: 'شماره تماس نامعتبر می‌باشد' })
+      .required('لطفا شماره موبایل خود را وارد کنید'),
    password: yup
       .string()
       .min(5, 'رمز شما می‌بایست حداقل ۵ کاراکتر باشد')
@@ -25,12 +28,34 @@ export const VerificationSchemaValidation = yup.object().shape({
 })
 
 export const LoginSchemaValidation = yup.object().shape({
-   mobileNumber: yup.string().matches(rule.mobileNumber, { message: 'شماره تماس نامعتبر می‌باشد' }).required('لطفا شماره موبایل خود را وارد کنید'),
+   mobileNumber: yup
+      .string()
+      .matches(rule.mobileNumber, { message: 'شماره تماس نامعتبر می‌باشد' })
+      .required('لطفا شماره موبایل خود را وارد کنید'),
    password: yup.string().required('لطفا رمز خود را وارد کنید'),
 })
 
+export const PasswordSchemaValidation = yup.object().shape({
+   oldPass: yup.string().required('لطفا رمز خود را وارد کنید'),
+   newPass: yup
+      .string()
+      .min(5, 'رمز شما می‌بایست حداقل ۵ کاراکتر باشد')
+      .matches(rule.password, {
+         message: 'رمز شما می‌بایست حداقل یک عدد و یک حرف کوچک یا بزرگ داشته باشد',
+      })
+      .required('لطفا یک رمز وارد کنید')
+      .notOneOf([yup.ref('oldPass')], 'رمز عبور فعلی و جدید نباید یکی باشد'),
+   confirmNewPass: yup
+      .string()
+      .oneOf([yup.ref('newPass')], 'رمز عبور شما یکسان نمی‌باشد')
+      .required('لطفا رمز عبور خود را تایید کنید'),
+})
+
 export const ForgotPasswordSchemaValidation = yup.object().shape({
-   mobileNumber: yup.string().matches(rule.mobileNumber, { message: 'شماره تماس نامعتبر می‌باشد' }).required('لطفا شماره موبایل خود را وارد کنید'),
+   mobileNumber: yup
+      .string()
+      .matches(rule.mobileNumber, { message: 'شماره تماس نامعتبر می‌باشد' })
+      .required('لطفا شماره موبایل خود را وارد کنید'),
 })
 
 export const ProfileSchemaValidation = yup.object().shape({
@@ -72,7 +97,7 @@ export const QuestionSchemaValidation = yup.object().shape({
       .string()
       .min(10, 'پرسش حداقل باید ۱۰ کارکتر باشد')
       .required('پرسش خود را وارد کنید')
-      .matches(rule.persian, { message: 'لطفا پرسش را به فارسی وارد کنید' })
+      .matches(rule.persian, { message: 'لطفا پرسش را به فارسی وارد کنید' }),
 })
 
 // export const TitleAndDescriptionSchemaValidation = yup.object().shape({
