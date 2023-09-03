@@ -214,9 +214,13 @@ strong {
    border: 2px solid red;
 }
 
-.Toastify__toast-body {
-   font-size: 1rem;
-   font-family: IRANYekanRegular, sans-serif;
+.Toastify__toast {
+   border-radius: 15px !important;
+   
+   &-body {
+      font-size: 1rem;
+      font-family: IRANYekanRegular, sans-serif;
+   }
 }
 
 .MuiFormLabel-root {
