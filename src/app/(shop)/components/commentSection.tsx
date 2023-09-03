@@ -1,6 +1,40 @@
+import { ICourse } from '@/models/course'
 import SwiperComments from './swiperComment'
 
 const CommentSection = () => {
+   const comments: ICourse['comments'] = [
+      {
+         _id: '1',
+         user: {
+            id: '1',
+            avatar: '',
+            name: 'ایلان ماسک',
+         },
+         title: 'بهترین دوره موشک سازی',
+         positivePoints: ['قیمت مناسب', 'دسترسی آسان'],
+         negativePoints: ['هیچی'],
+         body: 'من خود موشک سازی رو از دوره های دیجیتال ایکامرس یاد گرفتم و همونطور که می‌بینید خیلی تو کارم موفقم',
+         rate: 100,
+         suggestion: true,
+         createdAt: new Date(),
+      },
+      {
+         _id: '2',
+         user: {
+            id: '2',
+            avatar: '',
+            name: 'استیو جابز',
+         },
+         title: 'سیستم های اپل',
+         positivePoints: ['خوانا بودن کد ها'],
+         negativePoints: [],
+         body: 'همه ی ما ادای دیجیتال ایکامرس رو در میاریم',
+         rate: 100,
+         suggestion: true,
+         createdAt: new Date(),
+      },
+   ]
+
    return (
       <>
          <div className='flex justify-end items-center gap-x-3 mb-4'>
@@ -33,11 +67,10 @@ const CommentSection = () => {
             </div>
          </div>
          <p className='text-xs text-center opacity-80 lg:text-base leading-6 lg:leading-8'>
-            {' '}
             اینا فقط بخش کوچکی از تجربه دانشجویان دیجیتال ایکامرس هست
          </p>
 
-         {/* <SwiperComments /> */}
+         <SwiperComments comments={comments} />
       </>
    )
 }
