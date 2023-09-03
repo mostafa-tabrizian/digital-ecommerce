@@ -1,33 +1,33 @@
 import { useState, useRef, Dispatch, SetStateAction } from 'react'
 import { toast } from 'react-toastify'
 import Button from '@mui/material/Button'
+import CircularProgress from '@mui/material/CircularProgress'
 
-type Discount =
-   | {
-        type: string
-        value: number
-     }
-   | null
-   | false
+import { ICoupon } from '@/models/coupon'
 
 let previousCoupon = ''
 
 const CouponComponent = ({
-   price,
+   paymentPrice,
    setCoupon,
 }: {
-   price: number
-   setCoupon: Dispatch<SetStateAction<Discount>>
+   paymentPrice: number
+   setCoupon: Dispatch<SetStateAction<ICoupon | null>>
 }) => {
    const [loading, setLoading] = useState(false)
    const couponRef = useRef<HTMLInputElement>(null)
 
    const getCouponData = async (couponCode: string) => {
-      const res = await fetch(`/api/coupon?c=${couponCode}`)
+      const res = await fetch('/api/coupon', {
+         method: 'POST',
+         body: JSON.stringify({
+            code: couponCode,
+         }),
+      })
+      
+      if (!res.ok) throw new Error()
 
-      if (!res.ok) throw Error()
-
-      return res.json()
+      return await res.json()
    }
 
    const couponCheck = async () => {
@@ -41,7 +41,7 @@ const CouponComponent = ({
             const couponData = await getCouponData(couponCode)
 
             if (couponData) {
-               if (couponData.value > price) couponData.value = price
+               if (couponData.value >= paymentPrice) couponData.value = paymentPrice
 
                setCoupon(couponData)
                toast.success('تخفیف با موفقیت به شما تعلق گرفت')
@@ -60,27 +60,6 @@ const CouponComponent = ({
    }
 
    return (
-      // <div className='flex justify-between items-center space-x-3'>
-      //    <div className='border flex rounded-lg px-2 py-2 space-x-4 relative'>
-      //       {loading ? (
-      //          <span className='text-green-700 inline-block my-4 absolute -top-1'>
-      //             در حال بررسی...
-      //          </span>
-      //       ) : (
-      //          <button disabled={loading} onClick={couponCheck}>
-      //             <span>ثبت</span>
-      //          </button>
-      //       )}
-      //       <input
-      //          ref={couponRef}
-      //          type='text'
-      //          className='text-right text-sm pr-2 bg-transparent'
-      //          placeholder='کد تخفیف'
-      //       />
-      //    </div>
-      //    <h3>کد تخفیف</h3>
-      // </div>
-
       <div className='rtl'>
          <label htmlFor='coupon' className='text-gray-600 text-sm'>
             کد تخفیف
@@ -94,17 +73,20 @@ const CouponComponent = ({
                className='mt-1 placeholder:text-sm border border-white focus:shadow-xl focus:shadow-blue-700/20 transition-all focus:border-blue-300 outline-none w-full py-3 pr-4 rounded-lg'
                ref={couponRef}
             />
-            {loading ? (
-               <span className='text-green-700 inline-block my-4 absolute -top-1'>
-                  در حال بررسی...
-               </span>
-            ) : (
-               <div className='absolute left-2 top-1/2 -translate-y-1/2'>
-                  <Button sx={{borderRadius: '10px'}} variant='contained'>
+            <div className='absolute left-2 top-1/2 -translate-y-1/2'>
+               <Button
+                  disabled={loading}
+                  onClick={couponCheck}
+                  sx={{ borderRadius: '10px' }}
+                  variant='contained'
+               >
+                  {loading ? (
+                     <CircularProgress className='text-white' color='inherit' size={20} />
+                  ) : (
                      <span className='text-white font-light'>اعمال کد</span>
-                  </Button>
-               </div>
-            )}
+                  )}
+               </Button>
+            </div>
          </div>
       </div>
    )

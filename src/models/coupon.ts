@@ -1,6 +1,12 @@
-/* eslint-disable camelcase */
-
 import mongoose from 'mongoose'
+
+export interface ICoupon {
+   type: string
+   code: string
+   value: number
+   qty: number
+   expiresAt: Date
+}
 
 const CouponSchema = new mongoose.Schema({
    type: {
@@ -10,7 +16,7 @@ const CouponSchema = new mongoose.Schema({
    code: String,
    value: Number,
    qty: Number,
-   expires_at: Date,
+   expiresAt: Date,
 })
 
 CouponSchema.set('timestamps', true)

@@ -11,10 +11,10 @@ interface IUser {
    name: string | undefined
    avatar: string | undefined
    mobileNumber: string | undefined
-   role: string
+   role: string | undefined
 }
 
-const Sidebar = ({ user }: { user: IUser | null }) => {
+const Sidebar = ({ user }: { user: IUser }) => {
    const [sidebar, setSidebar] = useState(false)
    const [contactUsOptions, setContactUsOptions] = useState(false)
 

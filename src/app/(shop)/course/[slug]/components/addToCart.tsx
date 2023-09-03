@@ -21,8 +21,8 @@ const AddToCart = ({ course }: { course: ICourse }) => {
       if (alreadyInCart) return
 
       const payload = {
-         id: course._id,
-         title: course.name,
+         _id: course._id,
+         name: course.name,
          price: course.price,
          discount: course.discount,
          image: course.image,

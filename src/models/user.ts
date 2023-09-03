@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-
 import mongoose from 'mongoose'
 
 export interface IUser {

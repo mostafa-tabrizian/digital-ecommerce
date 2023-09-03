@@ -1,12 +1,16 @@
-import CartItemType from '@/types/type.cartItems'
+import { ICourse } from "@/models/course"
+
+interface ICartItem {
+   [key: string]: ICourse
+}
 
 export const initialCart = {}
 
 // @ts-ignore
-export const CartReducer = (cart: CartItemType, action) => {
-   const id = action.payload?.id
+export const CartReducer = (cart: ICartItem, action) => {
+   const _id = action.payload?._id
 
-   const item = cart[id]
+   const item = cart[_id]
 
    switch (action.type) {
       case 'initLocalStorage':
@@ -15,12 +19,12 @@ export const CartReducer = (cart: CartItemType, action) => {
       case 'ADD_TO_CART':
          return {
             ...cart,
-            [id]: action.payload,
+            [_id]: action.payload,
          }
 
       case 'REMOVE_FROM_CART':
          return (() => {
-            const { [item.id]: _, ...updatedCart } = cart
+            const { [item._id]: _, ...updatedCart } = cart
             return updatedCart
          })()
 

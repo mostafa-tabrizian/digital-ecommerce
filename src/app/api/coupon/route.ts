@@ -1,28 +1,14 @@
 import { NextResponse } from 'next/server'
+import Coupon from '@/models/coupon'
 
-type CouponType = {
-   type: string
-   value: number
-} | null
+export async function POST(req: Request) {
 
-export async function GET(request: Request) {
-   const { searchParams } = new URL(request.url)
-   const couponCode = searchParams.get('c')
+   const { code } = await req.json()
 
-   if (!couponCode) return console.error('err coupon api: couponCode undefined')
+   const coupon = await Coupon.findOne({
+      code: code
+   })
 
-   const coupon = await prisma.coupon
-      .findUnique({
-         where: {
-            code: couponCode,
-         },
-         select: {
-            type: true,
-            value: true,
-         },
-      })
-      .then((res: CouponType) => res)
-      .catch((err: Error) => console.error('err coupon api', err))
 
    return NextResponse.json(coupon)
 }
