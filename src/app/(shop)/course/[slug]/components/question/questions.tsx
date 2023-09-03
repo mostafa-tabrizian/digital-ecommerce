@@ -2,6 +2,7 @@ import Avatar from '@mui/material/Avatar'
 import SubmitQuestion from './submitQuestion'
 import { ICourse } from '@/models/course'
 import SubmitAnswer from './submitAnswer';
+import DateFormat from '@/app/(shop)/components/dateFormat';
 
 const Question = ({ course }: { course: { id: string; questions: ICourse['questions'] } }) => {
    return (
@@ -26,7 +27,7 @@ const Question = ({ course }: { course: { id: string; questions: ICourse['questi
                                  <span className='font-bold text-slate-600 block mb-1'>
                                     {question.user.name}
                                  </span>
-                                 <span className='block text-slate-500 text-xs'>۱ ماه پیش</span>
+                                 <span className='block text-slate-500 text-xs'>{DateFormat(question.createdAt)}</span>
                               </div>
                            </div>
                            <SubmitAnswer question={question} />
@@ -68,7 +69,7 @@ const Question = ({ course }: { course: { id: string; questions: ICourse['questi
                                                    {answer.user.name}
                                                 </span>
                                                 <span className='block text-slate-500 text-xs'>
-                                                   ۱ ماه پیش
+                                                   {DateFormat(answer.createdAt)}
                                                 </span>
                                              </div>
                                           </div>

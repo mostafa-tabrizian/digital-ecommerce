@@ -1,53 +1,44 @@
+import toFarsiNumber from '@/lib/toFarsiNumber'
+
 const DateFormat = (fullDate: Date) => {
-   const persianDate = new Date(fullDate).toLocaleDateString('fa-IR').split('/')
+   if (!fullDate) return
 
-   let monthsInPersian
+   fullDate = new Date(fullDate)
 
-   switch (persianDate[1]) {
-      case '۱':
-         monthsInPersian = 'فروردين'
-         break
-      case '۲':
-         monthsInPersian = 'ارديبهشت'
-         break
-      case '۳':
-         monthsInPersian = 'خرداد'
-         break
-      case '۴':
-         monthsInPersian = 'تير'
-         break
-      case '۵':
-         monthsInPersian = 'مرداد'
-         break
-      case '۶':
-         monthsInPersian = 'شهريور'
-         break
-      case '۷':
-         monthsInPersian = 'مهر'
-         break
-      case '۸':
-         monthsInPersian = 'آبان'
-         break
-      case '۹':
-         monthsInPersian = 'آذر'
-         break
-      case '۱۰':
-         monthsInPersian = 'دي'
-         break
-      case '۱۱':
-         monthsInPersian = 'بهمن'
-         break
-      case '۱۲':
-         monthsInPersian = 'اسفند'
-         break
+   const publishUnixTime = fullDate.getTime()
+   const currentUnixTime: number = new Date().getTime()
+
+   const convertToMonth = (time: number) => time / 1000 / 60 / 60 / 24 / 30
+   const convertToDay = (time: number) => time / 1000 / 60 / 60 / 24
+   const convertToHour = (time: number) => time / 1000 / 60 / 60
+   const convertToMinutes = (time: number) => time / 1000 / 60
+   const convertToSeconds = (time: number) => time / 1000
+
+   const monthsPast = Math.floor(convertToMonth(currentUnixTime - publishUnixTime))
+   const daysPast = Math.floor(convertToDay(currentUnixTime - publishUnixTime))
+   const hoursPast = Math.floor(convertToHour(currentUnixTime - publishUnixTime))
+   const minutesPast = Math.floor(convertToMinutes(currentUnixTime - publishUnixTime))
+   const secondsPast = Math.floor(convertToSeconds(currentUnixTime - publishUnixTime))
+
+   let result
+
+   if (monthsPast >= 1) {
+      result = `${new Date(fullDate).toLocaleDateString('fa-IR', {
+         year: 'numeric',
+         month: 'short',
+         day: 'numeric',
+      })}`
+   } else if (daysPast >= 1) {
+      result = `${toFarsiNumber(daysPast)} روز پیش`
+   } else if (hoursPast >= 1) {
+      result = `${toFarsiNumber(hoursPast)} ساعت پیش`
+   } else if (minutesPast >= 1) {
+      result = `${toFarsiNumber(minutesPast)} دقیقه پیش`
+   } else {
+      result = `${toFarsiNumber(secondsPast)} ثانیه پیش`
    }
 
-   return (
-      <div className='flex space-x-1 justify-end'>
-         {' '}
-         <span>{persianDate[0]}</span> <span>{monthsInPersian}</span> <span>{persianDate[2]}</span>{' '}
-      </div>
-   )
+   return result
 }
 
 export default DateFormat

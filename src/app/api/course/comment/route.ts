@@ -39,7 +39,8 @@ export async function POST(req: Request) {
         negativePoints: negativePoints,
         body: description,
         rate: rate,
-        suggestion: suggestion
+        suggestion: suggestion,
+        createdAt: new Date()
     })
     
     // @ts-ignore

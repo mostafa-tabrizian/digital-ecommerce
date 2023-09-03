@@ -65,13 +65,6 @@ export const CommentSchemaValidation = yup.object().shape({
       .min(30, 'توضیحات حداقل باید ۳۰ کارکتر باشد')
       .required('توضیحات خود را وارد کنید')
       .matches(rule.persian, { message: 'لطفا توضیحات را به فارسی وارد کنید' }),
-
-   rate: yup
-      .number()
-      .required('امتیاز خود را وارد کنید'),
-
-   suggestion: yup
-      .boolean() 
 })
 
 export const QuestionSchemaValidation = yup.object().shape({

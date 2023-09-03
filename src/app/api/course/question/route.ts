@@ -29,7 +29,8 @@ export async function POST(req: Request) {
             avatar: session._doc.avatar,
             name: session._doc.name
         },
-        body: body
+        body: body,
+        createdAt: new Date()
     })
     
     // @ts-ignore

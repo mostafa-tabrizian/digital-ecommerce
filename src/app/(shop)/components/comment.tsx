@@ -2,6 +2,7 @@ import { ICourse } from '@/models/course'
 import Rating from '@mui/material/Rating'
 import Avatar from '@mui/material/Avatar'
 import SuggestionStatus from '../course/[slug]/components/comment/suggestionStatus'
+import DateFormat from './dateFormat'
 
 const Comment = ({ comment }: { comment: ICourse['comments'][0] }) => {
    const rateOptions = {
@@ -96,7 +97,7 @@ const Comment = ({ comment }: { comment: ICourse['comments'][0] }) => {
                      <div className='flex items-center font-extrabold md:mb-0.5 md:text-sm'>
                         <span>{comment.user.name}</span>
                         <span className='mr-1 font-normal text-[10px] lg:text-xs text-slate-400'>
-                           (۱۴۰۲/۵/۱۶)
+                           ({DateFormat(comment.createdAt)})
                         </span>
                      </div>
                   </div>

@@ -9,6 +9,7 @@ export interface ICourse {
    image: string
    description: string
    createdAt: Date
+   updatedAt: Date
    chapters: [
       {
          _id: string,
@@ -39,8 +40,10 @@ export interface ICourse {
                   name: string
                },
                body: string
+               createdAt: Date
             },
          ]
+         createdAt: Date
       },
    ]
    comments:
@@ -57,6 +60,7 @@ export interface ICourse {
       body: string
       rate: number
       suggestion: null | boolean
+      createdAt: Date
    }],
 
    likes: []
@@ -105,8 +109,10 @@ const CourseSchema = new mongoose.Schema({
                   name: String
                },
                body: String,
+               createdAt: Date
             },
          ],
+         createdAt: Date
       },
    ],
    comments: [
@@ -125,7 +131,8 @@ const CourseSchema = new mongoose.Schema({
             type: Number,
             enum: [0, 25, 50, 75, 100],
          },
-         suggestion: Boolean || null
+         suggestion: Boolean || null,
+         createdAt: Date
       },
    ],
    likes: [],
