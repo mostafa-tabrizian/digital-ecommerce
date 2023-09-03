@@ -15,7 +15,7 @@ const CourseSession = ({ chapters }: { chapters: ICourse['chapters'] }) => {
    }
 
    return (
-      <div className='bg-white rtl font-semibold rounded-xl mt-6 p-3 lg:p-6'>
+      <div id='sessions' className='bg-white rtl font-semibold rounded-xl mt-6 p-3 lg:p-6'>
          <h2 className='text-2xl text-right text-blue-600 mb-5'>جلسات دوره</h2>
 
          {chapters.map((chapter) => {

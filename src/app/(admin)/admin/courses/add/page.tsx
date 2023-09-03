@@ -13,6 +13,8 @@ import CreateLocationForm from './createLocationForm'
 import CreateCourseForm from './createCourseForm'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 import Link from 'next/link'
+import { ICourse } from '@/models/course'
+import stringtoDate from '@/lib/stringToDate'
 
 type CourseProps = {
    id: string
@@ -31,7 +33,9 @@ type CourseProps = {
 
 const AdminCourse = () => {
    const [selectedCourse, selectCourse] = useState<string | null>(null)
-   const { data, error } = useSWR('/api/course', fetcher)
+   const { data, error }: {data: [ICourse], error: unknown} = useSWR('/api/course', fetcher)
+
+   data.sort((a, b) => stringtoDate(b.createdAt) - stringtoDate(a.createdAt))
 
    if (error) {
       toast.error('دریافت محصولات به مشکل برخورد کرد!')

@@ -7,12 +7,17 @@ import { ICourse } from '@/models/course'
 
 import Swiper from 'swiper/bundle'
 import 'swiper/css/bundle'
+import stringtoDate from '@/lib/stringToDate'
 
 const SwiperCourses = () => {
    const [courses, setCourses] = useState<ICourse[]>([])
 
    const getCourses = async () => {
-      setCourses(await fetch('/api/course').then((res) => res.json()))
+      const res: [ICourse] = await fetch('/api/course').then((res) => res.json())
+
+      res.sort((a, b) => stringtoDate(b.createdAt) - stringtoDate(a.createdAt))
+
+      setCourses(res)
    }
 
    useEffect(() => {

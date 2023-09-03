@@ -376,19 +376,25 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
          <div className='bg-white space-y-8 mb-6 py-1 px-3 rounded-xl sticky top-20 z-10 shadow-xl'>
             <ul className='flex items-center justify-between text-sm text-slate-200'>
                <li className='flex items-center'>
-                  <button className='hover:text-slate-600 transition-all duration-200 ease-in '>
-                     دیدگاه و پرسش
-                  </button>
+                  <a href='#comments'>
+                     <button className='text-slate-600 hover:text-blue-500 font-bold transition-all duration-200 ease-in '>
+                        دیدگاه و پرسش
+                     </button>
+                  </a>
                </li>
                <li className='flex items-center'>
-                  <button className='hover:text-slate-600 transition-all duration-200 ease-in '>
-                     جلسات
-                  </button>
+                  <a href='#sessions'>
+                     <button className='text-slate-600 hover:text-blue-500 font-bold transition-all duration-200 ease-in '>
+                        جلسات
+                     </button>
+                  </a>
                </li>
                <li className='flex items-center'>
-                  <button className='hover:text-slate-600 transition-all duration-200 ease-in text-blue-500 font-bold'>
-                     توضیحات
-                  </button>
+                  <a href='#description'>
+                     <button className='text-slate-600 hover:text-blue-500 font-bold transition-all duration-200 ease-in'>
+                        توضیحات
+                     </button>
+                  </a>
                </li>
             </ul>
          </div>
@@ -426,7 +432,7 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
             <Comments course={JSON.parse(JSON.stringify({ id: course._id, name: course.name }))} />
          </div>
 
-         <div className='bg-white rounded-xl mt-6 p-3 lg:p-6'>
+         <div id='description' className='bg-white rounded-xl mt-6 p-3 lg:p-6'>
             <h2 className='text-2xl text-right text-blue-600 mb-5'>توضیحات دوره</h2>
             <div className='text-right'>
                <p>{course?.description}</p>

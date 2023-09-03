@@ -12,6 +12,7 @@ import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 
 import { ICourse } from '@/models/course'
+import stringtoDate from '@/lib/stringToDate'
 
 const Contents = () => {
    const [dbCourses, setDbCourses] = useState<ICourse[]>([])
@@ -30,7 +31,7 @@ const Contents = () => {
 
    const getCourses = async () => {
       const res: [ICourse] = await fetch('/api/course').then((res) => res.json())
-      res.sort((a, b) => toDate(b.createdAt) - toDate(a.createdAt))
+      res.sort((a, b) => stringtoDate(b.createdAt) - stringtoDate(a.createdAt))
       setDbCourses(res)
       setCourses(res)
    }
@@ -39,23 +40,19 @@ const Contents = () => {
       getCourses()
    }, [])
 
-   const toDate = (stringDate: Date) => {
-      return new Date(stringDate)?.getDate()
-   }
-
    useEffect(() => {
       switch (sortValue) {
          case 'latest':
-            courses.sort((a, b) => toDate(b.createdAt) - toDate(a.createdAt))
+            courses.sort((a, b) => stringtoDate(b.createdAt) - stringtoDate(a.createdAt))
             break
          case 'oldest':
-            courses.sort((a, b) => toDate(a.createdAt) - toDate(b.createdAt))
+            courses.sort((a, b) => stringtoDate(a.createdAt) - stringtoDate(b.createdAt))
             break
          case 'favorite':
             courses.sort((a, b) => b.likes.length - a.likes.length)
             break
          default:
-            courses.sort((a, b) => toDate(b.createdAt) - toDate(a.createdAt))
+            courses.sort((a, b) => stringtoDate(b.createdAt) - stringtoDate(a.createdAt))
             break
       }
    }, [sortValue])

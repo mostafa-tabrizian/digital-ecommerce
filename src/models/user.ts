@@ -31,6 +31,7 @@ const UserSchema = new mongoose.Schema({
    },
    password: String,
    accessItems: [],
+   orders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'OrderSchema'}]
 })
 
 UserSchema.set('timestamps', true)
