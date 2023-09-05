@@ -24,7 +24,7 @@ const Like = ({ user, course }: { user: IUser; course: ICourse }) => {
 
          const resData = res.json()
 
-         if (resData.status == 403) return toast.error('لطفا ابتدا وارد حساب کاربری خود شوید!')
+         if (resData?.status == 403) return toast.error('لطفا ابتدا وارد حساب کاربری خود شوید!')
          
          router.refresh()
       } catch (err) {

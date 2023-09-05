@@ -20,7 +20,7 @@ const UserEditForm = () => {
    
    const { executeRecaptcha } = useGoogleReCaptcha()
 
-   if (data.status == 403) return toast.error('لطفا ابتدا وارد حساب کاربری خود شوید!')
+   if (data?.status == 403) return toast.error('لطفا ابتدا وارد حساب کاربری خود شوید!')
 
    if (error) {
       toast.error('در دریافت اطلاعات شما خطایی رخ داد')

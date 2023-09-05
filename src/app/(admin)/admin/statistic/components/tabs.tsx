@@ -13,7 +13,7 @@ const Tabs = () => {
    const [activeTab, selectTab] = useState('USERS')
    const { data: usersData, error, isLoading } = useSWR('/api/admin/users-data', fetcher)
 
-   if (usersData.status == 403) return toast.error('لطفا خارج و مجدد وارد حساب کاربری خود شوید!')
+   if (usersData?.status == 403) return toast.error('لطفا خارج و مجدد وارد حساب کاربری خود شوید!')
 
    const monthlyRegisterPlotConfig = usersData
       ? {
