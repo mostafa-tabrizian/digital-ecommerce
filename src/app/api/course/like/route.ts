@@ -10,8 +10,7 @@ export async function POST(req: Request) {
     }
 
     const session: { _doc: { _id: string } } | null = await getServerSession(authOptions)
-
-    if (!session) return
+    if (!session) return NextResponse.json({ status: 403 })
 
     const course = await Course.findOne({
         _id: courseId

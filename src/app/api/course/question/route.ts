@@ -19,7 +19,6 @@ export async function POST(req: Request) {
     if (!recaptchaRes) return NextResponse.json({ message: 'recaptcha fail' })
 
     const session: { _doc: { _id: string, avatar: string, name: string } } | null = await getServerSession(authOptions)
-
     if (!session) return NextResponse.json({ status: 403 })
 
     const course = await Course.findOne({

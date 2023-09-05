@@ -13,6 +13,8 @@ const Tabs = () => {
    const [activeTab, selectTab] = useState('USERS')
    const { data: usersData, error, isLoading } = useSWR('/api/admin/users-data', fetcher)
 
+   if (usersData.status == 403) return toast.error('لطفا خارج و مجدد وارد حساب کاربری خود شوید!')
+
    const monthlyRegisterPlotConfig = usersData
       ? {
            data: usersData['monthlyRegister'],
@@ -24,8 +26,8 @@ const Tabs = () => {
               },
            },
            slider: {
-             start: 0.8,
-             end: 1
+              start: 0.8,
+              end: 1,
            },
         }
       : null
@@ -100,7 +102,7 @@ const Tabs = () => {
                            </h2>
                         </div>
                         <div className='px-4 py-4 shadow-md shadow-indigo-100 space-y-4 transition-shadow from-gray-50 to-gray-100 bg-gradient-to-bl rounded-lg'>
-                              <Column {...monthlyRegisterPlotConfig} />
+                           <Column {...monthlyRegisterPlotConfig} />
                         </div>
                      </>
                   ) : (

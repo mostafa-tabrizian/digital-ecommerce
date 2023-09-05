@@ -24,13 +24,12 @@ interface IForm {
 export const VerificationForm = ({
    formData,
    verificationInput,
-   postVerification
+   postVerification,
 }: {
    formData: IProps | null
    verificationInput: { value: boolean; set: SetStateAction<boolean> }
    postVerification: (values: IProps) => void
 }) => {
-
    const verificationAgain = () => {
       postVerification(formData)
    }
@@ -46,9 +45,9 @@ export const VerificationForm = ({
 
          const resData = await res.json()
 
-         if (resData.message === 'invalidCode') throw new Error('invalidCode')
-         else if (resData.message === 'codeExpired') throw new Error('codeExpired')
-         else if (resData.status === 500) throw new Error('uniqueUser')
+         if (resData.message === 'invalidCode') return toast.warning('کد وارد شده اشتباه است')
+         else if (resData.message === 'codeExpired') return toast.warning('کد شما منقضی شده است')
+         else if (resData.status === 500) return toast.warning('این ایمیل از قبل ثبت نام شده است')
 
          toast.success('ثبت نام شما با موفقیت انجام شد. لطفا منتظر بمانید....')
          return signIn('credentials', {
@@ -56,19 +55,8 @@ export const VerificationForm = ({
             callbackUrl: '/profile',
          })
       } catch (err) {
-         // @ts-ignore
-         if (err?.message == 'uniqueUser') {
-            toast.warning('این ایمیل از قبل ثبت نام شده است')
-            // @ts-ignore
-         } else if (err?.message == 'invalidCode') {
-            toast.warning('کد وارد شده اشتباه است')
-            // @ts-ignore
-         } else if (err?.message == 'codeExpired') {
-            toast.warning('کد شما منقضی شده است')
-         } else {
-            toast.error('در ثبت نام شما خطایی رخ داد')
-            console.error('api/auth/register err', err)
-         }
+         toast.error('در ثبت نام شما خطایی رخ داد')
+         console.error('api/auth/register err', err)
       }
    }
 
@@ -106,7 +94,8 @@ export const VerificationForm = ({
                            </button>
                         </span>
                         <span className='text-slate-400'>
-                           کد تأیید برای شماره موبایل {formData?.mobileNumber && toFarsiNumber(formData?.mobileNumber)} ارسال
+                           کد تأیید برای شماره موبایل{' '}
+                           {formData?.mobileNumber && toFarsiNumber(formData?.mobileNumber)} ارسال
                            گردید
                         </span>
                      </div>

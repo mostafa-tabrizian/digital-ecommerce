@@ -8,7 +8,7 @@ import RecaptchaCheck from '@/lib/recaptchCheck'
 export async function GET() {
    const session: { _doc: { mobileNumber: string } } | null = await getServerSession(authOptions)
 
-   if (!session) return
+   if (!session) return NextResponse.json({ status: 403 })
 
    const user = await User.findOne({
       mobileNumber: session._doc.mobileNumber
