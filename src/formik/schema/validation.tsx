@@ -59,7 +59,10 @@ export const ForgotPasswordSchemaValidation = yup.object().shape({
 })
 
 export const ProfileSchemaValidation = yup.object().shape({
-   name: yup.string().matches(rule.persian, 'لطفا نام و نام خانوادگی خود را به فارسی وارد کنید'),
+   name: yup
+      .string()
+      .min(3, 'عنوان حداقل باید ۳ کارکتر باشد')
+      .matches(rule.persian, 'لطفا نام و نام خانوادگی خود را به فارسی وارد کنید'),
 })
 
 export const CourseSchemaValidation = yup.object().shape({

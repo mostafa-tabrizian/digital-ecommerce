@@ -28,7 +28,7 @@ const UserEditForm = () => {
    const onSubmit = async (values: FormType) => {
       const inputValue: FormType = Object.fromEntries(
          // @ts-ignore
-         Object.entries(values).filter(([key, value]) => value !== data[key]),
+         Object.entries(values).filter(([key, value]) => value.trim() !== data[key]),
       )
 
       const inputValueLength = Object.keys(inputValue).length
