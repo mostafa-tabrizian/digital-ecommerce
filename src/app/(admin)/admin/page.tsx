@@ -42,10 +42,10 @@ const AdminPanel = async () => {
                               strokeLinecap='round'
                               strokeLinejoin='round'
                            >
-                              {' '}
-                              <path stroke='none' d='M0 0h24v24H0z' />{' '}
-                              <circle cx='7' cy='17' r='2' /> <circle cx='17' cy='17' r='2' />{' '}
-                              <path d='M5 17h-2v-4m-1 -8h11v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5' />{' '}
+                              
+                              <path stroke='none' d='M0 0h24v24H0z' />
+                              <circle cx='7' cy='17' r='2' /> <circle cx='17' cy='17' r='2' />
+                              <path d='M5 17h-2v-4m-1 -8h11v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5' />
                               <line x1='3' y1='9' x2='7' y2='9' />
                            </svg>
                         </div>
@@ -67,6 +67,29 @@ const AdminPanel = async () => {
                                  strokeWidth='2'
                                  d='M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z'
                               />
+                           </svg>
+                        </div>
+                     </Link>
+                  </div>
+
+                  <div className='bg-white rounded-lg py-2 px-2'>
+                     <Link href='/admin/statistic'>
+                        <div className='flex justify-end space-x-3 items-center'>
+                           <span className='text-base text-black'>آمار</span>
+                           <svg
+                              className='h-6 w-6 text-black'
+                              width='24'
+                              height='24'
+                              viewBox='0 0 24 24'
+                              strokeWidth='2'
+                              stroke='currentColor'
+                              fill='none'
+                              strokeLinecap='round'
+                              strokeLinejoin='round'
+                           >
+                              <path stroke='none' d='M0 0h24v24H0z' />
+                              <line x1='4' y1='19' x2='20' y2='19' />
+                              <polyline points='4 15 8 9 12 11 16 6 20 10' />
                            </svg>
                         </div>
                      </Link>

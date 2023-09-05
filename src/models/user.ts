@@ -12,6 +12,10 @@ export interface IUser {
    },
    password: string
    accessItems: []
+   orders: []
+   createdAt: Date
+   updatedAt: Date
+   lastLogin: Date
 }
 
 const UserSchema = new mongoose.Schema({
@@ -29,7 +33,8 @@ const UserSchema = new mongoose.Schema({
    },
    password: String,
    accessItems: [],
-   orders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'OrderSchema'}]
+   orders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'OrderSchema'}],
+   lastLogin: Date
 })
 
 UserSchema.set('timestamps', true)
