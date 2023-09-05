@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import Coupon from '@/models/coupon'
 import RecaptchaCheck from '@/lib/recaptchCheck';
+import dbConnect from '@/lib/dbConnect';
 
 export async function POST(req: Request) {
 
@@ -9,6 +10,7 @@ export async function POST(req: Request) {
    const recaptchaRes = await RecaptchaCheck(gReCaptchaToken)
    if (!recaptchaRes) return NextResponse.json({ message: 'recaptcha fail' })
 
+   await dbConnect()
    const coupon = await Coupon.findOne({
       code: code
    })

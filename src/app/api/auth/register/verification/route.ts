@@ -30,7 +30,6 @@ const sendVerificationCodeViaSMS = async (mobile: string, code: string) => {
 
 export async function POST(req: Request) {
     try {
-        await dbConnect()
 
         const { mobileNumber, gReCaptchaToken } = (await req.json()) as {
             mobileNumber: string
@@ -44,7 +43,8 @@ export async function POST(req: Request) {
         const censoredMobileNumber = `${mobileNumber.slice(0, 4)}*${mobileNumber.slice(-2)}`
 
         const hashedCode = hashSync(generatedCode, genSaltSync(10))
-
+        
+        await dbConnect()
         await verification.create({
             mobileNumber: censoredMobileNumber,
             code: hashedCode,

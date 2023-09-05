@@ -29,8 +29,6 @@ const checkVerificationCode = async (userCode: string, trueCode: string) => {
 
 export async function POST(req: Request) {
    try {
-      await dbConnect()
-
       const { code, mobileNumber, password } = (await req.json()) as {
          code: string,
          mobileNumber: string
@@ -47,6 +45,7 @@ export async function POST(req: Request) {
 
       const hashedPassword = hashSync(password, genSaltSync(10))
 
+      await dbConnect()
       const user = await User.create({
          mobileNumber: mobileNumber.toLowerCase(),
          password: hashedPassword,

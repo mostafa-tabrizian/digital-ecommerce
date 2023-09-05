@@ -4,6 +4,7 @@ import User from '@/models/user'
 import { getServerSession } from 'next-auth'
 import authOptions from '@/lib/auth'
 import RecaptchaCheck from '@/lib/recaptchCheck'
+import dbConnect from '@/lib/dbConnect'
 
 export async function POST(req: Request) {
    try {
@@ -19,6 +20,7 @@ export async function POST(req: Request) {
       const session: { _doc: { _id: string } } | null = await getServerSession(authOptions)
       if (!session) return NextResponse.json({ status: 403 })
 
+      await dbConnect()
       const user = await User.findOne({
          _id: session._doc._id
       })

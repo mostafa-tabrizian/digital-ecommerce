@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server'
 
 import authOptions from '@/lib/auth'
 import Course, { ICourse } from '@/models/course'
+import dbConnect from '@/lib/dbConnect'
 
 export async function POST(req: Request) {
     const { courseId } = (await req.json()) as {
@@ -12,6 +13,7 @@ export async function POST(req: Request) {
     const session: { _doc: { _id: string } } | null = await getServerSession(authOptions)
     if (!session) return NextResponse.json({ status: 403 })
 
+    await dbConnect()
     const course = await Course.findOne({
         _id: courseId
     }).exec()

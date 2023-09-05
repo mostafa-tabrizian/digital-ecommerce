@@ -4,6 +4,7 @@ import { NextResponse } from 'next/server'
 import authOptions from '@/lib/auth'
 import Course from '@/models/course'
 import RecaptchaCheck from '@/lib/recaptchCheck'
+import dbConnect from '@/lib/dbConnect'
 
 export async function POST(req: Request) {
 
@@ -22,6 +23,7 @@ export async function POST(req: Request) {
 
     if (!session) return NextResponse.json({ status: 403 })
 
+    await dbConnect()
     const course = await Course.findOne({
         'questions._id': questionId
     }).exec()

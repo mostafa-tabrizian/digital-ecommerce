@@ -10,12 +10,12 @@ const UserDetail = async () => {
    if (!session) return null
 
    await dbConnect()
-
    return await User.findOne({
       mobileNumber: session._doc.mobileNumber
    }).exec()
       .then((user: { _doc: IUser }) => {
-         const { password, ...filteredUser } = user._doc
+         // eslint-disable-next-line @typescript-eslint/no-unused-vars
+         const { password: _, ...filteredUser } = user._doc
          return filteredUser
       })
 }

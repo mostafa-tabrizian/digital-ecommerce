@@ -10,7 +10,6 @@ import authOptions from '@/lib/auth'
 
 export async function GET() {
    await dbConnect()
-
    const courses = await Course.find()
 
    return NextResponse.json(courses)

@@ -15,7 +15,6 @@ import DateFormat from '../../components/dateFormat'
 
 const getCourse = async (slug: string) => {
    await dbConnect()
-
    return await Course.findOne({
       name: decodeURI(slug),
    }).exec()

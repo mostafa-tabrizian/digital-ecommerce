@@ -2,6 +2,7 @@ import { hashSync, genSaltSync } from 'bcryptjs'
 import { NextResponse } from 'next/server'
 import User from '@/models/user'
 import RecaptchaCheck from '@/lib/recaptchCheck'
+import dbConnect from '@/lib/dbConnect'
 
 const sendVerificationCodeViaSMS = async (mobile: string, password: string) => {
     const payload = {
@@ -42,6 +43,7 @@ export async function POST(req: Request) {
 
         const hashedNewPassword = hashSync(randomNewPassword, genSaltSync(10))
 
+        await dbConnect()
         const user = await User.findOneAndUpdate({
             mobileNumber: mobileNumber
         }, {

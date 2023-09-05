@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import User, { IUser } from '@/models/user'
 import RecaptchaCheck from './recaptchCheck'
+import dbConnect from './dbConnect'
 
 interface Credential {
    mobileNumber: string
@@ -36,14 +37,18 @@ const authOptions: NextAuthOptions = {
             const { mobileNumber, password, gReCaptchaToken } = credentials
 
             const recaptchaRes = await RecaptchaCheck(gReCaptchaToken)
-
             if (!recaptchaRes) return null
 
-            const user = await User.findOne({
+            await dbConnect()
+            const user = await User.findOneAndUpdate({
                mobileNumber: mobileNumber
+            }, {
+               lastLogin: new Date()
             })
 
             if (!user) return null
+
+            user.save()
 
             const passwordsMatch = bcrypt.compareSync(password, user.password)
 

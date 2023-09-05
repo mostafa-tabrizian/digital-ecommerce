@@ -4,12 +4,14 @@ import { NextResponse } from 'next/server'
 import authOptions from '@/lib/auth'
 import User, { IUser } from '@/models/user'
 import RecaptchaCheck from '@/lib/recaptchCheck'
+import dbConnect from '@/lib/dbConnect'
 
 export async function GET() {
    const session: { _doc: { mobileNumber: string } } | null = await getServerSession(authOptions)
 
    if (!session) return NextResponse.json({ status: 403 })
 
+   await dbConnect()
    const user = await User.findOne({
       mobileNumber: session._doc.mobileNumber
    }, 'name').exec()
@@ -28,6 +30,7 @@ export async function PATCH(request: Request) {
    if (!session) return NextResponse.json({ status: 403 })
 
    try {
+      await dbConnect()
       const user = await User.findOneAndUpdate(
          { mobileNumber: session._doc.mobileNumber },
          { name: name }
