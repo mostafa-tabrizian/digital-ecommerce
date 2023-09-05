@@ -15,5 +15,8 @@ export async function POST(req: Request) {
       code: code
    })
 
+   if (new Date() > coupon.expiresAt) return NextResponse.json({ message: 'coupon date expired'})
+   else if (coupon.qty <= 0) return NextResponse.json({ message: 'coupon qty is zero'})
+
    return NextResponse.json(coupon)
 }
