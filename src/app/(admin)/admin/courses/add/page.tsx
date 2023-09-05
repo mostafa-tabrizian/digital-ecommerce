@@ -61,7 +61,7 @@ const AdminCourse = () => {
                      <Link className='text-gray-400' href='/admin'>
                         ادمین
                      </Link>
-                     <Link className='text-gray-400' href='/admin/course'>
+                     <Link className='text-gray-400' href='/admin/courses'>
                         محصولات
                      </Link>
                      <h5 className='font-semibold'>افزودن</h5>

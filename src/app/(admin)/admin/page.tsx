@@ -1,6 +1,5 @@
 import User from '@/lib/user'
 import Link from 'next/link'
-import isAdmin from '@/lib/isAdmin'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 
 export const metadata = {
@@ -12,7 +11,7 @@ const AdminPanel = async () => {
 
    return (
       <div className='mx-6 my-16 space-y-10'>
-         {(await isAdmin()) ? (
+         {(user?.role == '') ? (
             <>
                <Breadcrumbs aria-label='breadcrumb'>
                   <Link className='text-gray-400' href='/'>
@@ -52,7 +51,7 @@ const AdminPanel = async () => {
                      </Link>
                   </div>
                   <div className='bg-white rounded-lg py-2 px-2'>
-                     <Link href='/admin/course'>
+                     <Link href='/admin/courses'>
                         <div className='flex justify-end space-x-3 items-center'>
                            <span className='text-base text-black'>محصولات</span>
                            <svg
