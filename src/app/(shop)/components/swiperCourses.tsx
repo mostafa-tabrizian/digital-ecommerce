@@ -1,28 +1,30 @@
 'use client'
 
-import CourseCards from '@/components/course/cards'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import useSWR from 'swr'
+import Swiper from 'swiper/bundle'
+import { toast } from 'react-toastify'
+import 'swiper/css/bundle'
 
 import { ICourse } from '@/models/course'
-
-import Swiper from 'swiper/bundle'
-import 'swiper/css/bundle'
+import CourseCards from '@/components/course/cards'
 import stringtoDate from '@/lib/stringToDate'
+import fetcher from '@/lib/fetcher'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const SwiperCourses = () => {
-   const [courses, setCourses] = useState<ICourse[]>([])
+   const {
+      data: courses,
+      isLoading,
+      error,
+   }: { data: [ICourse]; isLoading: boolean; error: unknown } = useSWR('/api/course', fetcher)
 
-   const getCourses = async () => {
-      const res: [ICourse] = await fetch('/api/course').then((res) => res.json())
-
-      res.sort((a, b) => stringtoDate(b.createdAt) - stringtoDate(a.createdAt))
-
-      setCourses(res)
+   if (error) {
+      toast.error('دریافت برند ها به مشکل برخورد کرد!')
+      console.error(error)
    }
 
-   useEffect(() => {
-      getCourses()
-   }, [])
+   courses?.sort((a, b) => stringtoDate(b.createdAt) - stringtoDate(a.createdAt))
 
    useEffect(() => {
       new Swiper('.swiperCourses', {
@@ -48,13 +50,21 @@ const SwiperCourses = () => {
    return (
       <div className='swiperCourses rtl'>
          <div className='swiper-wrapper py-5'>
-            {courses.map((course) => {
-               return (
-                  <div key={course._id} className='swiper-slide'>
-                     <CourseCards course={course} pageTarget='/course/' />
-                  </div>
-               )
-            })}
+            {isLoading ? (
+               <div className='flex w-full justify-center my-20'>
+                  <CircularProgress size={40} />
+               </div>
+            ) : (
+               <>
+                  {courses.map((course) => {
+                     return (
+                        <div key={course._id} className='swiper-slide'>
+                           <CourseCards course={course} pageTarget='/course/' />
+                        </div>
+                     )
+                  })}
+               </>
+            )}
          </div>
          <div className='swiper-pagination'></div>
       </div>

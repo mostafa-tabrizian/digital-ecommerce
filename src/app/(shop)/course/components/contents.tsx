@@ -1,18 +1,21 @@
 'use client'
 
-import CourseCards from '@/components/course/cards'
+import { useCallback, useEffect, useState } from 'react'
+import useSWR from 'swr'
+import { toast } from 'react-toastify'
 
-import { useEffect, useState } from 'react'
 import Drawer from '@mui/material/Drawer'
 import Collapse from '@mui/material/Collapse'
 import Button from '@mui/material/Button'
-
 import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 
 import { ICourse } from '@/models/course'
 import stringtoDate from '@/lib/stringToDate'
+import fetcher from '@/lib/fetcher'
+import CourseCards from '@/components/course/cards'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const Contents = () => {
    const [dbCourses, setDbCourses] = useState<ICourse[]>([])
@@ -29,16 +32,22 @@ const Contents = () => {
    const [typeValue, setTypeValue] = useState<string | null>(null)
    const [categoryValue, setCategoryValue] = useState<string | null>(null)
 
-   const getCourses = async () => {
-      const res: [ICourse] = await fetch('/api/course').then((res) => res.json())
-      res.sort((a, b) => stringtoDate(b.createdAt) - stringtoDate(a.createdAt))
-      setDbCourses(res)
-      setCourses(res)
+   const {
+      data: coursesData,
+      isLoading,
+      error,
+   }: { data: [ICourse]; error: unknown; isLoading: boolean } = useSWR('/api/course', fetcher)
+
+   if (error) {
+      toast.error('در دریافت اطلاعات شما خطایی رخ داد')
+      console.error(error)
    }
 
    useEffect(() => {
-      getCourses()
-   }, [])
+      coursesData?.sort((a, b) => stringtoDate(b.createdAt) - stringtoDate(a.createdAt))
+      setDbCourses(coursesData)
+      setCourses(coursesData)
+   }, [coursesData])
 
    useEffect(() => {
       switch (sortValue) {
@@ -69,10 +78,14 @@ const Contents = () => {
             setCourses(dbCourses.filter((course) => course.discount == 0))
             break
          case 'free':
-            setCourses(dbCourses.filter((course) => course.price == 0 || course.price == course.discount))
+            setCourses(
+               dbCourses.filter((course) => course.price == 0 || course.price == course.discount),
+            )
             break
          case 'cash':
-            setCourses(dbCourses.filter((course) => course.price !== 0 || course.price !== course.discount))
+            setCourses(
+               dbCourses.filter((course) => course.price !== 0 || course.price !== course.discount),
+            )
             break
          default:
             break
@@ -149,13 +162,19 @@ const Contents = () => {
             </div>
          </div>
          <div className='py-5 space-y-16'>
-            {courses.map((course) => {
-               return (
-                  <div key={course._id}>
-                     <CourseCards course={course} pageTarget='/course/' />
-                  </div>
-               )
-            })}
+            {isLoading ? (
+               <div className='flex justify-center my-20'>
+                  <CircularProgress size={40} />
+               </div>
+            ) : (
+               courses?.map((course) => {
+                  return (
+                     <div key={course._id}>
+                        <CourseCards course={course} pageTarget='/course/' />
+                     </div>
+                  )
+               })
+            )}
          </div>
 
          <Drawer anchor='bottom' open={sortToolsDrawer} onClose={toggleDrawer()}>
@@ -224,7 +243,12 @@ const Contents = () => {
                <Button
                   onClick={toggleDrawer()}
                   variant='contained'
-                  sx={{borderRadius: '15px', width: '100%', padding: '.5rem 0', marginButton: '1.5rem'}}
+                  sx={{
+                     borderRadius: '15px',
+                     width: '100%',
+                     padding: '.5rem 0',
+                     marginButton: '1.5rem',
+                  }}
                >
                   اعمال فیلتر
                </Button>
@@ -372,7 +396,12 @@ const Contents = () => {
                <Button
                   onClick={toggleDrawer()}
                   variant='contained'
-                  sx={{borderRadius: '15px', width: '100%', padding: '.5rem 0', marginButton: '1.5rem'}}
+                  sx={{
+                     borderRadius: '15px',
+                     width: '100%',
+                     padding: '.5rem 0',
+                     marginButton: '1.5rem',
+                  }}
                >
                   اعمال فیلتر
                </Button>
