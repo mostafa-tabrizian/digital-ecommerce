@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server'
 
 import authOptions from '@/lib/auth'
 import User, { IUser } from '@/models/user'
+import RecaptchaCheck from '@/lib/recaptchCheck'
 
 export async function GET() {
    const session: { _doc: { mobileNumber: string } } | null = await getServerSession(authOptions)
@@ -18,17 +19,21 @@ export async function GET() {
 }
 
 export async function PATCH(request: Request) {
-   const session: { _doc: { mobileNumber: string } } | null = await getServerSession(authOptions)
-   const payload = await request.json()
+   const { name, gReCaptchaToken }: { name: string, gReCaptchaToken: string } = await request.json()
 
-   if (!session) return
+   const recaptchaRes = await RecaptchaCheck(gReCaptchaToken)
+   if (!recaptchaRes) return NextResponse.json({ message: 'recaptcha fail' })
+
+   const session: { _doc: { mobileNumber: string } } | null = await getServerSession(authOptions)
+   if (!session) return NextResponse.json({ status: 403 })
 
    try {
       const user = await User.findOneAndUpdate(
          { mobileNumber: session._doc.mobileNumber },
-         { name: payload.name }
+         { name: name }
       )
-      
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password: _, ...filteredUser } = user._doc
 
       return NextResponse.json(filteredUser)

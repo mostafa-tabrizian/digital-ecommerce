@@ -2,6 +2,7 @@
 
 import { toast } from 'react-toastify'
 import { Form, Formik } from 'formik'
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 
 import FormikInput from '@/formik/input'
 import { ForgotPasswordSchemaValidation } from '@/formik/schema/validation'
@@ -12,22 +13,39 @@ interface FormType {
 }
 
 const ForgotPasswordForm = () => {
+   const { executeRecaptcha } = useGoogleReCaptcha()
+
    const onSubmit = async (values: FormType) => {
       try {
+         if (!executeRecaptcha) return console.log('!executeRecaptcha')
+
+         const gReCaptchaToken = await executeRecaptcha('forgotPasswordFormSubmit').then(
+            (gReCaptchaToken) => gReCaptchaToken,
+         )
+
+         const payload = {
+            ...values,
+            gReCaptchaToken,
+         }
+
          const res = await fetch('/api/auth/forgotpassword', {
             method: 'POST',
-            body: JSON.stringify(values),
+            body: JSON.stringify(payload),
          })
 
          const resData = await res.json()
 
          if (!res.ok) throw new Error()
 
-         if (resData.message === 'smsError')
+         if (resData?.message == 'recaptcha fail')
+            return toast.error('فعالیت شما مشکوک به ربات است')
+         else if (resData.message === 'smsError')
             return toast.error('در بازنشانی رمزعبور خطایی رخ داد. لطفا به پشتیبانی اطلاع دهید.')
          else if (resData.status === 500) throw new Error('405')
 
-         toast.success('بازنشانی شما با موفقیت انجام شد. لطفا برای ورود از رمز عبور ارسال شده استفاده کنید....')
+         toast.success(
+            'بازنشانی شما با موفقیت انجام شد. لطفا برای ورود از رمز عبور ارسال شده استفاده کنید....',
+         )
       } catch (err) {
          toast.error('در بازنشانی رمز شما خطایی رخ داد')
          return console.error('auth signIn() err', err)

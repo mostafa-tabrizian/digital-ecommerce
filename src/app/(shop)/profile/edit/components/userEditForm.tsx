@@ -5,6 +5,7 @@ import { toast } from 'react-toastify'
 import useSWR from 'swr'
 import Backdrop from '@mui/material/Backdrop'
 import CircularProgress from '@mui/material/CircularProgress'
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 
 import FormikInput from '@/formik/input'
 import { ProfileSchemaValidation } from '@/formik/schema/validation'
@@ -17,27 +18,45 @@ interface FormType {
 const UserEditForm = () => {
    const { data, error, isLoading } = useSWR('/api/user', fetcher)
 
+   const { executeRecaptcha } = useGoogleReCaptcha()
+
    if (error) {
       toast.error('در دریافت اطلاعات شما خطایی رخ داد')
       console.error(error)
    }
 
    const onSubmit = async (values: FormType) => {
-      const payload: FormType = Object.fromEntries(
+      const inputValue: FormType = Object.fromEntries(
          // @ts-ignore
          Object.entries(values).filter(([key, value]) => value !== data[key]),
       )
 
-      const payloadLength = Object.keys(payload).length
+      const inputValueLength = Object.keys(inputValue).length
 
-      if (payloadLength) {
+      if (inputValueLength) {
          try {
+            if (!executeRecaptcha) return console.log('!executeRecaptcha')
+
+            const gReCaptchaToken = await executeRecaptcha('userEditFormSubmit').then(
+               (gReCaptchaToken) => gReCaptchaToken,
+            )
+
+            const payload = {
+               ...inputValue,
+               gReCaptchaToken,
+            }
+
             const res = await fetch('/api/user', {
                method: 'PATCH',
                body: JSON.stringify(payload),
             })
 
             if (!res.ok) throw new Error()
+
+            const resData = await res.json()
+
+            if (resData?.message == 'recaptcha fail')
+               return toast.error('فعالیت شما مشکوک به ربات است')
 
             toast.success('تغییرات با موفقیت ثبت گردید.')
          } catch (err) {

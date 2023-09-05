@@ -5,6 +5,7 @@ import { toast } from 'react-toastify'
 import { Form, Formik } from 'formik'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 
 import FormikInput from '@/formik/input'
 import { LoginSchemaValidation } from '@/formik/schema/validation'
@@ -32,10 +33,19 @@ const LoginForm = () => {
 
    const [error, setError] = useState('')
 
+   const { executeRecaptcha } = useGoogleReCaptcha()
+
    const onSubmit = async (values: FormType) => {
       try {
+         if (!executeRecaptcha) return console.log('!executeRecaptcha')
+
+         const gReCaptchaToken = await executeRecaptcha('loginFormSubmit').then(
+            (gReCaptchaToken) => gReCaptchaToken,
+         )
+
          const res = await signIn('credentials', {
             ...values,
+            gReCaptchaToken,
             redirect: false,
          })
 

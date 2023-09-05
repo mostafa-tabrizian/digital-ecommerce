@@ -74,7 +74,7 @@ const Profile = async () => {
             <div className='bg-white rounded-lg py-2 px-2 hover:shadow-lg hover:shadow-blue-100 transition-all'>
                <Link href='profile/orders'>
                   <div className='flex justify-end space-x-3 items-center'>
-                     <span className='text-base text-black'>سفارش های من</span>
+                     <span className='text-base text-black'>دوره های من</span>
                      <svg
                         className='h-7 w-7'
                         width='24'

@@ -1,6 +1,7 @@
 import { hashSync, genSaltSync } from 'bcryptjs'
 import { NextResponse } from 'next/server'
 import User from '@/models/user'
+import RecaptchaCheck from '@/lib/recaptchCheck'
 
 const sendVerificationCodeViaSMS = async (mobile: string, password: string) => {
     const payload = {
@@ -28,9 +29,14 @@ const sendVerificationCodeViaSMS = async (mobile: string, password: string) => {
 
 export async function POST(req: Request) {
     try {
-        const { mobileNumber } = (await req.json()) as {
+        const { mobileNumber, gReCaptchaToken } = (await req.json()) as {
             mobileNumber: string
+            gReCaptchaToken: string
         }
+
+        const recaptchaRes = await RecaptchaCheck(gReCaptchaToken)
+
+        if (!recaptchaRes) return NextResponse.json({ message: 'recaptcha fail' })
 
         const randomNewPassword = Math.random().toString(36).slice(2, 10)
 
@@ -49,10 +55,10 @@ export async function POST(req: Request) {
         if (smsRes.status !== 1) return NextResponse.json({
             message: 'smsError'
         })
-        else 
-        return NextResponse.json({
-            message: 'codeSent'
-        })
+        else
+            return NextResponse.json({
+                message: 'codeSent'
+            })
 
     } catch (error) {
         // @ts-ignore

@@ -3,50 +3,64 @@ import { NextResponse } from 'next/server'
 
 import authOptions from '@/lib/auth'
 import Course, { ICourse } from '@/models/course'
+import RecaptchaCheck from '@/lib/recaptchCheck'
 
 export async function POST(req: Request) {
+   const payload: {
+      courseId: string
+      gReCaptchaToken: string
+      title: string
+      positivePoints: string[]
+      negativePoints: string[]
+      description: string
+      rate: number
+      suggestion: boolean | null
+   } = await req.json()
 
-    const payload: {
-        courseId: string
-        title: string
-        positivePoints: string[]
-        negativePoints: string[]
-        description: string
-        rate: number
-        suggestion: boolean | null
-    } = await req.json()
+   const {
+      courseId,
+      gReCaptchaToken,
+      title,
+      positivePoints,
+      negativePoints,
+      description,
+      rate,
+      suggestion,
+   } = payload
 
-    const { courseId, title, positivePoints, negativePoints, description, rate, suggestion } = payload
+   const recaptchaRes = await RecaptchaCheck(gReCaptchaToken)
+   if (!recaptchaRes) return NextResponse.json({ message: 'recaptcha fail'})
 
-    const session: { _doc: { _id: string, avatar: string, name: string } } | null = await getServerSession(authOptions)
+   const session: { _doc: { _id: string; avatar: string; name: string } } | null =
+      await getServerSession(authOptions)
+   if (!session) return NextResponse.json({ status: 403 })
 
-    if (!session) return NextResponse.json({ status: 403 })
+   const course = await Course.findOne({
+      _id: courseId,
+   })
+      .exec()
+      .then((res: ICourse) => res)
 
-    const course = await Course.findOne({
-        _id: courseId
-    }).exec()
-        .then((res: ICourse) => res)
+   // @ts-ignore
+   course.comments.push({
+      user: {
+         id: session._doc._id,
+         avatar: session._doc.avatar,
+         name: session._doc.name,
+      },
+      title: title,
+      positivePoints: positivePoints,
+      negativePoints: negativePoints,
+      body: description,
+      rate: rate,
+      suggestion: suggestion,
+      createdAt: new Date(),
+   })
 
-    // @ts-ignore
-    course.comments.push({
-        user: {
-            id: session._doc._id,
-            avatar: session._doc.avatar,
-            name: session._doc.name
-        },
-        title: title,
-        positivePoints: positivePoints,
-        negativePoints: negativePoints,
-        body: description,
-        rate: rate,
-        suggestion: suggestion,
-        createdAt: new Date()
-    })
-    
-    // @ts-ignore
-    course.save()
+   // @ts-ignore
+   course.save()
 
-    return NextResponse.json({ message: 'comment submitted.' })
+   return NextResponse.json({ message: 'comment submitted.' })
 }
 
 // export async function PATCH(request: Request) {

@@ -3,15 +3,20 @@ import { NextResponse } from 'next/server'
 
 import authOptions from '@/lib/auth'
 import Course from '@/models/course'
+import RecaptchaCheck from '@/lib/recaptchCheck'
 
 export async function POST(req: Request) {
 
     const payload: {
         questionId: string
+        gReCaptchaToken: string
         body: string
     } = await req.json()
+    
+    const { questionId, gReCaptchaToken, body } = payload
 
-    const { questionId, body } = payload
+    const recaptchaRes = await RecaptchaCheck(gReCaptchaToken)
+    if (!recaptchaRes) return NextResponse.json({ message: 'recaptcha fail' })
 
     const session: { _doc: { _id: string, avatar: string, name: string } } | null = await getServerSession(authOptions)
 

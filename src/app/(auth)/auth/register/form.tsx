@@ -1,9 +1,9 @@
 'use client'
 
-import { signIn } from 'next-auth/react'
 import { toast } from 'react-toastify'
 import { Form, Formik } from 'formik'
 import CircularProgress from '@mui/material/CircularProgress'
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 
 import { RegisterSchemaValidation } from '@/formik/schema/validation'
 import FormikInput from '@/formik/input'
@@ -18,20 +18,35 @@ interface IForm {
 
 const RegisterForm = () => {
    const [formData, setFormData] = useState<IForm | null>(null)
-   const [verificationInput, setVerificationInput] = useState(false)
+   const [verificationInput, setVerificationInput] = useState<boolean>(false)
+
+   const { executeRecaptcha } = useGoogleReCaptcha()
 
    const onSubmit = async (values: IForm) => {
       try {
+         if (!executeRecaptcha) return console.log('!executeRecaptcha')
+
+         const gReCaptchaToken = await executeRecaptcha('registerFormSubmit').then(
+            (gReCaptchaToken) => gReCaptchaToken,
+         )
+
+         const payload = {
+            ...values,
+            gReCaptchaToken,
+         }
+
          const res = await fetch('/api/auth/register/verification', {
             method: 'POST',
-            body: JSON.stringify(values),
+            body: JSON.stringify(payload),
          })
-
-         const resData = await res.json()
 
          if (!res.ok) throw new Error()
 
-         if (resData.message === 'smsError')
+         const resData = await res.json()
+
+         if (resData?.message == 'recaptcha fail')
+            return toast.error('فعالیت شما مشکوک به ربات است')
+         else if (resData.message === 'smsError')
             return toast.error('در ارسال کد فعال سازی خطایی رخ داد. لطفا به پشتیبانی اطلاع دهید.')
          else if (resData.status === 500) throw new Error('405')
 
@@ -53,7 +68,11 @@ const RegisterForm = () => {
       <>
          {verificationInput ? (
             // @ts-ignore
-            <VerificationForm formData={formData} verificationInput={{value: verificationInput, set: setVerificationInput}} postVerification={onSubmit} />
+            <VerificationForm
+               formData={formData}
+               verificationInput={{ value: verificationInput, set: setVerificationInput }}
+               postVerification={onSubmit}
+            />
          ) : (
             <Formik
                initialValues={{ mobileNumber: '', password: '', confirmPassword: '' }}

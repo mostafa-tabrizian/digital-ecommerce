@@ -2,6 +2,7 @@ import { useState, useRef, Dispatch, SetStateAction } from 'react'
 import { toast } from 'react-toastify'
 import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 
 import { ICoupon } from '@/models/coupon'
 
@@ -17,17 +18,29 @@ const CouponComponent = ({
    const [loading, setLoading] = useState(false)
    const couponRef = useRef<HTMLInputElement>(null)
 
+   const { executeRecaptcha } = useGoogleReCaptcha()
+
    const getCouponData = async (couponCode: string) => {
+      if (!executeRecaptcha) return console.log('!executeRecaptcha')
+
+      const gReCaptchaToken = await executeRecaptcha('couponFormSubmit').then(
+         (gReCaptchaToken) => gReCaptchaToken,
+      )
+
       const res = await fetch('/api/coupon', {
          method: 'POST',
          body: JSON.stringify({
             code: couponCode,
+            gReCaptchaToken,
          }),
       })
-      
+
       if (!res.ok) throw new Error()
 
-      return await res.json()
+      const resData = await res.json()
+      if (resData?.message == 'recaptcha fail') return toast.error('فعالیت شما مشکوک به ربات است')
+
+      return resData
    }
 
    const couponCheck = async () => {

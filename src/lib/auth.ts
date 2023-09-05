@@ -2,10 +2,12 @@ import type { NextAuthOptions } from 'next-auth'
 import bcrypt from 'bcrypt'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import User, { IUser } from '@/models/user'
+import RecaptchaCheck from './recaptchCheck'
 
 interface Credential {
    mobileNumber: string
    password: string
+   gReCaptchaToken: string
 }
 
 const authOptions: NextAuthOptions = {
@@ -31,10 +33,14 @@ const authOptions: NextAuthOptions = {
          async authorize(credentials: Credential | undefined) {
             if (!credentials) return null
 
-            const { mobileNumber, password } = credentials
+            const { mobileNumber, password, gReCaptchaToken } = credentials
+
+            const recaptchaRes = await RecaptchaCheck(gReCaptchaToken)
+
+            if (!recaptchaRes) return null
 
             const user = await User.findOne({
-                  mobileNumber: mobileNumber
+               mobileNumber: mobileNumber
             })
 
             if (!user) return null

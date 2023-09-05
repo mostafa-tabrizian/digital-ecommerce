@@ -3,6 +3,7 @@
 import { Form, Formik } from 'formik'
 import { toast } from 'react-toastify'
 import CircularProgress from '@mui/material/CircularProgress'
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 
 import FormikInput from '@/formik/input'
 import { PasswordSchemaValidation } from '@/formik/schema/validation'
@@ -14,23 +15,40 @@ interface FormType {
 }
 
 const UserEditForm = () => {
+   const { executeRecaptcha } = useGoogleReCaptcha()
+
    const handleSubmit = async (
       values: FormType,
       // @ts-ignore
       { resetForm },
    ) => {
       try {
+         if (!executeRecaptcha) return console.log('!executeRecaptcha')
+
+         const gReCaptchaToken = await executeRecaptcha('commentFormSubmit').then(
+            (gReCaptchaToken) => gReCaptchaToken,
+         )
+
+         const payload = {
+            ...values,
+            gReCaptchaToken,
+         }
+
          const res = await fetch('/api/user/change-password', {
             method: 'POST',
-            body: JSON.stringify(values),
+            body: JSON.stringify(payload),
          })
 
          if (!res.ok) throw new Error()
 
-         const resJson = await res.json()
-         
-         if (resJson?.status == 403) return toast.error('لطفا خارج و مجدد وارد حساب کاربری خود شوید!')
-         else if (resJson?.message == 'password dont match') return toast.error('رمز فعلی شما اشتباه است')
+         const resData = await res.json()
+
+         if (resData?.message == 'recaptcha fail')
+            return toast.error('فعالیت شما مشکوک به ربات است')
+         else if (resData?.status == 403)
+            return toast.error('لطفا خارج و مجدد وارد حساب کاربری خود شوید!')
+         else if (resData?.message == 'password dont match')
+            return toast.error('رمز فعلی شما اشتباه است')
 
          resetForm()
          toast.success('رمز عبور شما با موفقیت تغییر یافت.')

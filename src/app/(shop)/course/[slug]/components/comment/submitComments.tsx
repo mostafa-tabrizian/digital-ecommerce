@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Form, Formik } from 'formik'
 import { toast } from 'react-toastify'
 import Slider from '@mui/material/Slider'
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 
 import FormikInput from '@/formik/input'
 import Button from '@mui/material/Button'
@@ -17,13 +18,28 @@ const Comments = ({ course }: { course: { id: string; name: string } }) => {
    const [rate, setRate] = useState(50)
    const [suggestion, setSuggestion] = useState<boolean | null>(null)
 
+   const { executeRecaptcha } = useGoogleReCaptcha()
+
    const handleSubmit = async (
-      values: { title: string; positivePoints: string[]; negativePoints: string[]; description: string; rate: number; suggestion: boolean | null },
+      values: {
+         title: string
+         positivePoints: string[]
+         negativePoints: string[]
+         description: string
+         rate: number
+         suggestion: boolean | null
+      },
       // @ts-ignore
       { resetForm },
    ) => {
       try {
-         const payload = { courseId: course.id, ...values }
+         if (!executeRecaptcha) return console.log('!executeRecaptcha')
+
+         const gReCaptchaToken = await executeRecaptcha('commentFormSubmit').then(
+            (gReCaptchaToken) => gReCaptchaToken,
+         )
+
+         const payload = { courseId: course.id, gReCaptchaToken, ...values }
 
          const res = await fetch('/api/course/comment', {
             method: 'POST',
@@ -31,6 +47,13 @@ const Comments = ({ course }: { course: { id: string; name: string } }) => {
          })
 
          if (!res.ok) throw new Error()
+
+         const resData = await res.json()
+
+         if (resData?.message == 'recaptcha fail')
+            return toast.error('فعالیت شما مشکوک به ربات است')
+         else if (resData?.status == 403)
+            return toast.error('لطفا خارج و مجدد وارد حساب کاربری خود شوید!')
 
          setPanel(false)
          resetForm()
@@ -265,7 +288,7 @@ const Comments = ({ course }: { course: { id: string; name: string } }) => {
                         </div>
                         <FormikInput label='عنوان دیدگاه' name='title' type='text' />
 
-                        <Points setFieldValue={setFieldValue}/>
+                        <Points setFieldValue={setFieldValue} />
 
                         <FormikTextarea label='توضیحات' name='description' />
 

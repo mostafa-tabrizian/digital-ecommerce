@@ -6,11 +6,14 @@ import FormikTextarea from '@/formik/textarea'
 import { toast } from 'react-toastify'
 import { Form, Formik } from 'formik'
 import CircularProgress from '@mui/material/CircularProgress'
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 
 import { QuestionSchemaValidation } from '@/formik/schema/validation'
 
 const SubmitQuestion = ({ courseId }: { courseId: string }) => {
    const [panel, setPanel] = useState(false)
+
+   const { executeRecaptcha } = useGoogleReCaptcha()
 
    const handleSubmit = async (
       values: {
@@ -20,7 +23,11 @@ const SubmitQuestion = ({ courseId }: { courseId: string }) => {
       { resetForm },
    ) => {
       try {
-         const payload = { courseId: courseId, ...values }
+         if (!executeRecaptcha) return console.log('!executeRecaptcha');
+
+         const gReCaptchaToken = await executeRecaptcha('questionFormSubmit').then(gReCaptchaToken => gReCaptchaToken)
+
+         const payload = { courseId: courseId, gReCaptchaToken, ...values }
 
          const res = await fetch('/api/course/question', {
             method: 'POST',
@@ -28,6 +35,11 @@ const SubmitQuestion = ({ courseId }: { courseId: string }) => {
          })
 
          if (!res.ok) throw new Error()
+
+         const resData = await res.json()
+
+         if (resData?.message == 'recaptcha fail') return toast.error('فعالیت شما مشکوک به ربات است') 
+         else if (resData?.status == 403) return toast.error('لطفا خارج و مجدد وارد حساب کاربری خود شوید!')
 
          setPanel(false)
          resetForm()
