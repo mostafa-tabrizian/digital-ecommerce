@@ -11,7 +11,7 @@ const AdminPanel = async () => {
 
    return (
       <div className='mx-6 my-16 space-y-10'>
-         {(user?.role == '') ? (
+         {(user?.role == 'ادمین') ? (
             <>
                <Breadcrumbs aria-label='breadcrumb'>
                   <Link className='text-gray-400' href='/'>

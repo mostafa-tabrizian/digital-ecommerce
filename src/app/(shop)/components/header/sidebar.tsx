@@ -2,10 +2,11 @@
 
 import Drawer from '@mui/material/Drawer'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Collapse from '@mui/material/Collapse'
 import Button from '@mui/material/Button'
 import Avatar from '@mui/material/Avatar'
+import { usePathname } from 'next/navigation'
 
 interface IUser {
    name: string | undefined
@@ -17,6 +18,9 @@ interface IUser {
 const Sidebar = ({ user }: { user: IUser }) => {
    const [sidebar, setSidebar] = useState(false)
    const [contactUsOptions, setContactUsOptions] = useState(false)
+
+   const pathname = usePathname()
+   useEffect(() => setSidebar(false), [pathname])
 
    return (
       <div>
