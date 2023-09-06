@@ -39,9 +39,12 @@ const CouponComponent = ({
 
       const resData = await res.json()
       if (resData?.message == 'recaptcha fail') return toast.error('فعالیت شما مشکوک به ربات است')
-      else if (resData?.message == 'coupon date expired') return toast.error('تاریخ اعتبار کد تخفیف شما منقضی شده است')
-      else if (resData?.message == 'coupon qty is zero') return toast.error('اعتبار مصرفی کد تخفیف شما تمام شده است')
+      else if (resData?.message == 'coupon date expired')
+         return toast.error('تاریخ اعتبار کد تخفیف شما منقضی شده است')
+      else if (resData?.message == 'coupon qty is zero')
+         return toast.error('اعتبار مصرفی کد تخفیف شما تمام شده است')
 
+      toast.success('تخفیف با موفقیت به شما تعلق گرفت')
       return resData
    }
 
@@ -57,9 +60,7 @@ const CouponComponent = ({
 
             if (couponData) {
                if (couponData.value >= paymentPrice) couponData.value = paymentPrice
-
                setCoupon(couponData)
-               toast.success('تخفیف با موفقیت به شما تعلق گرفت')
             } else {
                toast.error('کد تخفیف وارد شده منقضی یا نامعتبر می‌باشد')
             }

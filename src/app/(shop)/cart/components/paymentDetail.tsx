@@ -33,7 +33,6 @@ const PaymentDetail = () => {
       setPrice(price)
       setDiscount(discount)
       setPaymentPrice(price - discount)
-
    }, [cart])
 
    useEffect(() => {
@@ -103,7 +102,7 @@ const PaymentDetail = () => {
                      </span>
                      <span className='text-gray-600 text-base font-bold'>جمع کل</span>
                   </div>
-                  {(discount + couponValue) ? (
+                  {discount + couponValue ? (
                      <div className='flex items-center justify-between mb-2'>
                         <span className='text-rose-500 tracking-wider text-base font-bold'>
                            - {(discount + couponValue).toLocaleString('fa')}
@@ -136,14 +135,12 @@ const PaymentDetail = () => {
                   <span className='text-gray-600 text-base font-bold'>ملبغ قابل پرداخت</span>
                </div>
 
-               <Link href='/checkout/payment' className='block'>
-                  <Button
-                     sx={{ borderRadius: '15px', width: '100%', padding: '.75rem 0' }}
-                     variant='contained'
-                  >
-                     پرداخت سفارش
-                  </Button>
-               </Link>
+               <Button
+                  sx={{ borderRadius: '15px', width: '100%', padding: '.75rem 0' }}
+                  variant='contained'
+               >
+                  پرداخت و ثبت سفارش
+               </Button>
             </div>
          ) : (
             ''
