@@ -53,7 +53,7 @@ const CourseDetail = async ({ params }: { params: { slug: string } }) => {
       const minutes = toFarsiNumber(String(totalLength % 60).padStart(2, '0'))
       const format = `${hours}:${minutes}:۰۰`
 
-      return toFarsiNumber(format)
+      return format
    }
 
    return (
