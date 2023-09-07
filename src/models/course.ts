@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 
 export interface ICourse {
+   public: boolean
    _id: string
    name: string
    price: number
@@ -74,6 +75,10 @@ export interface ICourse {
 }
 
 const CourseSchema = new mongoose.Schema({
+   public: {
+      type: Boolean,
+      default: true
+   },
    name: String,
    price: Number,
    discount: Number,

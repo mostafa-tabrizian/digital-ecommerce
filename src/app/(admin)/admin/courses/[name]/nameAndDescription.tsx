@@ -4,28 +4,21 @@ import { Formik, Form } from 'formik'
 import { toast } from 'react-toastify'
 import CircularProgress from '@mui/material/CircularProgress'
 
-import { TitleAndDescriptionSchemaValidation } from '@/formik/schema/validation'
+// import { TitleAndDescriptionSchemaValidation } from '@/formik/schema/validation'
 
 const CourseTitleDescription = ({
-   id,
-   title,
-   description,
+   params: { _id, name, description },
 }: {
-   id: string
-   title: string
-   description: string | null
+   params: {
+      _id: string
+      name: string
+      description: string | null
+   }
 }) => {
-   const handleSubmit = async (values: { title: string; description: string }) => {
-      const submitData: { title?: string; description?: string } = {}
-
-      if (values.title !== title) submitData.title = values.title
-      if (values.description !== description) submitData.description = values.description
-
-      if (!Object.keys(submitData).length) return
-
+   const handleSubmit = async (values: { name: string; description: string }) => {
       const payload = {
-         id: id,
-         data: submitData,
+         _id: _id,
+         ...values,
       }
 
       try {
@@ -46,39 +39,33 @@ const CourseTitleDescription = ({
    return (
       <Formik
          initialValues={{
-            title: title,
+            name: name,
             description: description || '',
          }}
-         validationSchema={TitleAndDescriptionSchemaValidation}
+         // validationSchema={NameAndDescriptionSchemaValidation}
          onSubmit={handleSubmit}
       >
          {({ values, setFieldValue, handleBlur, isSubmitting, errors, touched }) => (
-            <Form className='flex justify-center space-x-2'>
-               {Object.keys(touched).length && !errors.title && !errors.description ? (
+            <Form className='flex justify-end gap-2'>
+               {Object.keys(touched).length && !errors.name && !errors.description ? (
                   <button
                      type='submit'
                      disabled={isSubmitting}
                      className='border-2 border-green-600 px-1 rounded-md'
                   >
-                     {isSubmitting ? (
-                        <div className='flex justify-center'>
-                           <CircularProgress color='success' size={25} />
-                        </div>
-                     ) : (
-                        'ذخیره'
-                     )}
+                     {isSubmitting ? <CircularProgress color='success' size={25} /> : 'ذخیره'}
                   </button>
                ) : (
                   ''
                )}
 
-               <div className='space-y-5 '>
-                  <div className='justify-end flex space-x-5 bg-slate-200 rounded-lg p-3'>
+               <div className='space-y-5 w-full'>
+                  <div className='w-full flex gap-5 bg-slate-200 rounded-lg p-3'>
                      <input
-                        name='title'
-                        onChange={(e) => setFieldValue('title', e.target.value)}
+                        name='name'
+                        onChange={(e) => setFieldValue('name', e.target.value)}
                         onBlur={handleBlur}
-                        value={values.title}
+                        value={values.name}
                         className='mr-3 w-full bg-transparent'
                         type='text'
                         placeholder='عنوان محصول'
@@ -86,13 +73,13 @@ const CourseTitleDescription = ({
                      <h2>:عنوان</h2>
                   </div>
 
-                  {errors.title && touched.title ? (
-                     <p className='text-sm text-red-500'>{errors.title}</p>
+                  {errors.name && touched.name ? (
+                     <p className='text-sm text-red-500'>{errors.name}</p>
                   ) : (
                      ''
                   )}
 
-                  <div className='justify-end flex space-x-5 bg-slate-200 rounded-lg p-3'>
+                  <div className='justify-end flex gap-5 bg-slate-200 rounded-lg p-3'>
                      <textarea
                         name='description'
                         onChange={(e) => setFieldValue('description', e.target.value)}

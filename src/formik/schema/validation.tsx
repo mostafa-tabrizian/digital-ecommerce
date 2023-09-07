@@ -103,19 +103,19 @@ export const QuestionSchemaValidation = yup.object().shape({
       .matches(rule.persian, { message: 'لطفا پرسش را به فارسی وارد کنید' }),
 })
 
-// export const TitleAndDescriptionSchemaValidation = yup.object().shape({
-//    title: yup
-//       .string()
-//       .min(3, 'عنوان حداقل باید ۳ کارکتر باشد')
-//       .required('عنوان محصول را وارد کنید')
-//       .matches(rule.persian, { message: 'لطفا عنوان را به فارسی وارد کنید' }),
+export const NameAndDescriptionSchemaValidation = yup.object().shape({
+   name: yup
+      .string()
+      .min(3, 'عنوان حداقل باید ۳ کارکتر باشد')
+      .required('عنوان محصول را وارد کنید')
+      .matches(rule.persian, { message: 'لطفا عنوان را به فارسی وارد کنید' }),
 
-//    description: yup
-//       .string()
-//       .min(30, 'توضیحات حداقل باید ۳۰ کارکتر باشد')
-//       .required('عنوان محصول را وارد کنید')
-//       .matches(rule.persian, { message: 'لطفا توضیحات را به فارسی وارد کنید' }),
-// })
+   description: yup
+      .string()
+      .min(30, 'توضیحات حداقل باید ۳۰ کارکتر باشد')
+      .required('عنوان محصول را وارد کنید')
+      .matches(rule.persian, { message: 'لطفا توضیحات را به فارسی وارد کنید' }),
+})
 
 // export const LocationSchemaValidation = yup.object().shape({
 //    price: yup.number().min(1000, 'حداقل قیمت ۱۰۰۰ تومان است').required('قیمت چهره را وارد کنید'),

@@ -5,6 +5,7 @@ import Image from 'next/legacy/image'
 import { DataGrid } from '@mui/x-data-grid'
 
 import { ICourse } from '@/models/course'
+import Link from 'next/link'
 
 interface IColumns {
    field: string
@@ -50,7 +51,11 @@ const CoursesTable = ({ courses }: { courses: ICourse[] }) => {
          headerName: <span>عنوان</span>,
          width: 200,
          type: 'element',
-         renderCell: ({ value }) => <span>{value}</span>,
+         renderCell: ({ value }) => (
+            <Link href={`/admin/courses/${value}`}>
+               <span>{value}</span>
+            </Link>
+         ),
       },
       {
          field: 'status',
