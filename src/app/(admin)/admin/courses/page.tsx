@@ -1,16 +1,11 @@
 import Link from 'next/link'
 
 import Breadcrumbs from '@mui/material/Breadcrumbs'
-import dbConnect from '@/lib/dbConnect'
-import Course from '@/models/course'
-import isAdmin from '@/lib/isAdmin'
-import Image from 'next/legacy/image'
 
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
-import TableHead from '@mui/material/TableHead'
-import TableRow from '@mui/material/TableRow'
+import dbConnect from '@/lib/dbConnect'
+import Course, { ICourse } from '@/models/course'
+import isAdmin from '@/lib/isAdmin'
+import CoursesTable from './components/dataTable'
 
 async function getCourses() {
    await dbConnect()
@@ -22,13 +17,7 @@ export const metadata = {
 }
 
 const AdminCourses = async () => {
-   const courses = await getCourses()
-
-   const status = {
-      comingSoon: 'به زودی',
-      recording: 'در حال ضبط',
-      completed: 'تکمیل ضبط',
-   }
+   const courses: ICourse[] = await getCourses()
 
    return (
       <div className='md:mx-auto mx-6 max-w-screen-md space-y-10 my-16 relative'>
@@ -62,62 +51,7 @@ const AdminCourses = async () => {
                   </button>
                </Link>
 
-               <div className='overflow-x-scroll rtl'>
-                  <Table aria-label='simple table'>
-                     <TableHead>
-                        <TableRow>
-                           <TableCell>
-                              <span>تصویر</span>
-                           </TableCell>
-                           <TableCell align='right'>
-                              <span>عنوان</span>
-                           </TableCell>
-                           <TableCell align='right'>
-                              <span>وضعیت</span>
-                           </TableCell>
-                           <TableCell align='right'>
-                              <span>قیمت</span>
-                           </TableCell>
-                           <TableCell align='right'>
-                              <span>تخفیف</span>
-                           </TableCell>
-                        </TableRow>
-                     </TableHead>
-                     <TableBody>
-                        {courses.map((course) => (
-                           <TableRow
-                              key={course._id}
-                              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                           >
-                              <TableCell component='th' scope='row'>
-                                 <Link href={'/admin/courses/' + course.name}>
-                                    <Image
-                                       className='rounded-xl'
-                                       src={`/course/${course.image}`}
-                                       alt={course.name}
-                                       height={50}
-                                       width={50}
-                                       objectFit='cover'
-                                    />
-                                 </Link>
-                              </TableCell>
-                              <TableCell align='right'>
-                                 <span>{course.name}</span>
-                              </TableCell>
-                              <TableCell align='right'>
-                                 <span>{status[course.status]}</span>
-                              </TableCell>
-                              <TableCell align='right'>
-                                 <span>{course.price.toLocaleString('fa')}</span>
-                              </TableCell>
-                              <TableCell align='right'>
-                                 <span>{course.discount.toLocaleString('fa')}</span>
-                              </TableCell>
-                           </TableRow>
-                        ))}
-                     </TableBody>
-                  </Table>
-               </div>
+               <CoursesTable courses={JSON.parse(JSON.stringify(courses))}/>
 
                {/* <div className='py-5 space-y-4 rtl'>
                   {courses.map((course) => {
