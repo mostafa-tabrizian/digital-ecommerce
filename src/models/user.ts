@@ -15,7 +15,7 @@ export interface IUser {
    orders: []
    createdAt: Date
    updatedAt: Date
-   lastLogin: Date
+   lastVisit: Date
 }
 
 const UserSchema = new mongoose.Schema({
@@ -34,7 +34,7 @@ const UserSchema = new mongoose.Schema({
    password: String,
    accessItems: [],
    orders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'OrderSchema'}],
-   lastLogin: Date
+   lastVisit: Date
 })
 
 UserSchema.set('timestamps', true)

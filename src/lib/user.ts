@@ -1,6 +1,7 @@
 import { getServerSession } from 'next-auth'
-import User, { IUser } from '@/models/user'
+import User from '@/models/user'
 import dbConnect from '@/lib/dbConnect'
+import nowDate from '@/lib/nowDate'
 
 import authOptions from './auth'
 
@@ -10,14 +11,17 @@ const UserDetail = async () => {
    if (!session) return null
 
    await dbConnect()
-   return await User.findOne({
+   const user = await User.findOne({
       mobileNumber: session._doc.mobileNumber
    }).exec()
-      .then((user: { _doc: IUser }) => {
-         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-         const { password: _, ...filteredUser } = user._doc
-         return filteredUser
-      })
+
+   user.lastVisit = nowDate()
+   user.save()
+
+
+   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   const { password: _, ...filteredUser } = user._doc
+   return filteredUser
 }
 
 export default UserDetail

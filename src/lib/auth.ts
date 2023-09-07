@@ -4,6 +4,7 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 import User, { IUser } from '@/models/user'
 import RecaptchaCheck from './recaptchCheck'
 import dbConnect from './dbConnect'
+import nowDate from '@/lib/nowDate'
 
 interface Credential {
    mobileNumber: string
@@ -40,10 +41,8 @@ const authOptions: NextAuthOptions = {
             if (!recaptchaRes) return null
 
             await dbConnect()
-            const user = await User.findOneAndUpdate({
+            const user = await User.findOne({
                mobileNumber: mobileNumber
-            }, {
-               lastLogin: new Date()
             })
 
             if (!user) return null
