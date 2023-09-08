@@ -4,6 +4,7 @@ import Button from '@mui/material/Button'
 import { useState, useEffect, useContext } from 'react'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 
 import { ICourse } from '@/models/course'
 import { ICoupon } from '@/models/coupon'
@@ -12,10 +13,12 @@ import { CartContext } from '@/context/provider/cart'
 
 const PaymentDetail = () => {
    const { cart, dispatch } = useContext(CartContext) as {
-      cart: { [key: string]: ICourse },
+      cart: { [key: string]: ICourse }
       // @ts-ignore
       dispatch
    }
+
+   const { executeRecaptcha } = useGoogleReCaptcha()
 
    const [price, setPrice] = useState(0)
    const [discount, setDiscount] = useState(0)
@@ -58,13 +61,20 @@ const PaymentDetail = () => {
 
    const handleSubmit = async () => {
       try {
+         if (!executeRecaptcha) return console.log('!executeRecaptcha')
+
+         const gReCaptchaToken = await executeRecaptcha('forgotPasswordFormSubmit').then(
+            (gReCaptchaToken) => gReCaptchaToken,
+         )
+
          const res = await fetch('/api/order', {
             method: 'POST',
             body: JSON.stringify({
-               price: price,
-               discount: discount,
+               price,
+               discount,
                coupon: couponValue,
                items: Object.keys(cart),
+               gReCaptchaToken,
             }),
          })
 
@@ -81,7 +91,6 @@ const PaymentDetail = () => {
          toast.success('سفارش شما با موفقیت ثبت شد')
          router.push(`/cart/success?id=${resData._id}`)
          dispatch({ type: 'RESET' }) // cart
-
       } catch (err) {
          toast.error('در ثبت سفارش خطایی رخ داد!')
          console.error(err)

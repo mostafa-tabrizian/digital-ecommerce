@@ -5,12 +5,14 @@ import { getServerSession } from 'next-auth'
 
 import Order from '@/models/order'
 import dbConnect from '@/lib/dbConnect'
+import RecaptchaCheck from '@/lib/recaptchCheck'
 
 type PayloadType = {
    price: number
    discount: number,
    coupon: number,
-   items: string[]
+   items: string[],
+   gReCaptchaToken: string
 }
 
 // export async function GET() {
@@ -44,10 +46,12 @@ type PayloadType = {
 
 export async function POST(request: Request) {
    try {
+      const { price, discount, coupon, items, gReCaptchaToken }: PayloadType = await request.json()
+
+      const recaptchaRes = await RecaptchaCheck(gReCaptchaToken)
+      if (!recaptchaRes) return NextResponse.json({ message: 'recaptcha fail' })
 
       const session: { _doc: { _id: string } } | null = await getServerSession(authOptions)
-      const { price, discount, coupon, items }: PayloadType = await request.json()
-
       if (!session) return NextResponse.json({ status: 403 })
 
       dbConnect()
