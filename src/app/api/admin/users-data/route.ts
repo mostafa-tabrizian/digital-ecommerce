@@ -7,7 +7,6 @@ import dbConnect from '@/lib/dbConnect'
 
 export async function GET() {
    const session: { _doc: { role: string } } | null = await getServerSession(authOptions)
-
    if (!session || session?._doc.role !== 'ادمین') return NextResponse.json({ status: 403})
 
    await dbConnect()

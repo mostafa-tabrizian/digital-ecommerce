@@ -2,12 +2,22 @@
 
 import mongoose from 'mongoose'
 
+export interface IOrder {
+   _id: string
+   user: {
+      _id: string
+      name: string
+      mobileNumber: string
+   }
+   price: number
+   discount: number
+   coupon: number
+   items: mongoose.Schema.Types.ObjectId[]
+   createdAt: Date
+   updatedAt: Date
+}
+
 const OrderSchema = new mongoose.Schema({
-   status: {
-      type: String,
-      enum: ['PENDING', 'PREPARING', 'POSTED', 'CANCELED'],
-      default: 'PENDING',
-   },
    user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',

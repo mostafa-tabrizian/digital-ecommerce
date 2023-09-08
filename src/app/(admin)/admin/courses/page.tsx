@@ -68,7 +68,6 @@ const AdminCourses = async () => {
                                     objectFit='cover'
                                  />
                                  <span>{course.name}</span>
-                                 <span>{course.status}</span>
                                  <span>{course.price}</span>
                                  <span>{course.discount}</span>
                                  <span>{course.purchaser.length}</span>

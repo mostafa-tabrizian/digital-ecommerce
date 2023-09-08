@@ -15,34 +15,15 @@ type PayloadType = {
    gReCaptchaToken: string
 }
 
-// export async function GET() {
-//    try {
-//       const res = await prisma.order.findMany({
-//          include: {
-//             client: true,
-//             items: {
-//                include: {
-//                   item: {
-//                      include: {
-//                         course: {
-//                            include: {
-//                               gallery: true,
-//                            },
-//                         },
-//                         color: true,
-//                         size: true,
-//                      },
-//                   },
-//                },
-//             },
-//          },
-//       })
-//       return NextResponse.json(res)
-//    } catch (err) {
-//       console.error('api/brand err:', err)
-//       return NextResponse.json(err)
-//    }
-// }
+export async function GET() {
+   const session: { _doc: { role: string } } | null = await getServerSession(authOptions)
+   if (!session || session?._doc.role !== 'ادمین') return NextResponse.json({ status: 403 })
+
+   await dbConnect()
+   const orders = await Order.find({}).populate('user', 'name mobileNumber').exec()
+
+   return NextResponse.json(orders)
+}
 
 export async function POST(request: Request) {
    try {

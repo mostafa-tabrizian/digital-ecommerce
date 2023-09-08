@@ -89,20 +89,18 @@ const CoursesTable = ({ courses }: { courses: ICourse[] }) => {
    })
 
    return (
-      <div>
-         <div style={{ width: '100%' }} className='rtl'>
-            <DataGrid
-               rows={rows}
-               columns={columns}
-               initialState={{
-                  pagination: {
-                     paginationModel: { page: 0, pageSize: 5 },
-                  },
-               }}
-               pageSizeOptions={[5, 10, 20, 50]}
-               density='comfortable'
-            />
-         </div>
+      <div style={{ width: '100%' }} className='rtl'>
+         <DataGrid
+            rows={rows}
+            columns={columns}
+            initialState={{
+               pagination: {
+                  paginationModel: { page: 0, pageSize: 5 },
+               },
+            }}
+            pageSizeOptions={[5, 10, 20, 50]}
+            density='comfortable'
+         />
       </div>
    )
 }

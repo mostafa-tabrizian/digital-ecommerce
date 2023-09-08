@@ -1,22 +1,6 @@
 import Tabs from './tabs.components'
-import { Order, User } from '@prisma/client'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 import Link from 'next/link'
-
-export type OrderExtended = Order & {
-   client: User
-   items: {
-      item: {
-         course: {
-            gallery: {
-               src: string
-               alt: string
-            }[]
-         }
-      }
-      quantity: number
-   }[]
-}
 
 export const metadata = {
    title: 'تبریزیان دیجیتال ایکامرس | پنل ادمین | سفارشات',
