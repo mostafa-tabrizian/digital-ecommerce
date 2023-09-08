@@ -3,136 +3,67 @@ import authOptions from '@/lib/auth'
 import { NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 
-type ItemNotEnoughQtyType = {
-   message: string
-   id: string | null
-   quantity: number
-}
-type ItemQtyType = { id: string; quantity: number }
+import Order from '@/models/order'
+import dbConnect from '@/lib/dbConnect'
+
 type PayloadType = {
-   cart: {
-      [key: string]: {
-         id: string
-         quantity: number
-         price: number
-         discount: number
-      }
-   }
    price: number
-   discount: number
+   discount: number,
+   coupon: number,
+   items: string[]
 }
 
-export async function GET() {
-   try {
-      const res = await prisma.order.findMany({
-         include: {
-            client: true,
-            items: {
-               include: {
-                  item: {
-                     include: {
-                        course: {
-                           include: {
-                              gallery: true,
-                           },
-                        },
-                        color: true,
-                        size: true,
-                     },
-                  },
-               },
-            },
-         },
-      })
-      return NextResponse.json(res)
-   } catch (err) {
-      console.error('api/brand err:', err)
-      return NextResponse.json(err)
-   }
-}
+// export async function GET() {
+//    try {
+//       const res = await prisma.order.findMany({
+//          include: {
+//             client: true,
+//             items: {
+//                include: {
+//                   item: {
+//                      include: {
+//                         course: {
+//                            include: {
+//                               gallery: true,
+//                            },
+//                         },
+//                         color: true,
+//                         size: true,
+//                      },
+//                   },
+//                },
+//             },
+//          },
+//       })
+//       return NextResponse.json(res)
+//    } catch (err) {
+//       console.error('api/brand err:', err)
+//       return NextResponse.json(err)
+//    }
+// }
 
 export async function POST(request: Request) {
-   const session: { _doc: { mobileNumber: string } } | null = await getServerSession(authOptions)
-   const payload: PayloadType = await request.json()
+   try {
 
-   if (!session) return NextResponse.json({ message: 'unAuthorized' })
+      const session: { _doc: { _id: string } } | null = await getServerSession(authOptions)
+      const { price, discount, coupon, items }: PayloadType = await request.json()
 
-   const user = await prisma.user.findUnique({
-      where: {
-         email: session.email,
-      },
-   })
+      if (!session) return NextResponse.json({ status: 403 })
 
-   if (!user) {
-      return NextResponse.json({ message: 'userNotFound' })
-   }
-
-   // profile must be complete
-   const { name, mobileNumber, phoneNumber, melliCode, address } = user
-   if (!name || !mobileNumber || !phoneNumber || !melliCode || !address)
-      return NextResponse.json({ message: 'incompleteProfile' })
-
-   const cartItemsId: string[] = Object.values(payload.cart).map((item) => item.id)
-
-   const itemsQtyList: ItemQtyType[] = await prisma.courseLocation.findMany({
-      where: {
-         id: {
-            in: cartItemsId,
-         },
-      },
-   })
-
-   const itemWithNotEnoughQty: ItemNotEnoughQtyType = itemsQtyList.reduce(
-      (result: ItemNotEnoughQtyType, item: ItemQtyType) => {
-         if (payload.cart[item.id].quantity > item.quantity) {
-            return {
-               message: 'qtyNotEnough',
-               id: item.id,
-               quantity: item.quantity,
-            }
-         }
-
-         return result
-      },
-      { message: 'qtyNotEnough', id: null, quantity: -1 },
-   )
-
-   if (itemWithNotEnoughQty.id) return NextResponse.json(itemWithNotEnoughQty)
-
-   itemsQtyList?.map(async (item) => {
-      await prisma.courseLocation.update({
-         where: { id: item.id },
-         data: {
-            quantity: item.quantity - payload.cart[item.id].quantity,
-         },
+      dbConnect()
+      const order = await Order.create({
+         user: session._doc._id,
+         price: price,
+         discount: discount,
+         coupon: coupon,
+         items: items
       })
-   })
 
-   const order = await prisma.order.create({
-      data: {
-         price: payload.price,
-         discount: payload.discount, // coupon
-         payment: 'CASH',
-         shippingCost: 0,
-         clientId: user.id,
-      },
-   })
-
-   Object.values(payload.cart).map(async (item) => {
-      await prisma.orderItem
-         .create({
-            data: {
-               orderId: order.id,
-               itemId: item.id,
-               price: item.price,
-               discount: item.discount,
-               quantity: item.quantity,
-            },
-         })
-         .catch((err) => {
-            NextResponse.json({ 'orderItem.create error': err })
-         })
-   })
-
-   return NextResponse.json(order)
+      return NextResponse.json({
+         _id: order._id,
+         message: 'order submitted'
+      })
+   } catch (err) {
+      return NextResponse.json({ status: 500 })
+   }
 }

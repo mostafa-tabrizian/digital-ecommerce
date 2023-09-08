@@ -49,6 +49,7 @@ const UserEditForm = () => {
             return toast.error('لطفا خارج و مجدد وارد حساب کاربری خود شوید!')
          else if (resData?.message == 'password dont match')
             return toast.error('رمز فعلی شما اشتباه است')
+         else if (resData?.status == 500) return toast.error('در ثبت سفارش خطایی رخ داد')
 
          resetForm()
          toast.success('رمز عبور شما با موفقیت تغییر یافت.')

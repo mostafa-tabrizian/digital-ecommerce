@@ -1,8 +1,9 @@
 'use client'
 
-import Link from 'next/link'
 import Button from '@mui/material/Button'
 import { useState, useEffect, useContext } from 'react'
+import { toast } from 'react-toastify'
+import { useRouter } from 'next/navigation'
 
 import { ICourse } from '@/models/course'
 import { ICoupon } from '@/models/coupon'
@@ -10,8 +11,10 @@ import CouponComponent from './coupon'
 import { CartContext } from '@/context/provider/cart'
 
 const PaymentDetail = () => {
-   const { cart } = useContext(CartContext) as {
-      cart: { [key: string]: ICourse }
+   const { cart, dispatch } = useContext(CartContext) as {
+      cart: { [key: string]: ICourse },
+      // @ts-ignore
+      dispatch
    }
 
    const [price, setPrice] = useState(0)
@@ -20,6 +23,8 @@ const PaymentDetail = () => {
 
    const [coupon, setCoupon] = useState<ICoupon | null>(null)
    const [couponValue, setCouponValue] = useState(0)
+
+   const router = useRouter()
 
    useEffect(() => {
       let price = 0
@@ -50,6 +55,38 @@ const PaymentDetail = () => {
 
       setCouponValue(couponValue)
    }, [paymentPrice, coupon])
+
+   const handleSubmit = async () => {
+      try {
+         const res = await fetch('/api/order', {
+            method: 'POST',
+            body: JSON.stringify({
+               price: price,
+               discount: discount,
+               coupon: couponValue,
+               items: Object.keys(cart),
+            }),
+         })
+
+         if (!res.ok) throw new Error()
+
+         const resData = await res.json()
+
+         if (resData?.message == 'recaptcha fail')
+            return toast.error('فعالیت شما مشکوک به ربات است')
+         else if (resData?.status == 403)
+            return toast.error('لطفا خارج و مجدد وارد حساب کاربری خود شوید!')
+         else if (resData?.status == 500) return toast.error('در ثبت سفارش خطایی رخ داد')
+
+         toast.success('سفارش شما با موفقیت ثبت شد')
+         router.push(`/cart/success?id=${resData._id}`)
+         dispatch({ type: 'RESET' }) // cart
+
+      } catch (err) {
+         toast.error('در ثبت سفارش خطایی رخ داد!')
+         console.error(err)
+      }
+   }
 
    return (
       <>
@@ -136,6 +173,7 @@ const PaymentDetail = () => {
                </div>
 
                <Button
+                  onClick={handleSubmit}
                   sx={{ borderRadius: '15px', width: '100%', padding: '.75rem 0' }}
                   variant='contained'
                >

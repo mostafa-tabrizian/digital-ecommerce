@@ -23,9 +23,11 @@ const SubmitQuestion = ({ courseId }: { courseId: string }) => {
       { resetForm },
    ) => {
       try {
-         if (!executeRecaptcha) return console.log('!executeRecaptcha');
+         if (!executeRecaptcha) return console.log('!executeRecaptcha')
 
-         const gReCaptchaToken = await executeRecaptcha('questionFormSubmit').then(gReCaptchaToken => gReCaptchaToken)
+         const gReCaptchaToken = await executeRecaptcha('questionFormSubmit').then(
+            (gReCaptchaToken) => gReCaptchaToken,
+         )
 
          const payload = { courseId: courseId, gReCaptchaToken, ...values }
 
@@ -38,8 +40,11 @@ const SubmitQuestion = ({ courseId }: { courseId: string }) => {
 
          const resData = await res.json()
 
-         if (resData?.message == 'recaptcha fail') return toast.error('فعالیت شما مشکوک به ربات است') 
-         else if (resData?.status == 403) return toast.error('لطفا خارج و مجدد وارد حساب کاربری خود شوید!')
+         if (resData?.message == 'recaptcha fail')
+            return toast.error('فعالیت شما مشکوک به ربات است')
+         else if (resData?.status == 403)
+            return toast.error('لطفا خارج و مجدد وارد حساب کاربری خود شوید!')
+         else if (resData?.status == 500) return toast.error('در ثبت سفارش خطایی رخ داد')
 
          setPanel(false)
          resetForm()

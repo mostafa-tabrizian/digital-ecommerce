@@ -8,15 +8,19 @@ const OrderSchema = new mongoose.Schema({
       enum: ['PENDING', 'PREPARING', 'POSTED', 'CANCELED'],
       default: 'PENDING',
    },
-   user: String,
+   user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
+   },
    price: Number,
    discount: Number,
    coupon: Number,
    items: [
       {
-         name: String,
-         image: String,
-         price: Number,
+         type: mongoose.Schema.Types.ObjectId,
+         ref:  'Course',
+         required: true
       },
    ],
 })

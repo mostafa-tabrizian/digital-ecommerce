@@ -45,6 +45,7 @@ const SubmitAnswer = ({ question }: { question: ICourse['questions'][0] }) => {
             return toast.error('فعالیت شما مشکوک به ربات است')
          else if (resData?.status == 403)
             return toast.error('لطفا خارج و مجدد وارد حساب کاربری خود شوید!')
+         else if (resData?.status == 500) return toast.error('در ثبت سفارش خطایی رخ داد')
 
          setPanel(false)
          resetForm()

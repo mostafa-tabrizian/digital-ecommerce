@@ -57,7 +57,6 @@ export async function POST(req: Request) {
          },
       })
    } catch (error) {
-      // @ts-ignore
       return NextResponse.json({ status: 500 })
    }
 }
