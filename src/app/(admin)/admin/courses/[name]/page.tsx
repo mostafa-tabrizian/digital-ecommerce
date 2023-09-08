@@ -74,7 +74,18 @@ const pageContent = (course: ICourse) => {
                      </button>
                   </Link>
 
-                  {/* <Images isAdmin={true} thumbnail={course.image} course={course} /> */}
+                  <Images
+                     params={JSON.parse(
+                        JSON.stringify({
+                           isAdmin: true,
+                           image: {
+                              _id: course._id,
+                              src: course.image,
+                              alt: course.name
+                           },
+                        }),
+                     )}
+                  />
 
                   <div className='my-5 space-y-6'>
                      <PublicEdit

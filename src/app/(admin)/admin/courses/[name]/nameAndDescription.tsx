@@ -86,7 +86,7 @@ const CourseTitleDescription = ({
                         rows={3}
                         onBlur={handleBlur}
                         value={values.description}
-                        className='mr-3 w-full bg-transparent'
+                        className='mr-3 rtl w-full bg-transparent'
                         placeholder='توضیحات محصول'
                      />
                      <h2>:توضیحات</h2>
