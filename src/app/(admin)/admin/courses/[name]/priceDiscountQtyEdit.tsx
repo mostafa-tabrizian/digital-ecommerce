@@ -44,17 +44,17 @@ const PriceDiscountEdit = ({ params: { _id, price, discount } }: { params: Props
          <div className='flex ml-auto w-fit bg-slate-200 rounded-lg p-3'>
             <input
                ref={discountRef}
-               className='bg-transparent placeholder:text-black placeholder:font-semibold placeholder:text-sm font-semibold text-sm w-full'
+               className='bg-transparent placeholder:text-black placeholder:font-semibold placeholder:text-sm font-semibold text-sm w-20'
                min={0}
                max={100}
-               placeholder={`${discount}%`}
+               placeholder={discount.toLocaleString()}
                onKeyDown={checkKey}
                type='number'
                name='discountInput'
                id='discountInput'
             />
             <label htmlFor='discountInput'>
-               <h2> :تخفیف</h2>
+               <h2> :تخفیف به تومان</h2>
             </label>
          </div>
          <div className='flex ml-auto w-fit bg-slate-200 rounded-lg p-3'>
