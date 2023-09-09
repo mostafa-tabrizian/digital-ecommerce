@@ -13,19 +13,39 @@ const LogoutButton = () => {
    }
 
    return (
-      <>
+      <div className='bg-white hover:shadow-lg hover:shadow-rose-100 px-2 transition-all hover:border-rose-600 rounded-xl flex items-center justify-end hover:cursor-pointer'>
          {loading ? (
-            <CircularProgress className='text-rose-600' color='inherit' size={24} />
+            <div className='py-3 mx-auto flex'>
+               <CircularProgress
+                  className='text-rose-600'
+                  color='inherit'
+                  size={24}
+               />
+            </div>
          ) : (
-            <button
-               className='border-2 border-rose-400 hover:shadow-lg hover:shadow-rose-100 transition-all hover:border-rose-600 rounded-xl text-center w-full'
-               disabled={loading}
-               onClick={() => submitLogout()}
-            >
-               <span className='font-bold text-sm'>خروج</span>
+            <button disabled={loading} onClick={() => submitLogout()}>
+               <div className='flex justify-end space-x-3 items-center'>
+                  <span className='text-base'>خروج</span>
+                  <svg
+                     className='h-7 w-7'
+                     width='24'
+                     height='24'
+                     viewBox='0 0 24 24'
+                     strokeWidth='2'
+                     stroke='currentColor'
+                     fill='none'
+                     strokeLinecap='round'
+                     strokeLinejoin='round'
+                  >
+                     {' '}
+                     <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                     <path d='M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2' />{' '}
+                     <path d='M7 12h14l-3 -3m0 6l3 -3' />
+                  </svg>
+               </div>
             </button>
          )}
-      </>
+      </div>
    )
 }
 

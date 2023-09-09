@@ -24,9 +24,9 @@ const Profile = async () => {
                <div className='bg-white rounded-lg py-2 px-2 hover:shadow-lg hover:shadow-blue-100 transition-all'>
                   <Link href='/admin'>
                      <div className='flex justify-end space-x-3 items-center'>
-                        <span className='text-base text-black'>پنل ادمین</span>
+                        <span className='text-base'>پنل ادمین</span>
                         <svg
-                           className='h-6 w-6 text-black'
+                           className='h-6 w-6'
                            width='24'
                            height='24'
                            viewBox='0 0 24 24'
@@ -53,7 +53,7 @@ const Profile = async () => {
             <div className='bg-white rounded-lg py-2 px-2 hover:shadow-lg hover:shadow-blue-100 transition-all'>
                <Link href='/profile/edit'>
                   <div className='flex justify-end space-x-3 items-center'>
-                     <span className='text-base text-black'>ویرایش پروفایل</span>
+                     <span className='text-base'>ویرایش پروفایل</span>
                      <svg
                         className='h-7 w-7'
                         viewBox='0 0 24 24'
@@ -74,7 +74,7 @@ const Profile = async () => {
             <div className='bg-white rounded-lg py-2 px-2 hover:shadow-lg hover:shadow-blue-100 transition-all'>
                <Link href='profile/orders'>
                   <div className='flex justify-end space-x-3 items-center'>
-                     <span className='text-base text-black'>دوره های من</span>
+                     <span className='text-base'>دوره های من</span>
                      <svg
                         className='h-7 w-7'
                         width='24'
