@@ -2,7 +2,7 @@ import CartItems from './components/cartItems'
 import PaymentDetail from './components/paymentDetail'
 
 export const metadata = {
-   title: 'تبریزیان دیجیتال ایکامرس | سبد خرید',
+   title: 'اکسپرسیفای | سبد خرید',
 }
 
 const Cart = () => {

@@ -43,7 +43,7 @@ const AdminCourse = () => {
    }
 
    useEffect(() => {
-      document.title = 'تبریزیان دیجیتال ایکامرس | ادمین | ‌افزودن/تغییر محصول'
+      document.title = 'اکسپرسیفای | ادمین | ‌افزودن/تغییر محصول'
    }, [])
 
    const { data: session } = useSession()

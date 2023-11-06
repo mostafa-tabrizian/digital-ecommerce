@@ -13,7 +13,7 @@ async function getCourses() {
 }
 
 export const metadata = {
-   title: 'تبریزیان دیجیتال ایکامرس | پنل ادمین | محصولات',
+   title: 'اکسپرسیفای | پنل ادمین | محصولات',
 }
 
 const AdminCourses = async () => {

@@ -6,7 +6,7 @@ import { DataGrid } from '@mui/x-data-grid'
 import Link from 'next/link'
 
 export const metadata = {
-   title: 'تبریزیان دیجیتال ایکامرس | دوره های من',
+   title: 'اکسپرسیفای | دوره های من',
 }
 
 interface IColumns {

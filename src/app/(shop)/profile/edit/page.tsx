@@ -2,7 +2,7 @@ import PasswordChangeForm from './components/passwordChangeForm'
 import UserEditForm from './components/userEditForm'
 
 export const metadata = {
-   title: 'تبریزیان دیجیتال ایکامرس | اطلاعات حساب',
+   title: 'اکسپرسیفای | اطلاعات حساب',
 }
 
 const Edit = () => {

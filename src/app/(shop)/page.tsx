@@ -6,8 +6,8 @@ import RoadMap from './components/roadMap'
 import Hero from './components/hero'
 
 export const metadata = {
-   title: 'تبریزیان دیجیتال ایکامرس',
-   description: 'https://github.com/Mostafa-Code19',
+   title: 'اکسپرسیفای | آموزش زبان انگلیسی به روش نوین',
+   description: '#',
 }
 
 async function Home() {

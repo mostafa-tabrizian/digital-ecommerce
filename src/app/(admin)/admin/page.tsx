@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 
 export const metadata = {
-   title: 'تبریزیان دیجیتال ایکامرس | پنل ادمین',
+   title: 'اکسپرسیفای | پنل ادمین',
 }
 
 const AdminPanel = async () => {

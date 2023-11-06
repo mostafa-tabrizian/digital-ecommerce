@@ -5,47 +5,41 @@ const Footer = () => {
             <div className='col-span-5 md:col-span-2 flex flex-col justify-start'>
                <div>
                   <h2 className='text-slate-500 yekan1 text-sm mb-4 text-right'>
-                     آکادمی آنلاین دیجیتال ایکامرس، دوره های کوچ محور{' '}
-                     <strong className='yekanBlack'>برنامه نویسی وب</strong>
+                     آکادمی آنلاین اکسپرسیفای، دوره های کوچ محور{' '}
+                     <strong className='yekanBlack'>زبان انگلیسی</strong>
                   </h2>
                   <div className='leading-7 text-slate-500 text-sm'>
-                     <h3 className='leading-7 text-right yekan1 text-slate-500 text-sm'>
+                     {/* <h3 className='leading-7 text-right yekan1 text-slate-500 text-sm'>
                         <strong>مصطفی تبریزیان هستم ، برنامه نویس وب</strong> و مدیر وبسایت آموزشی
-                        دیجیتال ایکامرس.
-                     </h3>
+                        اکسپرسیفای.
+                     </h3> */}
                      <p className='text-slate-500 text-sm leading-5 text-right yekan1 md:leading-7'>
                         ارائه آموزشی کاربردی، پروژه محور در کنار مربی هدف اصلی ماست. ابتدا در یک
                         مسیر یادگیری دقیق قرار می گیرید. در این مسیر همه آموزش ها با وسواس خاصی
-                        طراحی شده اند به گونه ای که مفاهیم برنامه نویسی را در طی پروژه های متنوع به
+                        طراحی شده اند به گونه ای که مفاهیم زبان انگلیسی را در طی پروژه های متنوع به
                         خوبی درک بکنید. در طی مسیر شما قطعا تنها نخواهید بود، بلکه مربی کار آزموده
                         در کنارتان هست تا خیالتان از بابت مشکلات فنی و مشاوره ای راحت باشد. زمان شما
-                        برای ما مهم هست و میخواهیم بدون سعی و خطا در کمترین زمان ممکن به بازار کار
-                        برسید. علاوه بر این، پشتیبانی دوره ها مدام العمر است و برای همیشه به سوالات
+                        برای ما مهم هست و میخواهیم بدون سعی و خطا در کمترین زمان ممکن به مهارت مطلوب
+                        برسید. علاوه بر این، پشتیبانی دوره ها مادام العمر است و برای همیشه به سوالات
                         شما پاسخ داده می شود. این یعنی خلق یک تجربه خوب در یک مسیر مشخص به همراه
                         مربی و پشتیبان.شما می توانید از طریق{' '}
                         <a
-                           rel='noreferrer'
                            className='text-blue-600 text-sm'
-                           href='https://www.instagram.com/sahebmohamadi.ir/'
-                           target='_blank'
+                           href='#'
                         >
                            اینستاگرام
                         </a>
                         ،{' '}
                         <a
-                           rel='noreferrer'
                            className='text-blue-600 text-sm'
-                           href='https://t.me/fronthooks_support'
-                           target='_blank'
+                           href='#'
                         >
                            تلگرام
                         </a>
                         ،{' '}
                         <a
-                           rel='noreferrer'
                            className='text-blue-600 text-sm'
-                           href='https://ir.linkedin.com/in/saheb-mohamadi-227ab4112'
-                           target='_blank'
+                           href='#'
                         >
                            یا لینکدین{' '}
                         </a>
@@ -57,9 +51,7 @@ const Footer = () => {
                   <ul className='flex flex-wrap justify-between items-center w-full'>
                      <li className='block'>
                         <a
-                           rel='noreferrer'
-                           href='https://www.instagram.com/sahebmohamadi.ir/'
-                           target='_blank'
+                           href='#'
                         >
                            <button type='button'>
                               <svg
@@ -82,9 +74,7 @@ const Footer = () => {
                      </li>
                      <li className='block'>
                         <a
-                           rel='noreferrer'
-                           href='https://ir.linkedin.com/in/saheb-mohamadi-227ab4112'
-                           target='_blank'
+                           href='#'
                         >
                            <button type='button'>
                               <svg
@@ -106,32 +96,7 @@ const Footer = () => {
                         </a>
                      </li>
                      <li className='block'>
-                        <a
-                           href='https://github.com/sahebmohammadi'
-                           rel='noreferrer'
-                           target='_blank'
-                        >
-                           <button type='button'>
-                              <svg
-                                 stroke='currentColor'
-                                 fill='currentColor'
-                                 strokeWidth='0'
-                                 role='img'
-                                 viewBox='0 0 24 24'
-                                 className='w-6 h-6 hover:text-blue-600 transition'
-                                 height='1em'
-                                 width='1em'
-                                 xmlns='http://www.w3.org/2000/svg'
-                              >
-                                 <title></title>
-                                 <path d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'></path>
-                              </svg>
-                              <span className='MuiTouchRipple-root muirtl-w0pj6f'></span>
-                           </button>
-                        </a>
-                     </li>
-                     <li className='block'>
-                        <a rel='noreferrer' href='https://t.me/fronthooks_support' target='_blank'>
+                        <a href='#'>
                            <button type='button'>
                               <svg
                                  stroke='currentColor'
@@ -153,9 +118,7 @@ const Footer = () => {
                      </li>
                      <li className='block'>
                         <a
-                           rel='noreferrer'
-                           href='https://www.youtube.com/channel/UCJwBq05vX977h-uqNhwWzBA'
-                           target='_blank'
+                           href='#'
                         >
                            <button type='button'>
                               <svg
@@ -194,7 +157,7 @@ const Footer = () => {
                      <li className='list-disc py-2 list-inside'>
                         <a
                            className='py-2 transition-all duration-300 hover:text-blue-500'
-                           href='/blogs'
+                           href='#'
                         >
                            بلاگ های آموزشی
                         </a>
@@ -218,55 +181,8 @@ const Footer = () => {
                   </ul>
                </nav>
             </div>
-            <div className='col-span-5 md:col-span-1 rtl'>
-               <h3 className='text-xl mb-4 text-slate-500'>دوره های آموزشی</h3>
-               <nav>
-                  <ul className='text-sm'>
-                     <li className='list-disc py-2 list-inside'>
-                        <a
-                           className='py-2 transition-all duration-300 hover:text-blue-500'
-                           href='/course/react-course'
-                        >
-                           دوره متخصص ریکت و ریداکس
-                        </a>
-                     </li>
-                     <li className='list-disc py-2 list-inside'>
-                        <a
-                           className='py-2 transition-all duration-300 hover:text-blue-500'
-                           href='/course/nextjs'
-                        >
-                           دوره متخصص Next.js
-                        </a>
-                     </li>
-                     <li className='list-disc py-2 list-inside'>
-                        <a
-                           className='py-2 transition-all duration-300 hover:text-blue-500'
-                           href='/course/advanced-javascript'
-                        >
-                           دوره پیشرفته جاوااسکریپت
-                        </a>
-                     </li>
-                     <li className='list-disc py-2 list-inside'>
-                        <a
-                           className='py-2 transition-all duration-300 hover:text-blue-500'
-                           href='/course/tailwindCSS'
-                        >
-                           دوره پروژه محور تیلویند
-                        </a>
-                     </li>
-                     <li className='list-disc py-2 list-inside'>
-                        <a
-                           className='py-2 transition-all duration-300 hover:text-blue-500'
-                           href='/course/responsive-web'
-                        >
-                           دوره طراحی وب رسپانسیو
-                        </a>
-                     </li>
-                  </ul>
-               </nav>
-            </div>
             <div className='col-span-5'>
-               <p className='text-center text-xs'>© تمامی حقوق برای دیجیتال ایکامرس محفوظ است</p>
+               <p className='text-center text-xs'>© تمامی حقوق برای اکسپرسیفای محفوظ است</p>
             </div>
          </div>
       </footer>

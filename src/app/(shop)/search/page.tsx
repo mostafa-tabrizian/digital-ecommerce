@@ -43,7 +43,7 @@ const Search = () => {
    }, [query])
 
    useEffect(() => {
-      document.title = 'Search | تبریزیان دیجیتال ایکامرس'
+      document.title = 'Search | اکسپرسیفای'
       fetchCourses()
    }, [fetchCourses])
 

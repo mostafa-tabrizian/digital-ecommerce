@@ -16,7 +16,7 @@ const OurWorkHistory = () => {
             <div>
                <div className='flex justify-end items-center gap-x-3 mb-4'>
                   <h2 className='yekanBlack text-slate-900 text-xl lg:text-4xl'>
-                     سابقه دیجیتال ایکامرس
+                     سابقه اکسپرسیفای
                   </h2>
                   <div className='p-3 relative from-blue-300 to-blue-500 bg-gradient-to-r flex items-center rounded-3xl justify-center drop-shadow'>
                      <svg
@@ -56,7 +56,7 @@ const OurWorkHistory = () => {
                   سال سابقه فعالیت حرفه ای
                </p>
                <h3 className='yekanBlack text-lg sm:text-2xl flex items-center gap-x-1'>
-                  + ۷
+                  + ۲
                   <svg
                      stroke='currentColor'
                      fill='none'
@@ -82,7 +82,7 @@ const OurWorkHistory = () => {
                   دانشجو خصوصی و آنلاین
                </p>
                <h3 className='yekanBlack text-lg sm:text-2xl flex items-center gap-x-1'>
-                  + ۷,۵۰۰
+                  + ۷۵۰
                   <svg
                      xmlns='http://www.w3.org/2000/svg'
                      viewBox='0 0 24 24'

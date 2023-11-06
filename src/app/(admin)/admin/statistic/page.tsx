@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Tabs from './components/tabs'
 
 export const metadata = {
-   title: 'تبریزیان دیجیتال ایکامرس | پنل ادمین | آمار',
+   title: 'اکسپرسیفای | پنل ادمین | آمار',
 }
 
 const Statistic = () => {

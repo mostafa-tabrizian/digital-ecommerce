@@ -18,7 +18,7 @@ async function getCourseLocations(name: string) {
 }
 
 export const metadata = {
-   title: 'تبریزیان دیجیتال ایکامرس | ادمین | محصول',
+   title: 'اکسپرسیفای | ادمین | محصول',
 }
 
 const CourseLocations = async ({ params }: { params: { name: string } }) => {

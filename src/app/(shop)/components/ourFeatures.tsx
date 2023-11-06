@@ -46,7 +46,7 @@ const OurFeatures = () => {
             </Container>
          </Tooltip>
 
-         <Tooltip title='با کار روی پروژه های واقعی، بازار رو از نزدیک لمس کنید'>
+         <Tooltip title='با کار روی مبحث های واقعی، بازار رو از نزدیک لمس کنید'>
             <Container>
                <IconContainer>
                   <svg
@@ -75,7 +75,7 @@ const OurFeatures = () => {
                      ></path>
                   </svg>
                </IconContainer>
-               <p className='text-center text-sm font-bold'>کاربردی و پروژه محور</p>
+               <p className='text-center text-sm font-bold'>کاربردی و موضوع محور</p>
             </Container>
          </Tooltip>
          <Tooltip title='بهترین پشتیبانی و به روز ترین سطح آموزش موجود در سطح جهانی رو دریافت می‌کنید'>

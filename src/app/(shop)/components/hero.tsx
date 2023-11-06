@@ -7,7 +7,7 @@ const Hero = () => {
    return (
       <div className='max-w-xs mx-auto'>
          <h1 className='font-extraBlack text-center text-2xl leading-relaxed text-slate-800 mb-2 md:mb-5'>
-            برنامه نویسی را سریع <br /> و آسان یاد بگیرید
+            زبان انگلیسی را سریع <br /> و آسان یاد بگیرید
          </h1>
          <p className='text-xs text-center md:text-lg font-medium text-gray-400 mb-6 md:mb-2'>
             ،ما کنارتون هستیم تا عمیق یاد بگیرید
@@ -45,7 +45,7 @@ const Hero = () => {
             </AvatarGroup>
 
             <p className='flex items-center mx-auto text-sm mt-1'>
-               <span className='text-slate-800 text-xs'>هزار دانشجو</span>
+               <span className='text-slate-800 text-xs'>هزار زبان آموز</span>
                <span className=' text-blue-500 text-sm mx-0.5 font-bold md:text-sm'>۷.۵</span>
                <svg
                   viewBox='0 0 15 15'

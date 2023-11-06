@@ -5,7 +5,7 @@ import StepLabel from '@mui/material/StepLabel'
 import AuthSection from './components/authSection'
 
 export const metadata = {
-   title: 'تبریزیان دیجیتال ایکامرس | ورود',
+   title: 'اکسپرسیفای | ورود',
 }
 
 const steps = ['احراز هویت', 'تکمیل اطلاعات', 'ثبت سفارش']
@@ -31,7 +31,7 @@ const LoginPage = async () => {
                   ))}
                </Stepper>
 
-               <h1> دیجیتال ایکامرس</h1>
+               <h1> اکسپرسیفای</h1>
                {user ? <h3 className='text-center'>شما قبلا وارد شده اید</h3> : <AuthSection />}
             </div>
          </div>

@@ -3,7 +3,7 @@ import Breadcrumbs from '@mui/material/Breadcrumbs'
 import Link from 'next/link'
 
 export const metadata = {
-   title: 'تبریزیان دیجیتال ایکامرس | پنل ادمین | سفارشات',
+   title: 'اکسپرسیفای | پنل ادمین | سفارشات',
 }
 
 const OrdersManagement = () => {

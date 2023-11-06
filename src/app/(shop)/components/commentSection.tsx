@@ -2,18 +2,18 @@ import { ICourse } from '@/models/course'
 import SwiperComments from './swiperComment'
 
 const CommentSection = () => {
-   const comments: ICourse['comments'] = [
+   const comments: ICourse['comments'][] = [
       {
          _id: '1',
          user: {
             id: '1',
             avatar: '',
-            name: 'ایلان ماسک',
+            name: 'زانیار ولدان',
          },
-         title: 'بهترین دوره موشک سازی',
+         title: 'بهترین دوره زبان انگلیسی',
          positivePoints: ['قیمت مناسب', 'دسترسی آسان'],
          negativePoints: ['هیچی'],
-         body: 'من خود موشک سازی رو از دوره های دیجیتال ایکامرس یاد گرفتم و همونطور که می‌بینید خیلی تو کارم موفقم',
+         body: 'دوره های انگلیسی اکسپرسیفای واقعاً عالین. من تونستم مهارت‌های زبانی‌ام را بهبود ببخشم و افتخار دارم که از این دوره‌ها استفاده کردم',
          rate: 100,
          suggestion: true,
          createdAt: new Date(),
@@ -23,12 +23,27 @@ const CommentSection = () => {
          user: {
             id: '2',
             avatar: '',
-            name: 'استیو جابز',
+            name: 'محمد تهرانی',
          },
-         title: 'سیستم های اپل',
-         positivePoints: ['خوانا بودن کد ها'],
+         title: 'هدایت کردن به بهترین شدن',
+         positivePoints: ['توضیحات دقیق و کاربردی'],
          negativePoints: [],
-         body: 'همه ی ما ادای دیجیتال ایکامرس رو در میاریم',
+         body: 'مدرسین فوق‌العاده، ما را در این دوره به خوبی هدایت کردند. من الان به زبان انگلیسی به خوبی صحبت می‌کنم و قدردان اکپرسیفای هستم.',
+         rate: 100,
+         suggestion: true,
+         createdAt: new Date(),
+      },
+      {
+         _id: '3',
+         user: {
+            id: '3',
+            avatar: '',
+            name: 'علیرضا موسوی',
+         },
+         title: 'انعطاف پذیری مسیر',
+         positivePoints: ['بدون حاشیه و توضیحات وقت گیر'],
+         negativePoints: [],
+         body: 'دوره‌های انگلیسی اکسپرسیفای انعطاف‌پذیری بالایی دارد و به شما اجازه می‌دهند زمان خود را بهینه استفاده کنید. اینجا بهترین مکان برای یادگیری زبان انگلیسی است.',
          rate: 100,
          suggestion: true,
          createdAt: new Date(),
@@ -38,7 +53,7 @@ const CommentSection = () => {
    return (
       <>
          <div className='flex justify-end items-center gap-x-3 mb-4'>
-            <h2 className='text-xl lg:text-4xl'>نظرات دانشجویان</h2>
+            <h2 className='text-xl lg:text-4xl'>نظرات زبان آموزان</h2>
             <div className='p-3 relative drop-shadow flex items-center justify-center from-blue-300 to-blue-500 bg-gradient-to-r rounded-3xl'>
                <svg
                   viewBox='0 0 74 74'
@@ -67,7 +82,7 @@ const CommentSection = () => {
             </div>
          </div>
          <p className='text-xs text-center opacity-80 lg:text-base leading-6 lg:leading-8'>
-            اینا فقط بخش کوچکی از تجربه دانشجویان دیجیتال ایکامرس هست
+            اینا فقط بخش کوچکی از تجربه دانشجویان اکسپرسیفای هست
          </p>
 
          <SwiperComments comments={comments} />
