@@ -4,7 +4,6 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 import User, { IUser } from '@/models/user'
 import RecaptchaCheck from './recaptchCheck'
 import dbConnect from './dbConnect'
-import nowDate from '@/lib/nowDate'
 
 interface Credential {
    mobileNumber: string
@@ -77,6 +76,7 @@ const authOptions: NextAuthOptions = {
 
          return token
       },
+
    },
    pages: {
       signIn: '/auth',

@@ -6,6 +6,8 @@ import { Form, Formik } from 'formik'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
+import { GoogleLogin } from '@react-oauth/google'
+import {jwtDecode } from 'jwt-decode'
 
 import FormikInput from '@/formik/input'
 import { LoginSchemaValidation } from '@/formik/schema/validation'
@@ -106,6 +108,19 @@ const LoginForm = () => {
                      'ورود'
                   )}
                </button>
+
+               {/* <GoogleLogin
+                  onSuccess={(res) =>  {
+                     console.log('res google', res)
+                     console.log('token', res.credential);
+                     
+                     const user = jwtDecode(res.credential)
+                     console.log('user', user);
+                     
+                  }}
+                  onError={(err) => console.log('err google', err)}
+               /> */}
+
                {error ? <p className='text-red-500 text-sm mt-3 font-semibold'>{error}</p> : ''}
             </Form>
          )}
