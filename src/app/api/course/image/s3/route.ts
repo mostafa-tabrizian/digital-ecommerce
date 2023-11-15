@@ -13,7 +13,7 @@ export async function POST(req: Request) {
    const { imageName }: { imageName: string } = await req.json()
 
    const uniqueId = Math.random().toString(36).substring(2, 7)
-   const Key = `${uniqueId}-${imageName}`
+   const Key = `/expressify/${uniqueId}-${imageName}`
 
    const params = {
       Bucket: 'tabrizian',
@@ -30,7 +30,7 @@ export async function DELETE(req: Request) {
 
    const params = {
       Bucket: 'tabrizian',
-      Key: imageKey,
+      Key: `/expressify/${imageKey}`,
    }
 
    const resDelete = await s3.deleteObject(params).promise()
