@@ -101,7 +101,7 @@ const Points = ({ setFieldValue }) => {
                <input
                   className='bg-white placeholder:text-slate-400 focus:shadow-xl focus:shadow-blue-700/20 transition-all focus:border-blue-300 outline-none text-sm rounded-lg px-2 py-1'
                   type='text'
-                  placeholder='نکات مثبت...'
+                  placeholder='بنویس و اینتر بزن'
                   onKeyDown={(e) => {
                      handleSubmitPositive(e)
                   }}
@@ -130,7 +130,7 @@ const Points = ({ setFieldValue }) => {
                <input
                   className='bg-white placeholder:text-slate-400 focus:shadow-xl focus:shadow-blue-700/20 transition-all focus:border-blue-300 outline-none text-sm rounded-lg px-2 py-1'
                   type='text'
-                  placeholder='نکات منفی...'
+                  placeholder='بنویس و اینتر بزن'
                   onKeyDown={(e) => {
                      handleSubmitNegative(e)
                   }}

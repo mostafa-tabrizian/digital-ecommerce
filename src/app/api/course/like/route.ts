@@ -21,24 +21,27 @@ export async function POST(req: Request) {
 
     const userId = session._doc._id
 
+    let liked
+
     // @ts-ignore
     if (course.likes.includes(userId)) {
         // @ts-ignore
         const index = course.likes.indexOf(userId)
         course.likes.splice(index, 1)
-        console.log(course);
         // @ts-ignore
         course.save()
+        liked = false
 
     } else {
         // @ts-ignore
         course.likes.push(userId)
         // @ts-ignore
         course.save()
+        liked = true
     }
 
 
-    return NextResponse.json({ message: 'like submitted.' })
+    return NextResponse.json({ liked })
 }
 
 // export async function PATCH(request: Request) {

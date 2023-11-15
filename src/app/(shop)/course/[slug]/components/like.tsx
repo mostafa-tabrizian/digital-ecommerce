@@ -22,10 +22,14 @@ const Like = ({ user, course }: { user: IUser; course: ICourse }) => {
 
          if (!res.ok) throw new Error()
 
-         const resData = res.json()
+         const resData = await res.json()
 
          // @ts-ignore
          if (resData?.status == 403) return toast.error('لطفا ابتدا وارد حساب کاربری خود شوید!')
+
+         if (resData.liked) {
+            toast.success('ممنونم که لایک کردید 💗')
+         }
 
          router.refresh()
       } catch (err) {
