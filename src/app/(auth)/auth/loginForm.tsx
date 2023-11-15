@@ -6,8 +6,6 @@ import { Form, Formik } from 'formik'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
-import { GoogleLogin } from '@react-oauth/google'
-import {jwtDecode } from 'jwt-decode'
 
 import FormikInput from '@/formik/input'
 import { LoginSchemaValidation } from '@/formik/schema/validation'
@@ -52,11 +50,12 @@ const LoginForm = () => {
          })
 
          if (res?.status == 200) {
+            toast.info('در حال ورود. به اکسپرسیفای خوش آمدید')
             if (res.error) return setError(errorsInPersian[res.error])
             router.refresh()
             router.push('/profile')
          } else {
-            toast.error('در ورود شما خطایی رخ داد')
+            toast.error('شماره تماس یا رمز شما اشتباه می‌باشد')
             return console.error('auth signIn() res !200', res)
          }
       } catch (err) {

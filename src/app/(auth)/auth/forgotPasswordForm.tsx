@@ -28,7 +28,7 @@ const ForgotPasswordForm = () => {
             gReCaptchaToken,
          }
 
-         const res = await fetch('/api/auth/forgotpassword', {
+         const res = await fetch('/api/auth/forgot-password', {
             method: 'POST',
             body: JSON.stringify(payload),
          })

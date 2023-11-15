@@ -38,7 +38,7 @@ export const VerificationForm = ({
       try {
          const res = await fetch('/api/auth/register', {
             method: 'POST',
-            body: JSON.stringify({ ...values, formData }),
+            body: JSON.stringify({ ...values, ...formData }),
          })
 
          if (!res.ok) throw new Error()
