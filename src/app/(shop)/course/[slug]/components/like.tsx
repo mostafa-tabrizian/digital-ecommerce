@@ -24,8 +24,9 @@ const Like = ({ user, course }: { user: IUser; course: ICourse }) => {
 
          const resData = res.json()
 
+         // @ts-ignore
          if (resData?.status == 403) return toast.error('لطفا ابتدا وارد حساب کاربری خود شوید!')
-         
+
          router.refresh()
       } catch (err) {
          toast.warning('تو ثبت لایک مشکلی پیش اومد')

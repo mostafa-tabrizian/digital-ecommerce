@@ -1,6 +1,6 @@
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 import Link from 'next/link'
-import Tabs from './components/tabs'
+// import Tabs from './components/tabs'
 
 export const metadata = {
    title: 'اکسپرسیفای | پنل ادمین | آمار',
@@ -21,7 +21,7 @@ const Statistic = () => {
             </Breadcrumbs>
          </div>
 
-         <Tabs />
+         {/* <Tabs /> */}
       </div>
    )
 }

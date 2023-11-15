@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+// @ts-ignore
 import Swiper from 'swiper/bundle'
 import 'swiper/css/bundle'
 

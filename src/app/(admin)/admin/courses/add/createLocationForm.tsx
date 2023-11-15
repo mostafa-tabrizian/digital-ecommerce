@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify'
 import { Form, Formik } from 'formik'
 
-import { LocationSchemaValidation } from '@/formik/schema/validation'
+// import { LocationSchemaValidation } from '@/formik/schema/validation'
 import FormikInput from '@/formik/input'
 import { Switch } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -47,7 +47,7 @@ const CreateLocationForm = ({ selectedCourse }: { selectedCourse: string | null 
             quantity: '',
             color: '',
          }}
-         validationSchema={LocationSchemaValidation}
+         // validationSchema={LocationSchemaValidation}
          onSubmit={onSubmit}
       >
          {({ isSubmitting, handleChange, setFieldValue, errors, touched }) => (

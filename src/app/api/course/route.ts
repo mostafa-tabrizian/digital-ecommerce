@@ -46,33 +46,33 @@ export async function GET() {
 //    return NextResponse.json(locationData)
 // }
 
-export async function PATCH(request: Request) {
-   const { _id, publicStatus, name, description, price, discount }: {
-      _id: string,
-      publicStatus: boolean,
-      name: string,
-      description: string,
-      price: string,
-      discount: string
-   } = await request.json()
+// export async function PATCH(request: Request) {
+//    const { _id, publicStatus, name, description, price, discount }: {
+//       _id: string,
+//       publicStatus: boolean,
+//       name: string,
+//       description: string,
+//       price: string,
+//       discount: string
+//    } = await request.json()
 
-   const submitData: ICourse | object = {}
+//    const submitData: ICourse | object = {}
 
-   if (typeof(publicStatus) == 'boolean') submitData['public'] = publicStatus
-   if (name) submitData['name'] = name
-   if (description) submitData['description'] = description
-   if (price?.length) submitData['price'] = price
-   if (discount?.length) submitData['discount'] = discount
+//    if (typeof(publicStatus) == 'boolean') submitData['public'] = publicStatus
+//    if (name) submitData['name'] = name
+//    if (description) submitData['description'] = description
+//    if (price?.length) submitData['price'] = price
+//    if (discount?.length) submitData['discount'] = discount
 
-   await dbConnect()
-   const course = await Course.findOneAndUpdate({
-      _id: _id,
-   }, {
-      ...submitData
-   })
+//    await dbConnect()
+//    const course = await Course.findOneAndUpdate({
+//       _id: _id,
+//    }, {
+//       ...submitData
+//    })
    
-   course.save()
+//    course.save()
 
-   return NextResponse.json(course)
-}
+//    return NextResponse.json(course)
+// }
 

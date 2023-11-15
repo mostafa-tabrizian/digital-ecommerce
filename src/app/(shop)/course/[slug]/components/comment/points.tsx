@@ -3,10 +3,12 @@
 import Chip from '@mui/material/Chip'
 import { useState } from 'react'
 
+// @ts-ignore
 const Points = ({ setFieldValue }) => {
    const [positivePoints, setPositivePoints] = useState<string[]>([])
    const [negativePoints, setNegativePoints] = useState<string[]>([])
 
+// @ts-ignore
    const handleSubmitPositive = (e) => {
       if (e.key == 'Enter') {
          const value = e.target.value.trim()
@@ -27,6 +29,7 @@ const Points = ({ setFieldValue }) => {
       }
    }
 
+// @ts-ignore
    const handleSubmitNegative = (e) => {
       if (e.key == 'Enter') {
          const value = e.target.value.trim()

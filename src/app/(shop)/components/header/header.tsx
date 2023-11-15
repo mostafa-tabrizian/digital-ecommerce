@@ -1,18 +1,16 @@
 import Link from 'next/link'
 import Sidebar from './sidebar'
 import Profile from './Profile'
-import User from '@/lib/user'
 import Button from '@mui/material/Button'
 import Cart from './cart'
+import { IUser } from '@/models/user'
 
-const Header = async () => {
-   const user = await User()
-
+const Header = ({ user }: { user: IUser }) => {
    const simpleUser = {
       mobileNumber: user?.mobileNumber,
       name: user?.name,
       avatar: user?.avatar,
-      role: user?.role
+      role: user?.role,
    }
 
    return (

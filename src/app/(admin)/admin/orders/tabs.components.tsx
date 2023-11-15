@@ -102,7 +102,7 @@ const Tabs = () => {
                </div>
             ) : orders?.length ? (
                <div style={{ width: '100%' }} className='rtl'>
-                  <DataGrid
+                  {/* <DataGrid
                      rows={rows}
                      columns={columns}
                      initialState={{
@@ -112,7 +112,7 @@ const Tabs = () => {
                      }}
                      pageSizeOptions={[5, 10, 20, 50]}
                      density='comfortable'
-                  />
+                  /> */}
                </div>
             ) : (
                <h5>هیچ سفارشی تا به این لحظه ثبت نشده</h5>

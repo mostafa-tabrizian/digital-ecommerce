@@ -72,7 +72,7 @@ const Profile = async () => {
             </div>
 
             <div className='bg-white rounded-lg py-2 px-2 hover:shadow-lg hover:shadow-blue-100 transition-all'>
-               <Link href='profile/orders'>
+               <Link href='profile/courses'>
                   <div className='flex justify-end space-x-3 items-center'>
                      <span className='text-base'>دوره های من</span>
                      <svg

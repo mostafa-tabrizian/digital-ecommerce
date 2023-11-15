@@ -102,7 +102,7 @@ const Tabs = () => {
                            </h2>
                         </div>
                         <div className='px-4 py-4 shadow-md shadow-indigo-100 space-y-4 transition-shadow from-gray-50 to-gray-100 bg-gradient-to-bl rounded-lg'>
-                           <Column {...monthlyRegisterPlotConfig} />
+                           {/* <Column {...monthlyRegisterPlotConfig} /> */}
                         </div>
                      </>
                   ) : (

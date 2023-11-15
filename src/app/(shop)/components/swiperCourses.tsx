@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import useSWR from 'swr'
+// @ts-ignore
 import Swiper from 'swiper/bundle'
 import { toast } from 'react-toastify'
 import 'swiper/css/bundle'
@@ -59,7 +60,7 @@ const SwiperCourses = () => {
                   {courses.map((course) => {
                      return (
                         <div key={course._id} className='swiper-slide'>
-                           <CourseCards course={course} pageTarget='/course/' />
+                           <CourseCards course={course} />
                         </div>
                      )
                   })}

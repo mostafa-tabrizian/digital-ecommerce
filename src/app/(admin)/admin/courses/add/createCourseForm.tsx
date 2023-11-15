@@ -1,6 +1,5 @@
 import FormikInput from '@/formik/input'
 import FormikTextarea from '@/formik/textarea'
-import { Brand } from '@prisma/client'
 
 import Dialog from '@mui/material/Dialog'
 import { useState } from 'react'
@@ -86,17 +85,6 @@ const CreateCourseForm = () => {
                         />
 
                         <hr />
-
-                        <Autocomplete
-                           id='brand'
-                           options={brands}
-                           onChange={(e, value) => {
-                              if (value) setFieldValue('brand', value.id)
-                           }}
-                           getOptionLabel={(option: Brand) => option.name}
-                           renderInput={(params) => <TextField {...params} label='برند' />}
-                           sx={{ width: '100%' }}
-                        />
 
                         {errors.brand && touched.brand ? (
                            <p className='text-sm text-red-500'>{errors.brand}</p>

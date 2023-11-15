@@ -10,6 +10,7 @@ import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 import FormikInput from '@/formik/input'
 import { ProfileSchemaValidation } from '@/formik/schema/validation'
 import fetcher from '@/lib/fetcher'
+import { useRouter } from 'next/navigation'
 
 interface FormType {
    name?: string
@@ -17,10 +18,14 @@ interface FormType {
 
 const UserEditForm = () => {
    const { data, error, isLoading } = useSWR('/api/user', fetcher)
-   
+
+   const router = useRouter()
+
    const { executeRecaptcha } = useGoogleReCaptcha()
 
-   if (data?.status == 403) return toast.error('لطفا ابتدا وارد حساب کاربری خود شوید!')
+   if (data?.status == 403) {
+      router.push('/auth')
+   }
 
    if (error) {
       toast.error('در دریافت اطلاعات شما خطایی رخ داد')

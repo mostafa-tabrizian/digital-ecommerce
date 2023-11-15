@@ -145,7 +145,7 @@ const CourseCards = ({ course }: { course: ICourse }) => {
                         <div className='flex'>
                            <div className='bg-rose-500 px-2 rounded-full'>
                               <span className='text-white text-sm md:text-xl'>
-                                 {((course.discount / course.price) * 100).toLocaleString('per')} %
+                                 {(parseInt(((course.discount / course.price) * 100).toFixed())).toLocaleString('per')} %
                               </span>
                            </div>
                            <div>

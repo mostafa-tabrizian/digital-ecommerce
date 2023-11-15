@@ -27,11 +27,11 @@ export const VerificationForm = ({
    postVerification,
 }: {
    formData: IProps | null
-   verificationInput: { value: boolean; set: SetStateAction<boolean> }
+   verificationInput: { value: boolean; set: React.Dispatch<SetStateAction<boolean>> }
    postVerification: (values: IProps) => void
 }) => {
    const verificationAgain = () => {
-      postVerification(formData)
+      postVerification(formData as IProps)
    }
 
    const onSubmit = async (values: IForm) => {

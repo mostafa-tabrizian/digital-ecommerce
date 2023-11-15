@@ -54,9 +54,10 @@ const Orders = async () => {
                <span>{value}</span>
             </Link>
          ),
-      }
+      },
    ]
-
+   
+   // @ts-ignore
    const rows = user.purchaser?.map((course, index) => {
       return {
          id: index++,

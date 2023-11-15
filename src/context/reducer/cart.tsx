@@ -1,4 +1,4 @@
-import { ICourse } from "@/models/course"
+import { ICourse } from '@/models/course'
 
 interface ICartItem {
    [key: string]: ICourse

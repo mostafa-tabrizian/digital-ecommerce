@@ -35,7 +35,7 @@ const AdminCourse = () => {
    const [selectedCourse, selectCourse] = useState<string | null>(null)
    const { data, error }: {data: [ICourse], error: unknown} = useSWR('/api/course', fetcher)
 
-   data.sort((a, b) => stringtoDate(b.createdAt) - stringtoDate(a.createdAt))
+   data?.sort((a, b) => stringtoDate(b.createdAt) - stringtoDate(a.createdAt))
 
    if (error) {
       toast.error('دریافت محصولات به مشکل برخورد کرد!')
@@ -68,7 +68,7 @@ const AdminCourse = () => {
                   </Breadcrumbs>
 
                   <div className='flex flex-col p-4 bg-gradient-to-bl from-gray-100 to-gray-200 max-w-md space-y-5 mx-auto'>
-                     <div>
+                     {/* <div>
                         <div className='flex space-x-5 w-full'>
                            <CreateCourseForm />
 
@@ -85,7 +85,7 @@ const AdminCourse = () => {
                               <h3>هیچ محصولی برای انتخاب وجود ندارد</h3>
                            )}
                         </div>
-                     </div>
+                     </div> */}
 
                      <hr className='border-black border-2' />
 

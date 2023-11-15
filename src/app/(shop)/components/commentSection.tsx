@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { ICourse } from '@/models/course'
 import SwiperComments from './swiperComment'
 

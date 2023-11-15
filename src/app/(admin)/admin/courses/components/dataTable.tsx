@@ -90,7 +90,7 @@ const CoursesTable = ({ courses }: { courses: ICourse[] }) => {
 
    return (
       <div style={{ width: '100%' }} className='rtl'>
-         <DataGrid
+         {/* <DataGrid
             rows={rows}
             columns={columns}
             initialState={{
@@ -100,7 +100,7 @@ const CoursesTable = ({ courses }: { courses: ICourse[] }) => {
             }}
             pageSizeOptions={[5, 10, 20, 50]}
             density='comfortable'
-         />
+         /> */}
       </div>
    )
 }

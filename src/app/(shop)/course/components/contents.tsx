@@ -170,7 +170,7 @@ const Contents = () => {
                courses?.map((course) => {
                   return (
                      <div key={course._id}>
-                        <CourseCards course={course} pageTarget='/course/' />
+                        <CourseCards course={course} />
                      </div>
                   )
                })
