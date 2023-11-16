@@ -285,6 +285,10 @@ strong {
 
 .MuiDrawer-paper {
    border-radius: 25px;
+
+   @media (min-width:641px) {
+      width: 20%
+   }
 }
 
 .MuiStepConnector-root {

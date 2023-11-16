@@ -127,9 +127,9 @@ const Comments = ({ course }: { course: { id: string; name: string } }) => {
          <div
             className={` ${
                panel ? 'opacity-100 visible' : 'opacity-0 invisible'
-            } w-full h-full bg-white fixed top-0 left-0 z-20 transition-all`}
+            } w-full h-full bg-white md:grid md:justify-center md:items-center fixed top-0 left-0 z-20 transition-all md:bg-transparent md:backdrop-blur-sm md:backdrop-brightness-50`}
          >
-            <div className='m-6 rtl'>
+            <div className='m-6 rtl md:w-[584px] md:m-auto md:rounded-2xl md:bg-white md:p-8'>
                <div className='flex items-center justify-between'>
                   <div>
                      <p className='text-base'>دیدگاه شما</p>

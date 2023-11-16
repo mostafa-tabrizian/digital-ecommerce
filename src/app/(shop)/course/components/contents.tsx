@@ -16,6 +16,7 @@ import stringtoDate from '@/lib/stringToDate'
 import fetcher from '@/lib/fetcher'
 import CourseCards from '@/components/course/cards'
 import CircularProgress from '@mui/material/CircularProgress'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 const Contents = () => {
    const [dbCourses, setDbCourses] = useState<ICourse[]>([])
@@ -109,10 +110,12 @@ const Contents = () => {
       setCategoryCollapse(false)
    }
 
+   const matches = useMediaQuery('(min-width:768px)')
+
    return (
       <div>
          <div>
-            <div className='flex gap-x-4 text-gray-400 md:hidden mb-8'>
+            <div className='flex gap-x-4 text-gray-400 mb-8'>
                <button
                   onClick={() => setFilterToolsDrawer(true)}
                   className='border-2 rounded-2xl border-slate-300 flex py-2 justify-center items-center flex-1'
@@ -161,23 +164,31 @@ const Contents = () => {
                </button>
             </div>
          </div>
-         <div className='py-5 space-y-16'>
-            {isLoading ? (
-               <div className='flex justify-center my-20'>
-                  <CircularProgress size={40} />
-               </div>
-            ) : (
-               courses?.map((course) => {
+         {courses?.length ? (
+            <div className='py-5 space-y-16 md:grid md:grid-cols-3 md:space-y-0 md:gap-5'>
+               {courses.map((course) => {
                   return (
                      <div key={course._id}>
                         <CourseCards course={course} />
                      </div>
                   )
-               })
-            )}
-         </div>
+               })}
+            </div>
+         ) : (
+            <span className='grid-cols-2 md:col-span-3 text-lg font-medium text-center mt-5'>
+               {isLoading ? (
+                  <CircularProgress color='primary' size={40} />
+               ) : (
+                  '💢 با این فیلتر ها هیچ محصولی موجود نمی‌باشد'
+               )}
+            </span>
+         )}
 
-         <Drawer anchor='bottom' open={sortToolsDrawer} onClose={toggleDrawer()}>
+         <Drawer
+            anchor={matches ? 'right' : 'bottom'}
+            open={sortToolsDrawer}
+            onClose={toggleDrawer()}
+         >
             <div className='p-6 bg-slate-100'>
                <div className='text-center'>
                   <span className='font-bold text-base'>مرتب سازی دوره ها</span>
@@ -255,7 +266,11 @@ const Contents = () => {
             </div>
          </Drawer>
 
-         <Drawer anchor='bottom' open={filterToolsDrawer} onClose={toggleDrawer()}>
+         <Drawer
+            anchor={matches ? 'right' : 'bottom'}
+            open={filterToolsDrawer}
+            onClose={toggleDrawer()}
+         >
             <div className='p-6 bg-slate-100'>
                <div className='text-center'>
                   <span className='font-bold text-base'>فیلتر دوره ها</span>

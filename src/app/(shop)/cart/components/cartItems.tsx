@@ -24,11 +24,11 @@ const CartItems = () => {
                   return (
                      <div
                         key={item._id}
-                        className='bg-white rounded-xl p-3 sm:px-9 sm:py-7 mb-5 shadow-sm shadow-gray-100'
+                        className='bg-white rounded-xl p-3 px-9 py-7 mb-5 shadow-sm shadow-gray-100'
                      >
                         <div className='grid grid-cols-12 gap-y-2 gap-x-4'>
-                           <div className='col-span-12 sm:col-span-8 flex items-center'>
-                              <div className='relative w-16 h-16 lg:w-28 lg:h-28 ml-2 sm:ml-3 flex-shrink-0'>
+                           <div className='col-span-8 flex items-center'>
+                              <div className='relative w-16 h-16 ml-3 flex-shrink-0'>
                                  <Image
                                     className='rounded-xl'
                                     src={`/course/${item.image}`}
@@ -39,14 +39,14 @@ const CartItems = () => {
                                  />
                               </div>
                               <Link
-                                 className='yekanBlack text-gray-700 text-sm md:text-2xl hover:text-blue-600 transition-all duration-200 mb-3 block'
+                                 className='yekanBlack text-gray-700 text-sm hover:text-blue-600 transition-all duration-200 mb-3 block'
                                  href={'/course/' + item.name}
                               >
                                  {item.name}
                               </Link>
                            </div>
-                           <div className='col-span-12 sm:col-span-4 flex justify-between items-center sm:justify-end'>
-                              <div className='sm:mr-7 sm:order-2'>
+                           <div className='col-span-12 flex justify-between items-center'>
+                              <div className='mr-7 order-2'>
                                  <button
                                     onClick={() => {
                                        dispatch({
@@ -89,7 +89,7 @@ const CartItems = () => {
                                  )}
 
                                  <div className='font-bold flex items-center'>
-                                    <span className='text-blue-600 yekanBlack ml-2 sm:text-2xl'>
+                                    <span className='text-blue-600 yekanBlack ml-2 text-2xl'>
                                        {(item.price - item.discount).toLocaleString('fa')}
                                     </span>
                                     <svg

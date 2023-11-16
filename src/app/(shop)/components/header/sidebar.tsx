@@ -23,7 +23,7 @@ const Sidebar = ({ user }: { user: IUser }) => {
    useEffect(() => setSidebar(false), [pathname])
 
    return (
-      <div>
+      <div className='md:hidden'>
          <button onClick={() => setSidebar(true)}>
             <svg
                stroke='currentColor'
@@ -216,7 +216,7 @@ const Sidebar = ({ user }: { user: IUser }) => {
 
                            <Collapse in={contactUsOptions}>
                               <ul className='mt-3 border-b border-white border-opacity-10'>
-                                 <Link href='https://instagram.com/sahebmohamadi.ir'>
+                                 <Link href='#'>
                                     <li className='flex items-center rounded-lg text-gray-700 opacity-90 mb-4 pr-2'>
                                        <span>
                                           <svg
@@ -273,7 +273,7 @@ const Sidebar = ({ user }: { user: IUser }) => {
                                        </p>
                                     </li>
                                  </Link>
-                                 <Link href='https://t.me/fronthooks'>
+                                 <Link href='#'>
                                     <li className='flex items-center rounded-lg text-gray-700 opacity-90 mb-4 pr-2'>
                                        <span>
                                           <svg

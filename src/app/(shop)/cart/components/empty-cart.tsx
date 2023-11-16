@@ -2,7 +2,7 @@ import Image from 'next/legacy/image'
 
 const EmptyCart = () => {
    return (
-      <div className='space-y-10 m-10'>
+      <div className='space-y-10 m-10 md:col-span-2'>
          <div className='flex justify-center'>
             <Image
                className='object-contain'
