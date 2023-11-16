@@ -15,7 +15,7 @@ const Comment = ({ comment }: { comment: ICourse['comments'][0] }) => {
 
    return (
       <>
-         <div className='bg-white border shadow-xl p-4 lg:p-5 rounded-2xl'>
+         <div className='bg-white border shadow-xl md:shadow-lg p-4 rounded-2xl'>
             <SuggestionStatus suggestion={comment.suggestion} />
 
             <div className='text-sm lg:text-base text-gray-700 font-bold mb-2'>

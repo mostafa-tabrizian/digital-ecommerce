@@ -18,7 +18,7 @@ const IconContainer = ({ children }: { children: React.ReactNode }) => {
 
 const OurFeatures = () => {
    return (
-      <div className='grid grid-cols-2 justify-center gap-3'>
+      <div className='grid grid-cols-2 md:grid-cols-5 justify-center gap-3'>
          <Tooltip title='هر مبحث در قالب یک جلسه کوتاه و کاربردی آماده شده است'>
             <Container>
                <IconContainer>

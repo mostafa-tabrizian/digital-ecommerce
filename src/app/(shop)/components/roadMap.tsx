@@ -1,6 +1,6 @@
 const RoadMap = () => {
    return (
-      <div className='container mx-auto md:max-w-screen-lg mb-28'>
+      <div className='container mx-auto mb-28'>
          <div className='flex justify-center flex-col text-slate-900 items-center'>
             <h2 className='md:text-3xl text-xl font-extraBlack mb-1 md:mb-2'>مسیر یادگیری زبان</h2>
             <a
@@ -10,7 +10,7 @@ const RoadMap = () => {
                نقشه راه و مسیر یادگیری زبان
             </a>
          </div>
-         <div className='flex rtl items-center justify-between overflow-x-auto flex-shrink-0 flex-nowrap gap-x-10 -mx-4 md:gap-x-0 px-4 snap-x md:px-10 md:-mx-0 py-8 md:py-10'>
+         <div className='flex rtl items-center justify-between overflow-x-auto md:overflow-visible flex-shrink-0 flex-nowrap gap-x-10 -mx-4 md:gap-x-0 px-4 snap-x md:px-10 md:-mx-0 py-8 md:py-10'>
             <div className='flex flex-col items-center gap-y-3 snap-center transition-all duration-300 ease-in-out relative'>
                <div className='w-20 h-20 text-sm md:text-base font-extrabold text-center yekan1 text-gray-700 hover:text-blue-600 md:w-24 md:h-24 relative flex items-center justify-center rounded-full shadow-xl shadow-gray-300/30 transition hover:shadow-blue-600/30'>
                   اساس‌های زبان

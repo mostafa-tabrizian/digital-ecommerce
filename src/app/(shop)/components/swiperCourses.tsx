@@ -36,6 +36,7 @@ const SwiperCourses = () => {
          },
          loop: true,
          effect: 'coverflow',
+         slidesPerView: 1,
          coverflowEffect: {
             rotate: 30,
             slideShadows: false,
@@ -44,6 +45,13 @@ const SwiperCourses = () => {
             el: '.swiper-pagination',
             type: 'bullets',
             dynamicBullets: true,
+         },
+         breakpoints: {
+            745: {
+               slidesPerView: 2.3,
+               coverflowEffect: false,
+               spaceBetween: 20,
+            },
          },
       })
    }, [])

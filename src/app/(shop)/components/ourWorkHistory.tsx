@@ -12,10 +12,10 @@ const Container = ({ children }: { children: React.ReactNode }) => {
 const OurWorkHistory = () => {
    return (
       <div className='flex flex-col gap-y-8 md:flex-row md:justify-between md:items-center md:gap-x-5'>
-         <div className='lg:w-1/3 px-4 md:px-0'>
+         <div className='lg:w-1/3 px-4 md:px-0 order-1'>
             <div>
                <div className='flex justify-end items-center gap-x-3 mb-4'>
-                  <h2 className='yekanBlack text-slate-900 text-xl lg:text-4xl'>
+                  <h2 className='yekanBlack text-slate-900 text-xl md:text-right md:text-4xl'>
                      سابقه اکسپرسیفای
                   </h2>
                   <div className='p-3 relative from-blue-300 to-blue-500 bg-gradient-to-r flex items-center rounded-3xl justify-center drop-shadow'>

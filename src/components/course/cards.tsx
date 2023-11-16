@@ -143,19 +143,24 @@ const CourseCards = ({ course }: { course: ICourse }) => {
                   <div className='space-y-2'>
                      {course.discount ? (
                         <div className='flex'>
-                           <div className='bg-rose-500 px-2 rounded-full'>
-                              <span className='text-white text-sm md:text-xl'>
-                                 {(parseInt(((course.discount / course.price) * 100).toFixed())).toLocaleString('per')} %
+                           <div className='bg-rose-500 px-2 md:px-1 rounded-full'>
+                              <span className='text-white text-sm md:text-xs'>
+                                 {parseInt(
+                                    ((course.discount / course.price) * 100).toFixed(),
+                                 ).toLocaleString('per')}{' '}
+                                 %
                               </span>
                            </div>
                            <div>
-                              <span className='text-gray-400 line-through yekanBlack text-sm ml-2 md:text-xl'>
+                              <span className='text-gray-400 line-through yekanBlack text-sm ml-2 md:text-xs'>
                                  {course.price.toLocaleString('per')}
                               </span>
                            </div>
                         </div>
                      ) : (
-                        ''
+                        <div className='flex'>
+                           <div className='px-2 py-3 md:px-1'></div>
+                        </div>
                      )}
                      <div className='flex'>
                         <div className='font-bold flex items-center'>
@@ -174,7 +179,7 @@ const CourseCards = ({ course }: { course: ICourse }) => {
                                  data-name='Layer 1'
                               ></path>
                            </svg>
-                           <span className='text-slate-800 yekanBlack text-base ml-2 md:text-xl'>
+                           <span className='text-slate-800 yekanBlack text-base ml-2 md:text-base'>
                               {(course.price - course.discount).toLocaleString('per')}
                            </span>
                         </div>
